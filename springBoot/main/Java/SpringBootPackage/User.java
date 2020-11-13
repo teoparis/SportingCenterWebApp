@@ -39,7 +39,12 @@ public class User {
         return email;
     }
 
-    @Override
+  /**
+   * prova git
+   * @return
+   */
+
+  @Override
     public String toString() {
         return "{ "+ "Id: " +  this.id + " Name: " + this.name + " Email: " + this.email + " }";
     }
