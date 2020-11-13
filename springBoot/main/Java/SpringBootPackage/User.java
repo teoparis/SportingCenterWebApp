@@ -39,10 +39,7 @@ public class User {
         return email;
     }
 
-  /**
-   * prova git
-   * @return
-   */
+  //ciao questo è un commento
 
   @Override
     public String toString() {
