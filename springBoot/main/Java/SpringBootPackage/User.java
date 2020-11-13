@@ -39,6 +39,10 @@ public class User {
         return email;
     }
 
+    public String metodo() {
+      return "ciao";
+    }
+
   //ciao questo è un commento
 
   @Override
