@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './user';
-import { Observable } from '../../node_modules/rxjs/Observable';
+import { Observable } from '../../node_modules/rxjs';
 
 /**
  * Esegue richieste GET e POST all'host

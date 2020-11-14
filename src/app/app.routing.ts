@@ -5,8 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { UserListComponent } from './pages/user-list/user-list.component';
-import { UserFormComponent } from './pages/user-form/user-form.component';
 
 
 const routes: Routes =[
@@ -36,8 +34,6 @@ const routes: Routes =[
     path: '**',
     redirectTo: 'dashboard'
   },
-  { path: 'users', component: UserListComponent },
-  { path: 'adduser', component: UserFormComponent }
 ];
 
 @NgModule({
