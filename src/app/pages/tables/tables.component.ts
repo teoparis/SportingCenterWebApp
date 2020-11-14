@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import { User } from '../../user';
 import { UserService } from '../../user-service.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -11,11 +10,13 @@ import {NgForm} from "@angular/forms";
 })
 export class TablesComponent implements OnInit {
 
+  user: User;
   users: User[];
   closeResult: string;
   constructor(
     private modalService: NgbModal,
-    private userService: UserService) {
+    private userService: UserService,) {
+    this.user = new User();
   }
 
   /**
@@ -44,5 +45,12 @@ export class TablesComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  onSubmit() {
+    this.userService.save(this.user).subscribe((result) => {
+      this.ngOnInit(); //reload the table
+    });
+    this.modalService.dismissAll(); //dismiss the modal
   }
 }
