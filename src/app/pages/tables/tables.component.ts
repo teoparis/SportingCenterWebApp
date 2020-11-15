@@ -13,6 +13,7 @@ export class TablesComponent implements OnInit {
   user: User;
   users: User[];
   closeResult: string;
+  deleteId: any;
   constructor(
     private modalService: NgbModal,
     private userService: UserService,) {
@@ -29,13 +30,7 @@ export class TablesComponent implements OnInit {
       this.users = data;
     });
   }
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
+
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -45,6 +40,14 @@ export class TablesComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
   }
 
   onSubmit() {
@@ -62,5 +65,21 @@ export class TablesComponent implements OnInit {
     });
     document.getElementById('dname').setAttribute('value', user1.name);
     document.getElementById('demail').setAttribute('value', user1.email);
+  }
+
+  openDelete(targetModal, user: User) {
+    this.user = user;
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
+  }
+
+  onDeleteUser() {
+    this.userService.delete(this.user).subscribe((result) => {
+      this.ngOnInit(); //reload the table
+    });
+    this.modalService.dismissAll(); //dismiss the modal
   }
 }

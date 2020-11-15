@@ -22,7 +22,11 @@ public class UserController {
     @PostMapping("/users")
     void addUser(@RequestBody User user){
         userRepository.save(user);
-        System.out.println(userRepository.findAll());
+    }
+
+    @PostMapping("/users/deleteUser")
+    void deleteUser(@RequestBody User user) {
+      userRepository.delete(user);
     }
 }
 
