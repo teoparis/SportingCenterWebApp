@@ -7,6 +7,7 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { UserListComponent } from '../../pages/user-list/user-list.component';
 import { UserFormComponent } from '../../pages/user-form/user-form.component';
+import {ActivitiesComponent} from "../../pages/activities/activities.component";
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -14,5 +15,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'tables',         component: TablesComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
-    { path: 'users',          component: UserListComponent},
+    { path: 'activities',       component: ActivitiesComponent }
 ];
