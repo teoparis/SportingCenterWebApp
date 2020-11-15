@@ -15,8 +15,8 @@
               <h3 class="mb-0">CLIENTI</h3>
             </div>
             <div class="col text-right">
-              <button (click)="open(content)">
-              <a class="btn btn-info">Add User</a>
+              <button type="button" class="btn btn-info" (click)="open(content)">
+              Aggiungi cliente
               </button>
             </div>
           </div>
@@ -62,7 +62,7 @@
                placeholder="Enter your name"
                required #name="ngModel">
       </div>
-      <div [hidden]="!name.pristine" class="alert alert-danger">Name is required</div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Il nome è richiesto obbligatoriamente</div>
       <div class="form-group">
         <label for="email">Email</label>
         <input type="text" [(ngModel)]="user.email"
@@ -72,7 +72,7 @@
                placeholder="Enter your email address"
                required #email="ngModel">
       </div>
-        <div [hidden]="!email.pristine" class="alert alert-danger">Email is required</div>
+        <div [hidden]="!email.pristine" class="alert alert-danger">L'Email è richiesta obbligatoriamente</div>
       <button type="submit" [disabled]="!userForm.form.valid"
               class="btn btn-info">Submit</button>
     </form>
