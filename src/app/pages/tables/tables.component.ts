@@ -53,4 +53,14 @@ export class TablesComponent implements OnInit {
     });
     this.modalService.dismissAll(); //dismiss the modal
   }
+
+  openDetails(targetModal, user1: User) {
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
+    document.getElementById('dname').setAttribute('value', user1.name);
+    document.getElementById('demail').setAttribute('value', user1.email);
+  }
 }

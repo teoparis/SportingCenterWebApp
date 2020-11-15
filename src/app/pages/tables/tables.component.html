@@ -16,7 +16,7 @@
             </div>
             <div class="col text-right">
               <button type="button" class="btn btn-info" (click)="open(content)">
-              Aggiungi cliente
+                Aggiungi cliente
               </button>
             </div>
           </div>
@@ -31,11 +31,24 @@
             </tr>
             </thead>
             <tbody>
+
             <tr *ngFor="let user of users">
               <td>{{ user.id }}</td>
               <td>{{ user.name }}</td>
               <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+              <td>
+              <button type="button" class="btn btn-outline-light" (click)="openDetails(contentDetails, user)">
+                Dettagli
+              </button>
+                <button type="button" class="btn btn-outline-info" (click)="openDetails(contentDetails, user)">
+                  Modifica
+                </button>
+                <button type="button" class="btn btn-warning" (click)="openDetails(contentDetails, user)">
+                  Elimina
+                </button>
+              </td>
             </tr>
+
             </tbody>
           </table>
         </div>
@@ -45,7 +58,7 @@
 </div>
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">New Friend</h4>
+    <h4 class="modal-title" id="modal-basic-title">Aggiungi Cliente</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -72,10 +85,35 @@
                placeholder="Enter your email address"
                required #email="ngModel">
       </div>
-        <div [hidden]="!email.pristine" class="alert alert-danger">L'Email è richiesta obbligatoriamente</div>
+      <div [hidden]="!email.pristine" class="alert alert-danger">L'Email è richiesta obbligatoriamente</div>
       <button type="submit" [disabled]="!userForm.form.valid"
               class="btn btn-info">Submit</button>
     </form>
   </div>
 </ng-template>
 
+<ng-template #contentDetails let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title2">Visualizza Cliente</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label>Name</label>
+        <input class="form-control"
+               id="dname"
+               name="name">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text"
+               class="form-control"
+               id="demail"
+               name="email">
+      </div>
+    </form>
+  </div>
+</ng-template>
