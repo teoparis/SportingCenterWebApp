@@ -1,26 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Attivita } from './attivita';
 import { Observable } from '../../node_modules/rxjs';
-import {Attivita} from "./attivita";
 
-/**
- * Esegue richieste GET e POST all'host
- * http://localhost:8080/users
- * Questo ci permette di incapsulare l'accesso al
- * controller REST in una singola classe, che possiamo
- * utilizzare per l'intera applicazione.
- *
- * Incapsula, all'interno di una componente riutilizzabile,
- * tutte le funzionalità richieste per consumare il controller
- * REST API che abbiamo implementato in Spring Boot (UserController)
- */
-@Injectable()
-export class attivitaService {
-
+@Injectable({
+  providedIn: 'root'
+})
+export class AttivitaServiceService {
   private attivUrl: string;
 
   constructor(private http: HttpClient) {
-    this.attivUrl = 'http://localhost:8080/activity';
+    this.attivUrl = 'http://localhost:8080/activities';
   }
 
   /**
@@ -39,6 +29,6 @@ export class attivitaService {
   }
 
   public delete(attivita: Attivita) {
-    return this.http.post<Attivita>(this.attivUrl + '/deleteAttiv', attivita);
+    return this.http.post<Attivita>(this.attivUrl + '/delete', attivita);
   }
 }
