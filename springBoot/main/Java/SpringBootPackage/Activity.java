@@ -36,12 +36,12 @@ public class Activity {
     return name;
   }
 
-  public String getEmail() {
+  public String getDescr() {
     return descr;
   }
 
   @Override
   public String toString() {
-    return "{ "+ "Id: " +  this.id + " Name: " + this.name + " Email: " + this.descr + " }";
+    return "{ "+ "Id: " +  this.id + " Name: " + this.name + " Descr: " + this.descr + " }";
   }
 }

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import { Attivita } from '../../attivita';
-import { attivitaService } from '../../attivita.service';
+import { AttivitaServiceService } from '../../attivita-service.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-activities',
+  selector: 'app-root',
   templateUrl: './activities.component.html',
   styleUrls: ['./activities.component.scss']
 })
@@ -16,7 +16,7 @@ export class ActivitiesComponent implements OnInit {
   deleteId: any;
   constructor(
     private modalService: NgbModal,
-    private attivitaService: attivitaService,) {
+    private attivitaService: AttivitaServiceService,) {
     this.activity = new Attivita();
   }
 

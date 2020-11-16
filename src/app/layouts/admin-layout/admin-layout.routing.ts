@@ -5,8 +5,6 @@ import { IconsComponent } from '../../pages/icons/icons.component';
 import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
-import { UserListComponent } from '../../pages/user-list/user-list.component';
-import { UserFormComponent } from '../../pages/user-form/user-form.component';
 import {ActivitiesComponent} from "../../pages/activities/activities.component";
 
 export const AdminLayoutRoutes: Routes = [
@@ -15,5 +13,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'tables',         component: TablesComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
-    { path: 'activities',       component: ActivitiesComponent }
+    { path: 'activities',       component: ActivitiesComponent },
 ];

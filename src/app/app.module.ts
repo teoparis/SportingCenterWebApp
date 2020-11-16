@@ -13,8 +13,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
-import { UserListComponent } from './pages/user-list/user-list.component';
-import { UserFormComponent } from './pages/user-form/user-form.component';
 import { UserService } from './user-service.service';
 
 @NgModule({
@@ -31,9 +29,7 @@ import { UserService } from './user-service.service';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
-    UserListComponent,
-    UserFormComponent
+    AuthLayoutComponent
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
