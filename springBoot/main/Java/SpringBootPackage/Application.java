@@ -20,7 +20,7 @@ public class Application {
                 User user = new User(name, name.toLowerCase() + "@domain.com");
                 userRepository.save(user);
             });
-            Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name1 -> {
+            Stream.of("Functional Training", "Crossfit", "Zumba", "Nuoto", "Ballo").forEach(name1 -> {
             Activity attvita = new Activity(name1, name1.toLowerCase() + "@domain.com");
             activityRepository.save(attvita);
             });

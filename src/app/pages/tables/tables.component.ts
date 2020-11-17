@@ -3,6 +3,7 @@ import { User } from '../../user';
 import { UserService } from '../../user-service.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './tables.component.html',
@@ -14,6 +15,7 @@ export class TablesComponent implements OnInit {
   users: User[];
   closeResult: string;
   deleteId: any;
+  searchValue: string;
   constructor(
     private modalService: NgbModal,
     private userService: UserService,) {
