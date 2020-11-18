@@ -21,7 +21,7 @@ public class Application {
                 userRepository.save(user);
             });
             Stream.of("Functional Training", "Crossfit", "Zumba", "Nuoto", "Ballo").forEach(name1 -> {
-            Activity attvita = new Activity(name1, name1.toLowerCase() + "@domain.com");
+            Activity attvita = new Activity(name1, name1.toLowerCase() + " descrixzzione esifearwbog cauesbfo dIUWEbfogbw soeFBEO");
             activityRepository.save(attvita);
             });
             userRepository.findAll().forEach(System.out::println);
