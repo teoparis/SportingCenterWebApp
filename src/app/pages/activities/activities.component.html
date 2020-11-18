@@ -4,57 +4,39 @@
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--7">
-  <!-- Table -->
-  <div class="row">
-    <div class="col">
-
-      <div class="card shadow">
-        <div class="card-header border-0">
-          <div class="row align-items-center">
-            <div class="col">
-              <h3 class="mb-0">ATTIVITA' SPORTIVE</h3>
-            </div>
-            <div class="col text-right">
-              <button type="button" class="btn btn-info" (click)="open(content)">
-                Aggiungi nuova attività sportiva
-              </button>
+  <div class="col text-right" style="margin-bottom:15px">
+    <button type="button" class="btn btn-info" (click)="open(content)">
+      Aggiungi nuova attività sportiva
+    </button>
+  </div>
+  <div class="row" *ngFor="let activity of activities">
+    <div class="col" style='margin-bottom:15px' >
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm">
+              <span class="h2 font-weight-bold mb-0">{{ activity.name }}</span>
             </div>
           </div>
+          <p class="mt-3 mb-0 text-muted text-sm">
+            <span class="text-nowrap">{{ activity.descr }}</span></p>
+          <div class="pagination justify-content-end">
+
+            <button type="button" class="btn btn-outline-light" (click)="openDetails(contentDetails, activity)">
+            Dettagli
+          </button>
+            <button type="button" class="btn btn-outline-info" (click)="openDetails(contentDetails, activity)">
+              Modifica
+            </button>
+            <button type="button" class="btn btn-warning" (click)="openDelete(contentDelete,activity)">
+              Elimina
+            </button>
         </div>
-        <div class="table-responsive">
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Nome</th>
-              <th scope="col">E-mail</th>
-              <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
 
-            <tr *ngFor="let activity of activities">
-              <td>{{ activity.id }}</td>
-              <td>{{ activity.name }}</td>
-              <td><a href="mailto:{{ activity.descr }}">{{ activity.descr }}</a></td>
-              <td>
-                <button type="button" class="btn btn-outline-light" (click)="openDetails(contentDetails, activity)">
-                  Dettagli
-                </button>
-                <button type="button" class="btn btn-outline-info" (click)="openDetails(contentDetails, activity)">
-                  Modifica
-                </button>
-                <button type="button" class="btn btn-warning" (click)="openDelete(contentDelete,activity)">
-                  Elimina
-                </button>
-              </td>
-            </tr>
-
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
+    <p></p>
   </div>
 </div>
 <ng-template #content let-modal>

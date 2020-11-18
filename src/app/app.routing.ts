@@ -9,6 +9,16 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 
 const routes: Routes =[
   {
+  path: '',
+  component: AuthLayoutComponent,
+  children: [
+    {
+      path: '',
+      loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
+    }
+  ]
+},
+  {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
@@ -21,19 +31,10 @@ const routes: Routes =[
         loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
       }
     ]
-  }, {
-    path: '',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
-      }
-    ]
-  }, {
+  },  {
     path: '**',
     redirectTo: 'dashboard'
-  },
+  }
 ];
 
 @NgModule({

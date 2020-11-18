@@ -62,6 +62,13 @@
             color: $table-head-color;
         }
     }
+
+  .thead-person {
+    th {
+      background-color: #e83b3e;
+      color: #ffffff;
+    }
+  }
 }
 
 
