@@ -13,6 +13,7 @@
   </div>
 </div>
 <div class="container-fluid mt--7">
+ <!--
   <div class="row">
     <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
       <div class="card card-profile shadow">
@@ -116,7 +117,7 @@
               </div>
             </div>
             <hr class="my-4" />
-            <!-- Address -->
+
             <h6 class="heading-small text-muted mb-4">Contact information</h6>
             <div class="pl-lg-4">
               <div class="row">
@@ -149,7 +150,7 @@
               </div>
             </div>
             <hr class="my-4" />
-            <!-- Description -->
+
             <h6 class="heading-small text-muted mb-4">About me</h6>
             <div class="pl-lg-4">
               <div class="form-group">
@@ -162,4 +163,20 @@
       </div>
     </div>
   </div>
+-->
+  <div class="container" *ngIf="currentUser; else loggedOut">
+    <div>
+      <h6 class="text-muted py-5">
+        <strong>{{ currentUser.displayName }}</strong> Profile
+      </h6>
+    </div>
+    <p>
+      <strong>Email:</strong> {{ currentUser.email }}
+    </p>
+    <strong>Roles:</strong>
+    <ul>
+      <li *ngFor="let role of currentUser.roles">{{ role }}</li>
+    </ul>
+  </div>
+  <ng-template #loggedOut> Please login. </ng-template>
 </div>
