@@ -32,7 +32,7 @@ export class UserService {
    * del backend in un modo più efficiente e effettivo.
    */
   public findAll(): Observable<User[]> {
-    return this.http.get<User[]>(AppConstants.API_BASE_URL+"users");
+    return this.http.get<User[]>(AppConstants.API_URL + "users");
   }
 
   public save(user: User) {
