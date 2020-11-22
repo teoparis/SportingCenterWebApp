@@ -2,6 +2,9 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
+import {AuthService} from "../../service/auth.service";
+import {TokenStorageService} from "../../service/token-storage.service";
+
 
 @Component({
   selector: 'app-navbar',
@@ -12,12 +15,21 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location,  private element: ElementRef, private router: Router) {
+  isLoggedIn = false;
+  username: string;
+  public name: any;
+  constructor(location: Location,  private element: ElementRef, private router: Router, public tokenStorageService: TokenStorageService) {
     this.location = location;
   }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.username = user.displayName;
+    }
   }
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -33,4 +45,7 @@ export class NavbarComponent implements OnInit {
     return 'Home';
   }
 
+  logout(): void {
+    this.tokenStorageService.signOut();
+  }
 }

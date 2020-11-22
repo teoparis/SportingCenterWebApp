@@ -22,8 +22,10 @@ export class LoginComponent implements OnInit {
   facebookURL = AppConstants.FACEBOOK_AUTH_URL;
   githubURL = AppConstants.GITHUB_AUTH_URL;
   linkedinURL = AppConstants.LINKEDIN_AUTH_URL;
+  private cont = true;
+  private al: any;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private route: ActivatedRoute, private userService: UserService) {}
+  constructor(private router: Router,private authService: AuthService, private tokenStorage: TokenStorageService, private route: ActivatedRoute, private userService: UserService) {}
 
   ngOnInit(): void {
     const token: string = this.route.snapshot.queryParamMap.get('token');
@@ -48,6 +50,14 @@ export class LoginComponent implements OnInit {
       this.errorMessage = error;
       this.isLoginFailed = true;
     }
+    if(this.isLoggedIn){
+       if(this.currentUser.roles.includes("ROLE_ADMIN")){
+        setTimeout(() => {this.router.navigate(['/dashboard']);}, 2000);
+      }
+      else{
+        setTimeout(() => {this.router.navigate(['/user-profile']);}, 2000);
+      }
+    }
   }
 
   onSubmit(): void {
@@ -61,6 +71,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
       }
     );
+
   }
 
   login(user): void {
@@ -69,6 +80,7 @@ export class LoginComponent implements OnInit {
     this.isLoggedIn = true;
     this.currentUser = this.tokenStorage.getUser();
     window.location.reload();
+
   }
 
 }

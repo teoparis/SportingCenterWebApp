@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import {AuthService} from "../../service/auth.service";
+import {LoginComponent} from "../../pages/login/login.component";
 import {TokenStorageService} from "../../service/token-storage.service";
+
 
 @Component({
   selector: 'app-auth-layout',
@@ -10,12 +13,9 @@ import {TokenStorageService} from "../../service/token-storage.service";
 export class AuthLayoutComponent implements OnInit, OnDestroy {
   test: Date = new Date();
   public isCollapsed = true;
-  private roles: string[];
-  isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  username: string;
-  constructor(private router: Router, private tokenStorageService: TokenStorageService) { }
+  private isLoggedIn: boolean;
+  private username: any;
+  constructor(private router: Router,public token: TokenStorageService) { }
 
   ngOnInit() {
     var html = document.getElementsByTagName("html")[0];
@@ -24,17 +24,11 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
     body.classList.add("bg-default");
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
-
    });
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    this.isLoggedIn = !!this.token.getToken();
 
     if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
+      const user = this.token.getUser();
       this.username = user.displayName;
     }
 
@@ -45,8 +39,9 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
     var body = document.getElementsByTagName("body")[0];
     body.classList.remove("bg-default");
   }
+
   logout(): void {
-    this.tokenStorageService.signOut();
+    this.token.signOut();
     window.location.reload();
   }
 }

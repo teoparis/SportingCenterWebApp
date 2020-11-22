@@ -2,9 +2,13 @@
   <div class="container">
     <div class="header-body text-center mb-7">
       <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-6">
+        <div *ngIf="!isLoggedIn" class="col-lg-5 col-md-6">
           <h1 class="text-white">Benvenuto!</h1>
           <p class="text-lead text-light"> Effettua il login per prenotarti.</p>
+        </div>
+        <div *ngIf="isLoggedIn" class="col-lg-5 col-md-6">
+          <h1 class="text-white">Ben Tornato!</h1>
+          <p class="text-lead text-light"> Stai per essere reindirizzato.</p>
         </div>
       </div>
     </div>
@@ -30,7 +34,7 @@
               <span class="btn-inner--text">Google</span>
             </a>
             <a href="{{ facebookURL }}" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"><img src="../assets/img/icons/common/download.png"></span>
+              <span class="btn-inner--icon"><img src="../assets/img/icons/common/facebook.png"></span>
               <span class="btn-inner--text">Facebook</span>
             </a>
           </div>
@@ -59,7 +63,7 @@
           </label>
         </div>
           <div class="form-group">
-            <button class="btn btn-primary btn-block">Login</button>
+            <button class="btn btn-primary btn-block" >Login</button>
           </div>
           <div class="form-group">
             <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">Login failed: {{ errorMessage }}</div>
@@ -78,7 +82,7 @@
         </div>
       </div>
       </form>
-      <div class="alert alert-success" *ngIf="isLoggedIn">Welcome {{currentUser.displayName}} <br>Logged in as {{ currentUser.roles }}.</div>
+      <div class="alert alert-success" *ngIf="isLoggedIn">Welcome {{currentUser.displayName}} <br>Logged in as {{ currentUser.roles }}. <br>{{ cont }}</div>
     </div>
 
   </div>
