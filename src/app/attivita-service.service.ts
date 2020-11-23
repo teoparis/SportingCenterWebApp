@@ -10,7 +10,7 @@ export class AttivitaServiceService {
   private attivUrl: string;
 
   constructor(private http: HttpClient) {
-    this.attivUrl = 'http://localhost:8080/activities';
+    this.attivUrl = 'http://localhost:8080/admin/activities';
   }
 
   /**

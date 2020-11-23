@@ -46,7 +46,7 @@
 
             <tr *ngFor="let user of users | searchfilter: searchValue">
               <td>{{ user.id }}</td>
-              <td>{{ user.name }}</td>
+              <td>{{ user.displayName }}</td>
               <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
               <td>
               <button type="button" class="btn btn-outline-light" (click)="openDetails(contentDetails, user)">
@@ -80,7 +80,7 @@
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" [(ngModel)]
-          ="user.name"
+          ="user.displayName"
                class="form-control"
                id="name"
                name="name"

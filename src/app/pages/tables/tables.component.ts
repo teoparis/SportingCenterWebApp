@@ -65,7 +65,7 @@ export class TablesComponent implements OnInit {
       backdrop: 'static',
       size: 'lg'
     });
-    document.getElementById('dname').setAttribute('value', user1.name);
+    document.getElementById('dname').setAttribute('value', user1.displayName);
     document.getElementById('demail').setAttribute('value', user1.email);
   }
 

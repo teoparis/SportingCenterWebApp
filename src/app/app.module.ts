@@ -15,6 +15,7 @@ import { ComponentsModule } from './components/components.module';
 
 import { UserService } from './user-service.service';
 import {AuthGuardService} from "./service/auth-guard.service";
+import {authInterceptorProviders} from "./_helpers/auth.interceptor";
 
 @NgModule({
   imports: [
@@ -33,7 +34,7 @@ import {AuthGuardService} from "./service/auth-guard.service";
     AdminLayoutComponent,
     AuthLayoutComponent,
   ],
-  providers: [UserService,AuthGuardService],
+  providers: [authInterceptorProviders,UserService,AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
