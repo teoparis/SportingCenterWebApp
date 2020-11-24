@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { Attivita } from '../../attivita';
-import { AttivitaServiceService } from '../../attivita-service.service';
+import { AttivitaServiceService } from '../../service/attivita-service.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Attivita } from './attivita';
-import { Observable } from '../../node_modules/rxjs';
-import {AppConstants} from "./common/app.constants";
+import { Attivita } from '../attivita';
+import { Observable } from 'rxjs';
+import {AppConstants} from "../common/app.constants";
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { User } from '../../user';
-import { UserService } from '../../user-service.service';
+import { UserService } from '../../service/user-service.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 

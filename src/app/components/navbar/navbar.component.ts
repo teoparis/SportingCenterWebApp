@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
+import { ROUTESUSER } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import {AuthService} from "../../service/auth.service";
@@ -23,12 +24,18 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listTitles = ROUTES.filter(listTitle => listTitle);
     this.isLoggedIn = !!this.tokenStorageService.getToken();
+    const user = this.tokenStorageService.getUser();
 
     if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
+
       this.username = user.displayName;
+    }
+    if(user.roles.includes("ROLE_ADMIN")){
+      this.listTitles = ROUTES.filter(listTitle => listTitle);
+    }
+    else{
+      this.listTitles = ROUTESUSER.filter(listTitle => listTitle);
     }
   }
   getTitle(){
@@ -47,6 +54,5 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    setTimeout(() => {this.router.navigate(['/login']);}, 500);
   }
 }

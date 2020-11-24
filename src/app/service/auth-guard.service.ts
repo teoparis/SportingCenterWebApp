@@ -15,20 +15,21 @@ export class AuthGuardService implements CanLoad {
 
   canLoad(route: Route){
     this.isok =  !!this.tokenStorageService.getToken();
+    const user = this.tokenStorageService.getUser();
+
     if(!this.isok) {
-      alert('Non sei autorizzato a visualizzare questa pagina');
       this.router.navigate(['/login']);
     }
     return this.isok;
   }
 
   canActivate(): boolean {
-    this.isok =  !!this.tokenStorageService.getToken();
-    if(!this.isok) {
-      alert('Non sei autorizzato a visualizzare questa pagina');
-      this.router.navigate(['/login']);
+    const user = this.tokenStorageService.getUser();
+    if(!user.roles.includes("ROLE_ADMIN")){
+      return false
     }
-    return this.isok;
-  }
+    return true;
+}
+
 
 }

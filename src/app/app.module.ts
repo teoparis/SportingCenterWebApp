@@ -13,9 +13,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
-import { UserService } from './user-service.service';
+import { UserService } from './service/user-service.service';
 import {AuthGuardService} from "./service/auth-guard.service";
 import {authInterceptorProviders} from "./_helpers/auth.interceptor";
+import {UserLayoutComponent} from "./layouts/user-layout/user-layout.component";
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import {authInterceptorProviders} from "./_helpers/auth.interceptor";
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+    UserLayoutComponent
   ],
   providers: [authInterceptorProviders,UserService,AuthGuardService],
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AppConstants} from "../../common/app.constants";
 import {AuthService} from "../../service/auth.service";
 import {TokenStorageService} from "../../service/token-storage.service";
-import {UserService} from "../../user-service.service";
+import {UserService} from "../../service/user-service.service";
 
 @Component({
   selector: 'app-login',
