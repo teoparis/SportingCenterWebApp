@@ -47,5 +47,6 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     this.tokenStorageService.signOut();
+    setTimeout(() => {this.router.navigate(['/login']);}, 500);
   }
 }

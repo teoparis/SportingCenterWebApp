@@ -13,11 +13,11 @@ export class AuthGuardService implements CanLoad {
 
   constructor(public tokenStorageService: TokenStorageService, private router:Router) { }
 
-  canLoad(){
+  canLoad(route: Route){
     this.isok =  !!this.tokenStorageService.getToken();
     if(!this.isok) {
       alert('Non sei autorizzato a visualizzare questa pagina');
-      this.router.navigate['/login'];
+      this.router.navigate(['/login']);
     }
     return this.isok;
   }
@@ -26,7 +26,7 @@ export class AuthGuardService implements CanLoad {
     this.isok =  !!this.tokenStorageService.getToken();
     if(!this.isok) {
       alert('Non sei autorizzato a visualizzare questa pagina');
-      this.router.navigate['/login'];
+      this.router.navigate(['/login']);
     }
     return this.isok;
   }

@@ -18,6 +18,7 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
   constructor(private router: Router,public token: TokenStorageService) { }
 
   ngOnInit() {
+    this.router.navigate(['/login']);
     var html = document.getElementsByTagName("html")[0];
     html.classList.add("auth-layout");
     var body = document.getElementsByTagName("body")[0];

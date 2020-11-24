@@ -32,31 +32,31 @@ export class UserService {
    * del backend in un modo più efficiente e effettivo.
    */
   public findAll(): Observable<User[]> {
-    return this.http.get<User[]>(AppConstants.API_URL + "users");
+    return this.http.get<User[]>(AppConstants.ADMIN_URL + "users");
   }
 
   public save(user: User) {
-    return this.http.post<User>(AppConstants.API_BASE_URL+"users", user);
+    return this.http.post<User>(AppConstants.ADMIN_URL +"users", user);
   }
 
   public delete(user: User) {
-    return this.http.post<User>(AppConstants.API_BASE_URL+"users" + '/deleteUser', user);
+    return this.http.post<User>(AppConstants.ADMIN_URL +"users/deleteUser", user);
   }
 
   getPublicContent(): Observable<any> {
-    return this.http.get(AppConstants.API_URL + 'all', { responseType: 'text' });
+    return this.http.get(AppConstants.ADMIN_URL + 'all', { responseType: 'text' });
   }
 
   getUserBoard(): Observable<any> {
-    return this.http.get(AppConstants.API_URL + 'user', { responseType: 'text' });
+    return this.http.get(AppConstants.ADMIN_URL + 'user', { responseType: 'text' });
   }
 
   getModeratorBoard(): Observable<any> {
-    return this.http.get(AppConstants.API_URL + 'mod', { responseType: 'text' });
+    return this.http.get(AppConstants.ADMIN_URL + 'mod', { responseType: 'text' });
   }
 
   getAdminBoard(): Observable<any> {
-    return this.http.get(AppConstants.API_URL + 'admin', { responseType: 'text' });
+    return this.http.get(AppConstants.ADMIN_URL + 'admin', { responseType: 'text' });
   }
 
   getCurrentUser(): Observable<any> {

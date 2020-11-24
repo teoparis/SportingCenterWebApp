@@ -18,12 +18,8 @@ const routes: Routes =[
       loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
     }
   ]
-},
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  }, {
+}
+  , {
     path: '',
     component: AdminLayoutComponent,
     children: [
