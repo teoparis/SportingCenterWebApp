@@ -87,7 +87,7 @@
                placeholder="Enter your name"
                required #name="ngModel">
       </div>
-      <div [hidden]="!name.pristine" class="alert alert-danger">Il nome è richiesto obbligatoriamente</div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Il nome è obbligatorio</div>
       <div class="form-group">
         <label for="email">Email</label>
         <input type="text" [(ngModel)]="user.email"
@@ -97,7 +97,7 @@
                placeholder="Enter your email address"
                required #email="ngModel">
       </div>
-      <div [hidden]="!email.pristine" class="alert alert-danger">L'Email è richiesta obbligatoriamente</div>
+      <div [hidden]="!email.pristine" class="alert alert-danger">L'Email è obbligatoria</div>
       <button type="submit" [disabled]="!userForm.form.valid"
               class="btn btn-info">Submit</button>
     </form>
