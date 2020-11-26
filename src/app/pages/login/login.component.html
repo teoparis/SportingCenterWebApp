@@ -52,7 +52,7 @@
             <label for="password">Password</label> <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
                                                           #password="ngModel" />
             <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
-              <div *ngIf="password.errors.required">la Password è obbligatoria</div>
+              <div *ngIf="password.errors.required">La Password è obbligatoria</div>
               <div *ngIf="password.errors.minlength">La Password deve essere di almeno 6 caratteri</div>
             </div>
           </div>
@@ -79,7 +79,7 @@
           <a href="javascript:void(0)" class="text-light"><small>Password dimenticata?</small></a>
         </div>
         <div class="col-6 text-right">
-          <a href="javascript:void(0)" class="text-light"><small>Crea un nuovo account</small></a>
+          <a routerLinkActive="active" [routerLink]="['/register']" class="text-light"><small>Crea un nuovo account</small></a>
         </div>
       </div>
       </form>
