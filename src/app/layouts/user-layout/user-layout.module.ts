@@ -27,7 +27,7 @@ import {SearchfilterPipe} from "../../searchfilter.pipe";
     DashboardComponent,
     UserProfileComponent,
     IconsComponent,
-    MapsComponent,
+    //MapsComponent,
     SearchfilterPipe
   ]
 })
