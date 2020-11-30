@@ -22,6 +22,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
+import {Attivita} from "../../attivita";
 
 const colors: any = {
   red: {
@@ -39,12 +40,20 @@ const colors: any = {
 };
 
 
+interface MyEvent extends CalendarEvent {
+  foo?: string;
+  activity?: Attivita;
+}
+
 @Component({
   selector: 'app-maps',
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
+
+
 export class MapsComponent {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
@@ -58,6 +67,7 @@ export class MapsComponent {
     action: string;
     event: CalendarEvent;
   };
+
 
   actions: CalendarEventAction[] = [
     {
@@ -79,12 +89,14 @@ export class MapsComponent {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
+  events: MyEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 1),
       title: 'A 3 day event',
       color: colors.red,
+      foo: 'ciao',
+      activity: new Attivita(),
       actions: this.actions,
       allDay: true,
       resizable: {
@@ -119,6 +131,7 @@ export class MapsComponent {
       draggable: true,
     },
   ];
+
 
   activeDayIsOpen: boolean = true;
 
@@ -170,6 +183,7 @@ export class MapsComponent {
         start: startOfDay(new Date()),
         end: endOfDay(new Date()),
         color: colors.red,
+        activity: new Attivita(),
         draggable: true,
         resizable: {
           beforeStart: true,
