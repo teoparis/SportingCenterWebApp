@@ -122,7 +122,8 @@ export class MapsComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal,
+              private modalService: NgbModal) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -191,13 +192,13 @@ export class MapsComponent {
   }
 
 
-  /*openNewProgramSpec(targetModal) {
+  openNewProgramSpec(targetModal) {
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
       size: 'lg'
     });
-  }*/
+  }
 
 
 }
