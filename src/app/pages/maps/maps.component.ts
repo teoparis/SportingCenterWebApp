@@ -20,9 +20,11 @@ import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
+  CalendarEventTitleFormatter,
   CalendarView,
 } from 'angular-calendar';
 import {Attivita} from "../../attivita";
+import { CustomEventTitleFormatter } from 'src/app/service/CustomEventTitleFormatter';
 
 const colors: any = {
   red: {
@@ -50,6 +52,12 @@ interface MyEvent extends CalendarEvent {
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: CalendarEventTitleFormatter,
+      useClass: CustomEventTitleFormatter,
+    },
+  ],
 })
 
 

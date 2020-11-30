@@ -16,29 +16,29 @@
     <div class="col-md-4">
       <div class="btn-group">
         <div
-          class="btn btn-primary"
+          class="btn btn-outline-primary"
           mwlCalendarPreviousView
           [view]="view"
           [(viewDate)]="viewDate"
           (viewDateChange)="closeOpenMonthViewDay()"
         >
-          Previous
+          Prec
         </div>
         <div
-          class="btn btn-outline-secondary"
+          class="btn btn-outline-primary"
           mwlCalendarToday
           [(viewDate)]="viewDate"
         >
-          Today
+          Oggi
         </div>
         <div
-          class="btn btn-primary"
+          class="btn btn-outline-primary"
           mwlCalendarNextView
           [view]="view"
           [(viewDate)]="viewDate"
           (viewDateChange)="closeOpenMonthViewDay()"
         >
-          Next
+          Succ
         </div>
       </div>
     </div>
