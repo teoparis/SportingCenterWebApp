@@ -217,6 +217,7 @@ export class MapsComponent {
   }
 
   extractDays(): void{
+    this.giorniSettimanali = [];
     var element = <HTMLInputElement> document.getElementById("weekday-mon");
     if(element.checked)
       this.giorniSettimanali.push(1);
@@ -242,8 +243,7 @@ export class MapsComponent {
     //console.log(endDate.getDay());
     this.extractDays();
     console.log(this.giorniSettimanali);
-    console.log(this.dataInizioP);
-    console.log(this.descr);
+
     let currentDate = this.dataInizioP;
     while(currentDate <= this.dataFineP) {
       currentDate = new Date(currentDate.setDate(currentDate.getDate()+1));
