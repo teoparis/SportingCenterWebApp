@@ -25,6 +25,8 @@ import {
 } from 'angular-calendar';
 import {Attivita} from "../../attivita";
 import { CustomEventTitleFormatter } from 'src/app/service/CustomEventTitleFormatter';
+import {Time} from "@angular/common";
+import {newArray} from "@angular/compiler/src/util";
 
 const colors: any = {
   red: {
@@ -42,7 +44,7 @@ const colors: any = {
 };
 
 
-interface MyEvent extends CalendarEvent {
+export interface MyEvent extends CalendarEvent {
   foo?: string;
   activity?: Attivita;
 }
@@ -75,6 +77,16 @@ export class MapsComponent {
     action: string;
     event: CalendarEvent;
   };
+
+  dataInizioP: any;
+  dataFineP: any;
+  oraInizioP: Date;
+  oraFineP: Date;
+  giorniSettimanali = [];
+  attivitaAssociata: any;
+  descr: any;
+
+
 
 
   actions: CalendarEventAction[] = [
@@ -146,6 +158,9 @@ export class MapsComponent {
   constructor(private modal: NgbModal,
               private modalService: NgbModal) {}
 
+
+
+
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
@@ -201,6 +216,67 @@ export class MapsComponent {
     ];
   }
 
+  extractDays(): void{
+    var element = <HTMLInputElement> document.getElementById("weekday-mon");
+    if(element.checked)
+      this.giorniSettimanali.push(1);
+    element = <HTMLInputElement> document.getElementById("weekday-tue");
+    if(element.checked)
+      this.giorniSettimanali.push(2);
+    element = <HTMLInputElement> document.getElementById("weekday-wed");
+    if(element.checked)
+      this.giorniSettimanali.push(3);
+    element = <HTMLInputElement> document.getElementById("weekday-thu");
+    if(element.checked)
+      this.giorniSettimanali.push(4);
+    element = <HTMLInputElement> document.getElementById("weekday-fri");
+    if(element.checked)
+      this.giorniSettimanali.push(5);
+    element = <HTMLInputElement> document.getElementById("weekday-sat");
+    if(element.checked)
+      this.giorniSettimanali.push(6);
+  }
+
+
+  addEventProgram(){
+    //console.log(endDate.getDay());
+    this.extractDays();
+    console.log(this.giorniSettimanali);
+    console.log(this.dataInizioP);
+    console.log(this.descr);
+    let currentDate = this.dataInizioP;
+    while(currentDate <= this.dataFineP) {
+      currentDate = new Date(currentDate.setDate(currentDate.getDate()+1));
+
+      if(this.giorniSettimanali.includes(currentDate.getDay()))
+      {
+        console.log(currentDate.getDay());
+        this.addEventPar("eventocreatoFOR",currentDate,currentDate)
+      }
+    }
+    this.modalService.dismissAll();
+
+  }
+
+  addEventPar(title: any,start: any,end: any): void {
+    console.log(start.getDay());
+    this.events = [
+      ...this.events,
+      {
+        title: title,
+        start: startOfDay(start),
+        end: endOfDay(end),
+        color: colors.red,
+        activity: new Attivita(),
+        draggable: false,
+        resizable: {
+          beforeStart: false,
+          afterEnd: false,
+        },
+      },
+    ];
+  }
+
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter((event) => event !== eventToDelete);
   }
@@ -222,5 +298,12 @@ export class MapsComponent {
     });
   }
 
+
+  parseDate(dateString: string): Date {
+    if (dateString) {
+      return new Date(dateString);
+    }
+    return null;
+  }
 
 }

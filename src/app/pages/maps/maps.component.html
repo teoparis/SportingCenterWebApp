@@ -201,18 +201,69 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <mat-form-field appearance="fill">
-          <mat-label>Enter a date range</mat-label>
-          <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date">
-            <input matEndDate placeholder="End date">
-          </mat-date-range-input>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
-        </mat-form-field>
+    <form #progForm="ngForm" (ngSubmit)="addEventProgram()">
+      <div class="form-group" >
+          <input
+          class="form-control"
+          type="date" #myDate [value]="this.dataInizioP | date:'yyyy-MM-dd'" (input)="this.dataInizioP=parseDate($event.target.value)"
+          mwlFlatpickr
+          placeholder="Data Inizio"
+        />
+          <input
+            class="form-control"
+            type="date" #myDate [value]="this.dataFineP | date:'yyyy-MM-dd'" (input)="this.dataFineP=parseDate($event.target.value)"
+            mwlFlatpickr
+            placeholder="Data Fine"
+          />
+          <input
+            class="form-control"
+            type="text"
+            mwlFlatpickr
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
+            [noCalendar]="true"
+            [(ngModel)]="this.oraInizioP"
+            dateFormat="H:i"
+            altFormat="H:i"
+            placeholder="Ora Inizio"
+          />
+          <input
+            class="form-control"
+            type="text"
+            mwlFlatpickr
+            [altInput]="true"
+            [convertModelValue]="true"
+            [enableTime]="true"
+            [noCalendar]="true"
+            [(ngModel)]="this.oraFineP"
+            dateFormat="H:i"
+            altFormat="H:i"
+            placeholder="Ora Inizio"
+          />
+        <div class="weekDays-selector">
+          <input type="checkbox" id="weekday-mon" class="weekday" />
+          <label for="weekday-mon">Lunedì</label>
+          <input type="checkbox" id="weekday-tue" class="weekday" />
+          <label for="weekday-tue">Martedì</label>
+          <input type="checkbox" id="weekday-wed" class="weekday" />
+          <label for="weekday-wed">Mercoledì</label>
+          <input type="checkbox" id="weekday-thu" class="weekday" />
+          <label for="weekday-thu">Giovedì</label>
+          <input type="checkbox" id="weekday-fri" class="weekday" />
+          <label for="weekday-fri">Venerdì</label>
+          <input type="checkbox" id="weekday-sat" class="weekday" />
+          <label for="weekday-sat">Sabato</label>
+        </div>
+        <label for="descr2">Descrizione</label>
+        <input type="text" [(ngModel)]="this.descr"
+               class="form-control"
+               id="descr2"
+               name="descr2"
+               placeholder="Inserisci la descrizione">
 
+        <button type="submit" [disabled]="!progForm.form.valid"
+                class="btn btn-info">Salva</button>
       </div>
       <div class="form-group">
         <label>Descrizione</label>
