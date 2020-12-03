@@ -27,6 +27,8 @@ import {Attivita} from "../../attivita";
 import { CustomEventTitleFormatter } from 'src/app/service/CustomEventTitleFormatter';
 import {Time} from "@angular/common";
 import {newArray} from "@angular/compiler/src/util";
+import {ActivitiesComponent} from "../activities/activities.component";
+import {AttivitaServiceService} from "../../service/attivita-service.service";
 
 const colors: any = {
   red: {
@@ -80,10 +82,10 @@ export class MapsComponent {
 
   dataInizioP: any;
   dataFineP: any;
-  oraInizioP: Date;
-  oraFineP: Date;
+  oraInizioP: any;
+  oraFineP: any;
   giorniSettimanali = [];
-  attivitaAssociata: any;
+  attivitaAssociata: string;
   descr: any;
 
 
@@ -154,9 +156,15 @@ export class MapsComponent {
 
 
   activeDayIsOpen: boolean = true;
+  activities: any;
 
   constructor(private modal: NgbModal,
-              private modalService: NgbModal) {}
+              private modalService: NgbModal, private attivitaService: AttivitaServiceService
+  ) {
+    this.attivitaService.findAll().subscribe(data => {
+      this.activities = data;
+    });
+  }
 
 
 
@@ -242,32 +250,42 @@ export class MapsComponent {
   addEventProgram(){
     //console.log(endDate.getDay());
     this.extractDays();
-    console.log(this.giorniSettimanali);
-
+    //console.log(this.giorniSettimanali);
+    var orastart = this.mygetHours(this.oraInizioP);
+    var minstart = this.mygetMinute(this.oraInizioP);
+    var oraend = this.mygetHours(this.oraFineP);
+    var minend = this.mygetMinute(this.oraFineP);
     let currentDate = this.dataInizioP;
     while(currentDate <= this.dataFineP) {
       currentDate = new Date(currentDate.setDate(currentDate.getDate()+1));
 
+     // this.oraInizioP = (<HTMLInputElement> document.getElementById("oraInizio")).value;
+     // this.oraFineP = (<HTMLInputElement> document.getElementById("oraFine")).value;
       if(this.giorniSettimanali.includes(currentDate.getDay()))
       {
-        console.log(currentDate.getDay());
-        this.addEventPar("eventocreatoFOR",currentDate,currentDate)
+        console.log(this.oraInizioP);
+        console.log(this.oraFineP);
+        var start = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), orastart, minstart, 0);
+        var end = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), oraend, minend, 0);
+        this.addEventPar(this.attivitaAssociata,start,end)
       }
     }
     this.modalService.dismissAll();
 
   }
 
-  addEventPar(title: any,start: any,end: any): void {
-    console.log(start.getDay());
+  addEventPar(title: any,start: Date,end: Date): void {
+    //console.log(start.getHours());
+    //console.log(end.getHours());
     this.events = [
       ...this.events,
       {
         title: title,
-        start: startOfDay(start),
-        end: endOfDay(end),
+        start: start,
+        end: end,
         color: colors.red,
         activity: new Attivita(),
+        actions: this.actions,
         draggable: false,
         resizable: {
           beforeStart: false,
@@ -301,9 +319,28 @@ export class MapsComponent {
 
   parseDate(dateString: string): Date {
     if (dateString) {
+      //console.log("THIS IS THE: "+dateString);
       return new Date(dateString);
     }
     return null;
   }
 
+  parseTime(time: string): any {
+    if (time) {
+      //console.log("THIS IS THE: "+time);
+      return time.split(":");
+    }
+    return null;
+  }
+
+  mygetHours(time: string[]): any{
+    return <Number><unknown>time[0];
+  }
+  mygetMinute(time: string[]): any{
+    return <Number><unknown>time[1];
+  }
+  selectOption(name: string): void{
+    //console.log("THIS IS THE: "+name);
+     this.attivitaAssociata = name;
+  }
 }

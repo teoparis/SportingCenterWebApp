@@ -219,27 +219,31 @@
             class="form-control"
             type="text"
             mwlFlatpickr
-            [altInput]="true"
+            #myHours [value]="this.oraInizioP " (input)="this.oraInizioP=parseTime($event.target.value)"
+            [time24hr]="true"
             [convertModelValue]="true"
             [enableTime]="true"
             [noCalendar]="true"
-            [(ngModel)]="this.oraInizioP"
+            [altInput]="true"
+            id = "oraInizio"
             dateFormat="H:i"
             altFormat="H:i"
             placeholder="Ora Inizio"
           />
           <input
+            id = "oraFine"
             class="form-control"
             type="text"
+            #myHours [value]="this.oraFineP " (input)="this.oraFineP=parseTime($event.target.value)"
             mwlFlatpickr
+            [time24hr]="true"
             [altInput]="true"
             [convertModelValue]="true"
             [enableTime]="true"
             [noCalendar]="true"
-            [(ngModel)]="this.oraFineP"
             dateFormat="H:i"
             altFormat="H:i"
-            placeholder="Ora Inizio"
+            placeholder="Ora Fine"
           />
         <div class="weekDays-selector">
           <input type="checkbox" id="weekday-mon" class="weekday" />
@@ -255,6 +259,14 @@
           <input type="checkbox" id="weekday-sat" class="weekday" />
           <label for="weekday-sat">Sabato</label>
         </div>
+
+        <label for="descr2">Attività</label>
+        <select (change)="selectOption($event.target.value)">
+          <option value="" disabled selected>Seleziona una attività</option>
+            <option [value]="activity.name" *ngFor="let activity of activities">{{activity.name}}</option>
+        </select>
+
+
         <label for="descr2">Descrizione</label>
         <input type="text" [(ngModel)]="this.descr"
                class="form-control"
