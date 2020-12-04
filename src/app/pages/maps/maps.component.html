@@ -203,49 +203,75 @@
   <div class="modal-body">
     <form #progForm="ngForm" (ngSubmit)="addEventProgram()">
       <div class="form-group" >
-          <input
-          class="form-control"
-          type="date" #myDate [value]="this.dataInizioP | date:'yyyy-MM-dd'" (input)="this.dataInizioP=parseDate($event.target.value)"
-          mwlFlatpickr
-          placeholder="Data Inizio"
-        />
-          <input
-            class="form-control"
-            type="date" #myDate [value]="this.dataFineP | date:'yyyy-MM-dd'" (input)="this.dataFineP=parseDate($event.target.value)"
-            mwlFlatpickr
-            placeholder="Data Fine"
-          />
-          <input
-            class="form-control"
-            type="text"
-            mwlFlatpickr
-            #myHours [value]="this.oraInizioP " (input)="this.oraInizioP=parseTime($event.target.value)"
-            [time24hr]="true"
-            [convertModelValue]="true"
-            [enableTime]="true"
-            [noCalendar]="true"
-            [altInput]="true"
-            id = "oraInizio"
-            dateFormat="H:i"
-            altFormat="H:i"
-            placeholder="Ora Inizio"
-          />
-          <input
-            id = "oraFine"
-            class="form-control"
-            type="text"
-            #myHours [value]="this.oraFineP " (input)="this.oraFineP=parseTime($event.target.value)"
-            mwlFlatpickr
-            [time24hr]="true"
-            [altInput]="true"
-            [convertModelValue]="true"
-            [enableTime]="true"
-            [noCalendar]="true"
-            dateFormat="H:i"
-            altFormat="H:i"
-            placeholder="Ora Fine"
-          />
-        <div class="weekDays-selector">
+        <label for="descr2">Inserisci range di date:</label>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="date" #myDate [value]="this.dataInizioP | date:'yyyy-MM-dd'" (input)="this.dataInizioP=parseDate($event.target.value)"
+                mwlFlatpickr
+                placeholder="Data Inizio"
+              />            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="date" #myDate [value]="this.dataFineP | date:'yyyy-MM-dd'" (input)="this.dataFineP=parseDate($event.target.value)"
+                mwlFlatpickr
+                placeholder="Data Fine"
+              />
+            </div>
+          </div>
+        </div>
+        <hr class="my-3">
+        <label for="descr2">Inserisci ora inizio e ora fine dell'attività:</label>
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <input
+                class="form-control"
+                type="text"
+                mwlFlatpickr
+                #myHours [value]="this.oraInizioP " (input)="this.oraInizioP=parseTime($event.target.value)"
+                [time24hr]="true"
+                [convertModelValue]="true"
+                [enableTime]="true"
+                [noCalendar]="true"
+                [altInput]="true"
+                id = "oraInizio"
+                dateFormat="H:i"
+                altFormat="H:i"
+                placeholder="Ora Inizio"
+              />           </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input
+                id = "oraFine"
+                class="form-control"
+                type="text"
+                #myHours [value]="this.oraFineP " (input)="this.oraFineP=parseTime($event.target.value)"
+                mwlFlatpickr
+                [time24hr]="true"
+                [altInput]="true"
+                [convertModelValue]="true"
+                [enableTime]="true"
+                [noCalendar]="true"
+                dateFormat="H:i"
+                altFormat="H:i"
+                placeholder="Ora Fine"
+              />
+            </div>
+          </div>
+        </div>
+        <hr class="my-3">
+        <label for="descr2">Seleziona i giorni a settimana in cui si svolgerà l'attività:</label>
+        <div class="row">
+          <center>
+          <div class="weekDays-selector">
           <input type="checkbox" id="weekday-mon" class="weekday" />
           <label for="weekday-mon">Lunedì</label>
           <input type="checkbox" id="weekday-tue" class="weekday" />
@@ -259,30 +285,28 @@
           <input type="checkbox" id="weekday-sat" class="weekday" />
           <label for="weekday-sat">Sabato</label>
         </div>
-
-        <label for="descr2">Attività</label>
+          </center>
+        </div>
+        <hr class="my-3">
+        <label>Attività</label>
+        <center>
         <select (change)="selectOption($event.target.value)">
           <option value="" disabled selected>Seleziona una attività</option>
             <option [value]="activity.name" *ngFor="let activity of activities">{{activity.name}}</option>
         </select>
-
-
+        </center>
+        <hr class="my-3">
         <label for="descr2">Descrizione</label>
         <input type="text" [(ngModel)]="this.descr"
                class="form-control"
                id="descr2"
                name="descr2"
                placeholder="Inserisci la descrizione">
-
+        <p></p>
         <button type="submit" [disabled]="!progForm.form.valid"
                 class="btn btn-info">Salva</button>
-      </div>
-      <div class="form-group">
-        <label>Descrizione</label>
-        <input type="text"
-               class="form-control"
-               id="ddescr"
-               name="email">
+
+
       </div>
     </form>
   </div>
