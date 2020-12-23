@@ -157,6 +157,7 @@ export class MapsComponent {
 
   activeDayIsOpen: boolean = true;
   activities: any;
+  numPrenot: any;
 
   constructor(private modal: NgbModal,
               private modalService: NgbModal, private attivitaService: AttivitaServiceService

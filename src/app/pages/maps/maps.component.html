@@ -296,6 +296,14 @@
         </select>
         </center>
         <hr class="my-3">
+        <label for="npartec">Numero massimo partecipanti</label>
+        <input type="number" [(ngModel)]="this.numPrenot"
+               class="form-control"
+               id="npartec"
+               name="npartec"
+               placeholder="Inserisci il numero massimo di partecipanti">
+        <hr class="my-3">
+
         <label for="descr2">Descrizione</label>
         <input type="text" [(ngModel)]="this.descr"
                class="form-control"
@@ -313,27 +321,67 @@
 </ng-template>
 
 
-<ng-template #modalContent let-close="close">
+
+
+
+
+<ng-template #modalContent  let-modal>
   <div class="modal-header">
-    <h5 class="modal-title">Event action occurred</h5>
-    <button type="button" class="close" (click)="close()">
+    <h4 class="modal-title" id="modal-basic-title3">Modifica Attività Sportiva</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <div>
-      Action:
-      <pre>{{ modalData?.action }}</pre>
-    </div>
-    <div>
-      Event:
-      <pre>{{ modalData?.event | json }}</pre>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="close()">
-      OK
-    </button>
+
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="modalData?.event.title"
+        (keyup)="refresh.next()"
+      />
+
+      <input
+        type="color"
+        [(ngModel)]="modalData?.event.color.primary"
+        (change)="refresh.next()"
+      />
+
+      <input
+        type="color"
+        [(ngModel)]="modalData?.event.color.secondary"
+        (change)="refresh.next()"
+      />
+      <input
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        [(ngModel)]="modalData?.event.start"
+        (ngModelChange)="refresh.next()"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="true"
+        dateFormat="Y-m-dTH:i"
+        altFormat="F j, Y H:i"
+        placeholder="Not set"
+      />
+      <input
+        class="form-control"
+        type="text"
+        mwlFlatpickr
+        [(ngModel)]="modalData?.event.end"
+        (ngModelChange)="refresh.next()"
+        [altInput]="true"
+        [convertModelValue]="true"
+        [enableTime]="true"
+        dateFormat="Y-m-dTH:i"
+        altFormat="F j, Y H:i"
+        placeholder="Not set"
+      />
+      <button class="btn btn-danger" (click)="deleteEvent(event)">
+        Delete
+      </button>
+
   </div>
 </ng-template>
 
