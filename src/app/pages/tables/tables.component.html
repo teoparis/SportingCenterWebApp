@@ -32,33 +32,72 @@
             </div>
           </div>
         </div>
+
+
+
+
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-person">
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Nome</th>
+              <th scope="col">Nominativo</th>
               <th scope="col">E-mail</th>
-              <th scope="col"></th>
+              <th scope="col">Data di Nascita</th>
+              <th scope="col">Numero di telefono</th>
+              <th scope="col">Stato</th>
+              <th scope="col">Azioni</th>
             </tr>
             </thead>
             <tbody>
 
-            <tr *ngFor="let user of users | searchfilter: searchValue">
-              <td>{{ user.id }}</td>
+            <tr *ngFor="let user of users | searchfilter: searchValue; let i = index;">
               <td>{{ user.displayName }}</td>
               <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+              <td> {{ this.user.dataNascita}}</td>
+              <td>{{ user.number }}</td>
               <td>
-              <button type="button" class="btn btn-outline-light" (click)="openDetails(contentDetails, user)">
-                Dettagli
-              </button>
-                <button type="button" class="btn btn-outline-info" (click)="openDetails(contentDetails, user)">
-                  Modifica
-                </button>
-                <button type="button" class="btn btn-warning" (click)="openDelete(contentDelete,user)">
-                  Elimina
-                </button>
+                <div *ngIf="!this.user.enabled" class="col-lg-5 col-md-6">
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-warning"></i> Da accettare
+                  </span>
+                </div>
+                <div *ngIf="this.user.enabled" class="col-lg-5 col-md-6">
+                  <span class="badge badge-dot">
+                    <i class="bg-success"></i> Attivo
+                  </span>
+                </div>
               </td>
+              <td class="text-right">
+                <div ngbDropdown  *ngIf="i<4" placement="bottom-right">
+                  <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                    <i class="fas fa-ellipsis-v"></i>
+                  </a>
+                  <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                    <a *ngIf="this.user.enabled===false" class="dropdown-item" (click)="accetta(user)">Accetta</a>
+                    <a *ngIf="this.user.enabled===true" class="dropdown-item" (click)="blocca(user)">Blocca</a>
+                    <a *ngIf="this.user.abbonamento===null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Assegna Abbonamento</a>
+                    <a *ngIf="this.user.abbonamento!=null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Cambia Abbonamento</a>
+                    <a class="dropdown-item" (click)="openDetails(contentDetails, user)">Dettagli</a>
+                    <a class="dropdown-item" (click)="openModify(contentModify, user)">Modifica</a>
+                    <a class="dropdown-item" (click)="openDelete(contentDelete,user)">Elimina</a>
+                  </div>
+                </div>
+                <div ngbDropdown  *ngIf="i>3" placement="top-right">
+                  <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                    <i class="fas fa-ellipsis-v"></i>
+                  </a>
+                  <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                    <a *ngIf="this.user.enabled===false" class="dropdown-item" (click)="accetta(user)">Accetta</a>
+                    <a *ngIf="this.user.enabled===true" class="dropdown-item" (click)="blocca(user)">Blocca</a>
+                    <a *ngIf="this.user.abbonamento===null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Assegna Abbonamento</a>
+                    <a *ngIf="!this.user.abbonamento===null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Cambia Abbonamento</a>
+                    <a class="dropdown-item" (click)="openDetails(contentDetails, user)">Dettagli</a>
+                    <a class="dropdown-item" (click)="openModify(contentModify, user)">Modifica</a>
+                    <a class="dropdown-item" (click)="openDelete(contentDelete,user)">Elimina</a>
+                  </div>
+                </div>
+              </td>
+
             </tr>
 
             </tbody>
@@ -98,6 +137,22 @@
                required #email="ngModel">
       </div>
       <div [hidden]="!email.pristine" class="alert alert-danger">L'Email è obbligatoria</div>
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="date" #myDate [value]="this.user.dataNascita | date:'dd-MM-yyyy'" (input)="this.user.dataNascita=$event.target.value"
+          mwlFlatpickr
+          placeholder="Data Nascita"
+        />
+      </div>
+      <div class="form-group">
+        <label for="numero">Numero di telefono</label>
+        <input type="text" [(ngModel)]="user.number"
+               class="form-control"
+               id="numero"
+               name="numero"
+               placeholder="Inserisci il numero di cellulare">
+      </div>
       <button type="submit" [disabled]="!userForm.form.valid"
               class="btn btn-info">Submit</button>
     </form>
@@ -128,6 +183,79 @@
                name="email"
                readonly>
       </div>
+      <div class="form-group">
+        <label>Data di Nascita</label>
+        <input type="text"
+               class="form-control"
+               id="dnascita"
+               name="dnascita"
+               readonly>
+      </div>
+      <div class="form-group">
+        <label>Numero</label>
+        <input type="text"
+               class="form-control"
+               id="dnumber"
+               name="num"
+               readonly>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #contentModify let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title4">Modifica Cliente</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmitModify()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" [(ngModel)]
+          ="user.displayName"
+               class="form-control"
+               id="name"
+               name="name"
+               placeholder="Enter your name"
+               required #name="ngModel">
+      </div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Il nome è obbligatorio</div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" [(ngModel)]="user.email"
+               class="form-control"
+               id="email"
+               name="email"
+               placeholder="Enter your email address"
+               required #email="ngModel">
+      </div>
+      <div [hidden]="!email.pristine" class="alert alert-danger">L'Email è obbligatoria</div>
+      <div class="form-group">
+        <label for="numero">Numero di telefono</label>
+        <input type="text" [(ngModel)]="user.number"
+               class="form-control"
+               id="numero"
+               name="numero"
+               placeholder="Inserisci il numero di cellulare">
+      </div>
+      <div class="form-group">
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+          </div>
+          <input
+            class="form-control"
+            type="date" #myDate [value]="this.user.dataNascita | date:'dd-MM-yyyy'" (input)="this.user.dataNascita=parseDate($event.target.value)"
+            mwlFlatpickr
+            placeholder="Data Inizio"
+          />
+        </div>
+      </div>
+      <button type="submit" [disabled]="!userForm.form.valid"
+              class="btn btn-info">Modifica</button>
     </form>
   </div>
 </ng-template>
@@ -143,5 +271,43 @@
     <div class="text-center">
       <button data-dismiss="modal" class="btn btn-danger" (click)="onDeleteUser()">Si, elimina!</button>
     </div>
+  </div>
+</ng-template>
+
+<ng-template #contentAbb let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title5">Abbonamento del cliente {{user.displayName}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmitAbb()" #AbbForm="ngForm">
+      <div class="form-group">
+        <label for="name">Scegli l'abbonamento</label>
+        <center>
+          <select (change)="selectOption($event.target.value)">
+            <option value="" disabled selected>Seleziona un abbonamento</option>
+            <option [value]="abbonam.id" *ngFor="let abbonam of abbonamenti">{{abbonam.name}}</option>
+          </select>
+        </center>
+      </div>
+      <div class="form-group">
+        <div class="input-group input-group-alternative">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+          </div>
+          <input
+            class="form-control"
+            type="date" #myDate [value]="this.user.dataScadenza | date:'yyyy-MM-dd'" (input)="this.user.dataScadenza=parseDate($event.target.value)"
+            mwlFlatpickr
+            placeholder="Data Inizio"
+            />
+        </div>
+      </div>
+      <button type="submit" [disabled]="!AbbForm.form.valid"
+              class="btn btn-info">Modifica Abbonamento</button>
+    </form>
+
   </div>
 </ng-template>

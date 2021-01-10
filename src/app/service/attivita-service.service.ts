@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Attivita } from '../attivita';
+import { Attivita } from '../entities/attivita';
 import { Observable } from 'rxjs';
 import {AppConstants} from "../common/app.constants";
 

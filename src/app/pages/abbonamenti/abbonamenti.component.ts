@@ -1,24 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Attivita } from '../../entities/attivita';
 import { AttivitaServiceService } from '../../service/attivita-service.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Abbonamento} from "../../entities/abbonamento";
+import {AbbonamentoServiceService} from "../../service/abbonamento-service.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './activities.component.html',
-  styleUrls: ['./activities.component.scss']
+  selector: 'app-abbonamenti',
+  templateUrl: './abbonamenti.component.html',
+  styleUrls: ['./abbonamenti.component.css']
 })
-export class ActivitiesComponent implements OnInit {
+export class AbbonamentiComponent implements OnInit {
 
-  oldActivity: Attivita;
-  activity: Attivita;
-  activities: Attivita[];
+  oldAbbonamento: Abbonamento;
+  abbonamento: Abbonamento;
+  abbonamenti: Abbonamento[];
   closeResult: string;
   deleteId: any;
   constructor(
     private modalService: NgbModal,
-    private attivitaService: AttivitaServiceService,) {
-    this.activity = new Attivita();
+    private abbonamentoService: AbbonamentoServiceService,) {
+    this.abbonamento = new Abbonamento();
   }
 
   /**
@@ -27,8 +29,9 @@ export class ActivitiesComponent implements OnInit {
    * dopo aver chiamato il suo costruttore
    */
   ngOnInit() {
-    this.attivitaService.findAll().subscribe(data => {
-      this.activities = data;
+    this.abbonamentoService.findAll().subscribe(data => {
+      this.abbonamenti = data;
+      this.abbonamento = new Abbonamento();
     });
   }
 
@@ -44,6 +47,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   open(content) {
+    this.abbonamento = new Abbonamento();
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -52,32 +56,25 @@ export class ActivitiesComponent implements OnInit {
   }
 
   onSubmit() {
-    this.attivitaService.save(this.activity).subscribe((result) => {
+    this.extractType();
+    this.abbonamentoService.save(this.abbonamento).subscribe((result) => {
       this.ngOnInit(); //reload the table
     });
+
     this.modalService.dismissAll(); //dismiss the modal
   }
 
   onSubmitMod() {
-    this.attivitaService.delete(this.oldActivity)
-    this.attivitaService.save(this.activity).subscribe((result) => {
+    this.extractType();
+    this.abbonamentoService.delete(this.oldAbbonamento)
+    this.abbonamentoService.save(this.abbonamento).subscribe((result) => {
       this.ngOnInit(); //reload the table
     });
     this.modalService.dismissAll(); //dismiss the modal
   }
 
-  openDetails(targetModal, act: Attivita) {
-    this.modalService.open(targetModal, {
-      centered: true,
-      backdrop: 'static',
-      size: 'lg'
-    });
-    document.getElementById('dname').setAttribute('value', act.name);
-    document.getElementById('ddescr').setAttribute('value', act.descr);
-  }
-
-  openModify(targetModal, act: Attivita) {
-    this.activity = act;
+  openDetails(targetModal, abb: Abbonamento) {
+    this.abbonamento = abb;
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
@@ -85,9 +82,18 @@ export class ActivitiesComponent implements OnInit {
     });
   }
 
-  openDelete(targetModal, act: Attivita) {
-    this.oldActivity = act;
-    this.activity = act;
+  openModify(targetModal, abb: Abbonamento) {
+    this.oldAbbonamento = abb;
+    this.abbonamento = abb;
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
+  }
+
+  openDelete(targetModal, abb: Abbonamento) {
+    this.abbonamento = abb;
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
@@ -96,9 +102,21 @@ export class ActivitiesComponent implements OnInit {
   }
 
   onDelete() {
-    this.attivitaService.delete(this.activity).subscribe((result) => {
+    this.abbonamentoService.delete(this.abbonamento).subscribe((result) => {
       this.ngOnInit(); //reload the table
     });
     this.modalService.dismissAll(); //dismiss the modal
+  }
+  extractType(): void{
+    var element = <HTMLInputElement> document.getElementById("nuoto");
+    if(element.checked)
+      this.abbonamento.nuoto = true;
+    else
+      this.abbonamento.nuoto = false;
+    var element = <HTMLInputElement> document.getElementById("fitness");
+    if(element.checked)
+      this.abbonamento.fitness = true;
+    else
+    this.abbonamento.fitness = false;
   }
 }

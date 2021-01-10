@@ -20,13 +20,31 @@ export class AuthService {
     }, httpOptions);
   }
 
-  register(user): Observable<any> {
+  register(user,enabled): Observable<any> {
     return this.http.post(AppConstants.AUTH_API + 'signup', {
       displayName: user.displayName,
       email: user.email,
       password: user.password,
       matchingPassword: user.matchingPassword,
-      socialProvider: 'LOCAL'
+      socialProvider: 'LOCAL',
+      enabled: enabled,
+      number: user.number,
+      dataNascita: user.dataNascita
+    }, httpOptions);
+  }
+
+  modify(user,enabled): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API + 'modify', {
+      displayName: user.displayName,
+      email: user.email,
+      password: user.password,
+      matchingPassword: user.matchingPassword,
+      socialProvider: 'LOCAL',
+      enabled: enabled,
+      number: user.number,
+      dataNascita: user.dataNascita,
+      dataScadenza: user.dataScadenza,
+      abbonamento: user.abbonamento
     }, httpOptions);
   }
 

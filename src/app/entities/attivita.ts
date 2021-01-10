@@ -4,6 +4,5 @@ export class Attivita {
   descr: string;
 
   constructor() {
-    this.name= 'Scegli un attivita'
   }
 }

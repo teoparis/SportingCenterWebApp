@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import { User } from '../../user';
+import { User } from '../../entities/user';
 import { UserService } from '../../service/user-service.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AuthService} from "../../service/auth.service";
+import {AbbonamentoServiceService} from "../../service/abbonamento-service.service";
+import {Abbonamento} from "../../entities/abbonamento";
 
 
 @Component({
@@ -11,15 +14,18 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class TablesComponent implements OnInit {
 
+  datep: String
   user: User;
   users: User[];
   closeResult: string;
+  abbonamenti: Abbonamento[];
   deleteId: any;
   searchValue: string;
   constructor(
     private modalService: NgbModal,
-    private userService: UserService,) {
+    private userService: UserService,private abbonamService: AbbonamentoServiceService,private authService: AuthService) {
     this.user = new User();
+
   }
 
   /**
@@ -45,6 +51,7 @@ export class TablesComponent implements OnInit {
   }
 
   open(content) {
+    this.user = new User();
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -53,9 +60,36 @@ export class TablesComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.save(this.user).subscribe((result) => {
+    this.user.password="SETYORPASSWORD"
+    this.user.matchingPassword="SETYORPASSWORD"
+    this.authService.register(this.user,true).subscribe(
+      data => {
+        console.log(data);
       this.ngOnInit(); //reload the table
     });
+    this.modalService.dismissAll(); //dismiss the modal
+  }
+
+  onSubmitModify() {
+    console.log(this.user);
+    this.user.matchingPassword=this.user.password;
+    console.log("THIS IS THE: "+this.user.dataNascita);
+    this.authService.modify(this.user,this.user.enabled).subscribe(
+      data => {
+        console.log(data);
+        this.ngOnInit(); //reload the table
+      });
+    this.modalService.dismissAll(); //dismiss the modal
+  }
+
+  onSubmitAbb() {
+    console.log(this.user);
+    this.user.matchingPassword=this.user.password;
+    this.authService.modify(this.user,true).subscribe(
+      data => {
+        console.log(data);
+        this.ngOnInit(); //reload the table
+      });
     this.modalService.dismissAll(); //dismiss the modal
   }
 
@@ -67,10 +101,33 @@ export class TablesComponent implements OnInit {
     });
     document.getElementById('dname').setAttribute('value', user1.displayName);
     document.getElementById('demail').setAttribute('value', user1.email);
+    document.getElementById('dnumber').setAttribute('value', user1.number);
+    document.getElementById('dnascita').setAttribute('value', user1.dataNascita);
+  }
+
+  openModify(targetModal, user1: User) {
+    this.user = user1;
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
   }
 
   openDelete(targetModal, user: User) {
     this.user = user;
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
+  }
+
+  openAbbonam(targetModal, user: User) {
+    this.user = user;
+    this.abbonamService.findAll().subscribe(data => {
+      this.abbonamenti = data;
+    });
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
@@ -83,5 +140,40 @@ export class TablesComponent implements OnInit {
       this.ngOnInit(); //reload the table
     });
     this.modalService.dismissAll(); //dismiss the modal
+  }
+  accetta(user: User)
+  {
+    this.user=user;
+    this.user.matchingPassword=this.user.password;
+    this.authService.modify(this.user,true).subscribe(
+      data => {
+        console.log(data);
+        this.ngOnInit(); //reload the table
+      });
+  }
+  blocca(user: User)
+  {
+    this.user=user;
+    this.user.matchingPassword=this.user.password;
+    this.authService.modify(this.user,false).subscribe(
+      data => {
+        console.log(data);
+        this.ngOnInit(); //reload the table
+      });
+  }
+  selectOption(id: string): void{
+    //console.log("THIS IS THE: "+name);
+    this.user.abbonamento = id;
+  }
+  parseDate(dateString: string): string {
+    if (dateString) {
+      console.log(",lsa data è : "+dateString);
+      return dateString;
+    }
+    return null;
+  }
+  stampDate(date: Date)
+  {
+    return date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear()
   }
 }

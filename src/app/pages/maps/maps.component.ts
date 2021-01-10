@@ -23,12 +23,13 @@ import {
   CalendarEventTitleFormatter,
   CalendarView,
 } from 'angular-calendar';
-import {Attivita} from "../../attivita";
+import {Attivita} from "../../entities/attivita";
 import { CustomEventTitleFormatter } from 'src/app/service/CustomEventTitleFormatter';
 import {Time} from "@angular/common";
 import {newArray} from "@angular/compiler/src/util";
 import {ActivitiesComponent} from "../activities/activities.component";
 import {AttivitaServiceService} from "../../service/attivita-service.service";
+import {FormGroup} from "@angular/forms";
 
 const colors: any = {
   red: {

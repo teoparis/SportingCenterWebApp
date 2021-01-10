@@ -1,0 +1,332 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <div class="col text-right" style="margin-bottom:15px">
+    <button type="button" class="btn btn-info" (click)="open(content)">
+      Aggiungi nuova tipologia di abbonamento
+    </button>
+  </div>
+  <div class="row" *ngFor="let abbona of abbonamenti">
+    <div class="col" style='margin-bottom:15px' >
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm">
+              <span class="h2 font-weight-bold mb-0">{{ abbona.name }}</span>
+            </div>
+          </div>
+          <p class="mt-3 mb-0 text-muted text-sm">
+            <span class="text-nowrap">{{ abbona.descr }}</span></p>
+          <div class="pagination justify-content-end">
+
+            <button type="button" class="btn btn-outline-light" (click)="openDetails(contentDetails, abbona)">
+              Dettagli
+            </button>
+            <button type="button" class="btn btn-outline-info" (click)="openModify(contentModify, abbona)">
+              Modifica
+            </button>
+            <button type="button" class="btn btn-warning" (click)="openDelete(contentDelete,abbona)">
+              Elimina
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <p></p>
+  </div>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Aggiungi Abbonamento</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" [(ngModel)]
+          ="abbonamento.name"
+               class="form-control"
+               id="name"
+               name="name"
+               placeholder="Inserisci il nome dell'abbonamento"
+               required #name="ngModel">
+      </div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Il nome è richiesto obbligatoriamente</div>
+      <div class="form-group">
+        <label for="descr">Descrizione</label>
+        <input type="text" [(ngModel)]="abbonamento.descr"
+               class="form-control"
+               id="descr"
+               name="descr"
+               placeholder="Inserisci la descrizione"
+               required #descr="ngModel">
+      </div>
+      <div [hidden]="!descr.pristine" class="alert alert-danger">La descrizione è richiesta obbligatoriamente</div>
+      <hr class="my-3">
+
+      <div class="row">
+        <div class="col-md-6">
+        <label for="nmesi"> Inserisci il numero di mesi: </label>
+        </div>
+          <div class="col-md-6">
+          <label for="ningressisett"> Inserisci il numero di ingressi a settimana: </label>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+
+            <input type="number" [(ngModel)]="this.abbonamento.durataMesi"
+                   class="form-control"
+                   id="nmesi"
+                   name="nmesi"
+                   placeholder="Inserisci il numero di mesi">
+          </div>
+          <div class="col-md-6">
+
+            <input type="number" [(ngModel)]="this.abbonamento.ingressiSettimanali"
+                   class="form-control"
+                   id="ningressisett"
+                   name="ningressisett"
+                   placeholder="Ingressi a settimana">
+          </div>
+      </div>
+
+      <hr class="my-3">
+
+        <div ng-switch-when="ningressi">
+          <label for="ningressitot"> Inserisci il numero di ingressi totale. </label>
+          <input type="number" [(ngModel)]="this.abbonamento.numeroIngressiTotale"
+                 class="form-control"
+                 id="ningressitot"
+                 name="ningressitot"
+                 placeholder="Ingressi totali">
+        </div>
+
+      <hr class="my-3">
+
+      <div class="row">
+        <div class="col-md-12">
+        <label>Seleziona la tipologia di attività incluse nel pacchetto:</label>
+        <center>
+          <div class="type-selector">
+            <input type="checkbox" id="fitness" class="type" [checked]="abbonamento.fitness === 'true'"/>
+            <label for="fitness">Fitness</label>
+            <input type="checkbox" id="nuoto" class="type" [checked]="abbonamento.nuoto === 'true'"/>
+            <label for="nuoto">Nuoto</label>
+          </div>
+        </center>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!userForm.form.valid"
+              class="btn btn-info">Submit</button>
+    </form>
+
+  </div>
+</ng-template>
+
+<ng-template #contentDetails let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title2">Visualizza nel dettaglio</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="name2">Nome</label>
+        <input type="text" [(ngModel)]
+          ="abbonamento.name"
+               class="form-control"
+               id="name2"
+               name="name"
+               placeholder="Inserisci il nome dell'abbonamento"
+               readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="descr2">Descrizione</label>
+        <input type="text" [(ngModel)]="abbonamento.descr"
+               class="form-control"
+               id="descr2"
+               name="descr"
+               placeholder="Inserisci la descrizione"
+               readonly>
+      </div>
+
+      <hr class="my-3">
+
+      <div class="row">
+        <div class="col-md-6">
+          <label for="nmesi"> Inserisci il numero di mesi: </label>
+        </div>
+        <div class="col-md-6">
+          <label for="ningressisett2"> Inserisci il numero di ingressi a settimana: </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+
+          <input type="number" [(ngModel)]="this.abbonamento.durataMesi"
+                 class="form-control"
+                 id="nmesi2"
+                 name="nmesi"
+                 placeholder="Inserisci il numero di mesi"
+          readonly>
+        </div>
+        <div class="col-md-6">
+
+          <input type="number" [(ngModel)]="this.abbonamento.ingressiSettimanali"
+                 class="form-control"
+                 id="ningressisett2"
+                 name="ningressisett"
+                 placeholder="Ingressi a settimana"
+                 readonly>
+        </div>
+      </div>
+
+      <hr class="my-3">
+
+      <div ng-switch-when="ningressi">
+        <label for="ningressitot2"> Inserisci il numero di ingressi totale. </label>
+        <input type="number" [(ngModel)]="this.abbonamento.numeroIngressiTotale"
+               class="form-control"
+               id="ningressitot2"
+               name="ningressitot"
+               placeholder="Ingressi totali"
+               readonly>
+      </div>
+
+      <hr class="my-3">
+
+      <div class="row">
+        <div class="col-md-12">
+          <label>Seleziona la tipologia di attività incluse nel pacchetto:</label>
+          <center>
+            <div class="type-selector" readonly>
+              <input type="checkbox" id="fitness" class="type" [checked]="abbonamento.fitness === true" disabled />
+              <label for="fitness">Fitness</label>
+              <input type="checkbox" id="nuoto" class="type" [checked]="abbonamento.nuoto === true" disabled/>
+              <label for="nuoto">Nuoto</label>
+            </div>
+          </center>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #contentModify let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title4">Visualizza nel dettaglio</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmitMod()" #formmod="ngForm">
+      <div class="form-group">
+        <label for="name2">Nome</label>
+        <input type="text" [(ngModel)]
+          ="abbonamento.name"
+               class="form-control"
+               id="name3"
+               name="name"
+               placeholder="Inserisci il nome dell'abbonamento"
+               required #name="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="descr2">Descrizione</label>
+        <input type="text" [(ngModel)]="abbonamento.descr"
+               class="form-control"
+               id="descr3"
+               name="descr"
+               placeholder="Inserisci la descrizione"
+               required #descr="ngModel">
+      </div>
+
+      <hr class="my-3">
+
+      <div class="row">
+        <div class="col-md-6">
+          <label for="nmesi"> Inserisci il numero di mesi: </label>
+        </div>
+        <div class="col-md-6">
+          <label for="ningressisett2"> Inserisci il numero di ingressi a settimana: </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+
+          <input type="number" [(ngModel)]="this.abbonamento.durataMesi"
+                 class="form-control"
+                 id="nmesi3"
+                 name="nmesi"
+                 placeholder="Inserisci il numero di mesi">
+        </div>
+        <div class="col-md-6">
+
+          <input type="number" [(ngModel)]="this.abbonamento.ingressiSettimanali"
+                 class="form-control"
+                 id="ningressisett3"
+                 name="ningressisett"
+                 placeholder="Ingressi a settimana">
+        </div>
+      </div>
+
+      <hr class="my-3">
+
+      <div ng-switch-when="ningressi">
+        <label for="ningressitot3"> Inserisci il numero di ingressi totale. </label>
+        <input type="number" [(ngModel)]="this.abbonamento.numeroIngressiTotale"
+               class="form-control"
+               id="ningressitot3"
+               name="ningressitot"
+               placeholder="Ingressi totali">
+      </div>
+
+      <hr class="my-3">
+
+      <div class="row">
+        <div class="col-md-12">
+          <label>Seleziona la tipologia di attività incluse nel pacchetto:</label>
+          <center>
+            <div class="type-selector">
+              <input type="checkbox" id="fitness" class="type" [checked]="abbonamento.fitness === true"/>
+              <label for="fitness">Fitness</label>
+              <input type="checkbox" id="nuoto" class="type" [checked]="abbonamento.nuoto === true"/>
+              <label for="nuoto">Nuoto</label>
+            </div>
+          </center>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-info">Salva Modifiche</button>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #contentDelete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title3">Sei sicuro di voler eliminare questo cliente?</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="text-center">
+      <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Si, elimina!</button>
+    </div>
+  </div>
+</ng-template>
+

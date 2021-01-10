@@ -35,6 +35,7 @@
                 <div *ngIf="displayName.errors.maxlength">Il nome inserito deve contenere al massimo 20 caratteri</div>
               </div>
             </div>
+            <div [hidden]="!displayName.pristine" class="alert alert-danger">Il nome è obbligatorio</div>
             <div class="form-group">
               <label for="email">Email*</label> <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel" />
               <div class="alert-danger" *ngIf="f.submitted && email.invalid">
@@ -42,6 +43,20 @@
                 <div *ngIf="email.errors.email">L'indirizzo E-mail deve essere valido</div>
               </div>
             </div>
+            <div [hidden]="!email.pristine" class="alert alert-danger">L'Email è obbligatoria</div>
+            <div class="form-group">
+              <label for="number">Numero di telefono</label> <input type="text" class="form-control" name="number" [(ngModel)]="form.number" />
+            </div>
+            <div class="form-group">
+              <label for="dp">Data di Nascita*</label>
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                </div>
+                <input class="form-control datepicker" placeholder="Seleziona la data di nascita" name="dataNascita" [(ngModel)]="form.dataNascita" ngbDatepicker #dr="ngbDatepicker" (click)="dr.toggle()" type="text" required #dataNascita="ngModel"/>
+              </div>
+            </div>
+            <div [hidden]="!dp.pristine" class="alert alert-danger">La data di nascita è obbligatoria</div>
             <div class="form-group">
               <label for="password">Password*</label> <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
                                                             #password="ngModel" />
@@ -58,6 +73,7 @@
                 <div *ngIf="matchingPassword.errors.minlength">La Password deve essere di almeno 6 caratteri</div>
               </div>
             </div>
+
             <div class="form-group">
               <button class="btn btn-primary btn-block">Iscriviti</button>
             </div>

@@ -25,7 +25,7 @@
             <button type="button" class="btn btn-outline-light" (click)="openDetails(contentDetails, activity)">
             Dettagli
           </button>
-            <button type="button" class="btn btn-outline-info" (click)="openDetails(contentDetails, activity)">
+            <button type="button" class="btn btn-outline-info" (click)="openModify(contentModify, activity)">
               Modifica
             </button>
             <button type="button" class="btn btn-warning" (click)="openDelete(contentDelete,activity)">
@@ -55,20 +55,20 @@
                class="form-control"
                id="name"
                name="name"
-               placeholder="Enter your name"
+               placeholder="Inserisci il nome dell'attività"
                required #name="ngModel">
       </div>
       <div [hidden]="!name.pristine" class="alert alert-danger">Il nome è richiesto obbligatoriamente</div>
       <div class="form-group">
-        <label for="email">Descrizione</label>
+        <label for="descr">Descrizione</label>
         <input type="text" [(ngModel)]="activity.descr"
                class="form-control"
-               id="email"
-               name="email"
-               placeholder="Enter your email address"
-               required #email="ngModel">
+               id="descr"
+               name="descr"
+               placeholder="Inserisci la descrizione"
+               required #descr="ngModel">
       </div>
-      <div [hidden]="!email.pristine" class="alert alert-danger">La descrizione è richiesta obbligatoriamente</div>
+      <div [hidden]="!descr.pristine" class="alert alert-danger">La descrizione è richiesta obbligatoriamente</div>
       <button type="submit" [disabled]="!userForm.form.valid"
               class="btn btn-info">Submit</button>
     </form>
@@ -95,8 +95,42 @@
         <input type="text"
                class="form-control"
                id="ddescr"
-               name="email">
+               name="descr">
       </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #contentModify let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title4">Modifica Attività</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="mname">Nome</label>
+        <input type="text" [(ngModel)]
+          ="activity.name"
+               class="form-control"
+               id="mname"
+               name="mname"
+               required #name="ngModel">
+      </div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Il nome è richiesto obbligatoriamente</div>
+      <div class="form-group">
+        <label for="mdescr">Descrizione</label>
+        <input type="text" [(ngModel)]="activity.descr"
+               class="form-control"
+               id="mdescr"
+               name="descr"
+               required #descr="ngModel">
+      </div>
+      <div [hidden]="!descr.pristine" class="alert alert-danger"><text id="ttc">La descrizione è richiesta obbligatoriamente</text></div>
+      <button type="submit" [disabled]="!userForm.form.valid"
+              class="btn btn-info">Submit</button>
     </form>
   </div>
 </ng-template>

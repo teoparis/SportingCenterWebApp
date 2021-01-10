@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {User} from "./user";
+import {User} from "./entities/user";
 
 @Pipe({
   name: 'searchfilter'
