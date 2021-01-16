@@ -66,7 +66,6 @@ export class AbbonamentiComponent implements OnInit {
 
   onSubmitMod() {
     this.extractType();
-    this.abbonamentoService.delete(this.oldAbbonamento)
     this.abbonamentoService.save(this.abbonamento).subscribe((result) => {
       this.ngOnInit(); //reload the table
     });

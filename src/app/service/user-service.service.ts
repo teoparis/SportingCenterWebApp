@@ -35,6 +35,10 @@ export class UserService {
     return this.http.get<User[]>(AppConstants.ADMIN_URL + "users");
   }
 
+  public findUsers(): Observable<User[]> {
+    return this.http.get<User[]>(AppConstants.ADMIN_URL + "usersbyrole/"+ encodeURIComponent("1"));
+  }
+
   public save(user: User) {
     return this.http.post<User>(AppConstants.ADMIN_URL +"users", user);
   }

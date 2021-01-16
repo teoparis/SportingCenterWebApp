@@ -44,6 +44,8 @@
               <th scope="col">E-mail</th>
               <th scope="col">Data di Nascita</th>
               <th scope="col">Numero di telefono</th>
+              <th scope="col">Tipologia di abbonamento</th>
+              <th scope="col">Data scadenza abbonamento</th>
               <th scope="col">Stato</th>
               <th scope="col">Azioni</th>
             </tr>
@@ -55,18 +57,27 @@
               <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
               <td> {{ this.user.dataNascita}}</td>
               <td>{{ user.number }}</td>
+              <td>{{this.user.abbonamento}}</td>
+              <td>{{this.user.dataScadenza}}</td>
               <td>
                 <div *ngIf="!this.user.enabled" class="col-lg-5 col-md-6">
                   <span class="badge badge-dot mr-4">
                     <i class="bg-warning"></i> Da accettare
                   </span>
                 </div>
-                <div *ngIf="this.user.enabled" class="col-lg-5 col-md-6">
+                <div *ngIf="this.user.enabled && this.user.abbonamento!=null" class="col-lg-5 col-md-6">
                   <span class="badge badge-dot">
                     <i class="bg-success"></i> Attivo
                   </span>
                 </div>
+                <div *ngIf="this.user.enabled&&this.user.abbonamento===null" class="col-lg-5 col-md-6">
+                  <span class="badge badge-dot">
+                    <i class="bg-info"></i> Da Assegnare Abbonamento
+                  </span>
+                </div>
+
               </td>
+
               <td class="text-right">
                 <div ngbDropdown  *ngIf="i<4" placement="bottom-right">
                   <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
@@ -138,6 +149,7 @@
       </div>
       <div [hidden]="!email.pristine" class="alert alert-danger">L'Email è obbligatoria</div>
       <div class="form-group">
+        <label> Data di Nascita</label>
         <input
           class="form-control"
           type="date" #myDate [value]="this.user.dataNascita | date:'dd-MM-yyyy'" (input)="this.user.dataNascita=$event.target.value"

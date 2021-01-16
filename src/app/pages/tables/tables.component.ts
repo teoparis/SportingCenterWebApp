@@ -34,7 +34,7 @@ export class TablesComponent implements OnInit {
    * dopo aver chiamato il suo costruttore
    */
   ngOnInit() {
-    this.userService.findAll().subscribe(data => {
+    this.userService.findUsers().subscribe(data => {
       this.users = data;
     });
   }
@@ -161,6 +161,7 @@ export class TablesComponent implements OnInit {
         this.ngOnInit(); //reload the table
       });
   }
+
   selectOption(id: string): void{
     //console.log("THIS IS THE: "+name);
     this.user.abbonamento = id;
