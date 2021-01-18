@@ -57,7 +57,7 @@
               <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
               <td> {{ this.user.dataNascita}}</td>
               <td>{{ user.number }}</td>
-              <td>{{ this.abbonamService.getAbbFromId(this.user.abbonamento) }}</td>
+              <td>{{ this.nameAbbonam[i] }}</td>
               <td>{{this.user.dataScadenza}}</td>
               <td>
                 <div *ngIf="!this.user.enabled" class="col-lg-5 col-md-6">

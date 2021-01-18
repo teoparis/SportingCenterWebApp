@@ -5,6 +5,7 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AuthService} from "../../service/auth.service";
 import {AbbonamentoServiceService} from "../../service/abbonamento-service.service";
 import {Abbonamento} from "../../entities/abbonamento";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -14,6 +15,7 @@ import {Abbonamento} from "../../entities/abbonamento";
 })
 export class TablesComponent implements OnInit {
 
+  nameAbbonam: Observable<String>[];
   datep: String
   user: User;
   users: User[];
@@ -36,7 +38,12 @@ export class TablesComponent implements OnInit {
   ngOnInit() {
     this.userService.findUsers().subscribe(data => {
       this.users = data;
+      for(let i=0; i<data.length; i++){
+        console.log(data[i].abbonamento); //use i instead of 0
+        this.nameAbbonam[i] = this.abbonamService.getAbbFromId(data[i].abbonamento)
+      }
     });
+
   }
 
 
