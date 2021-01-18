@@ -10,4 +10,5 @@ export class User {
   matchingPassword: string;
   abbonamento: string;
   dataScadenza: string;
+  expired: boolean;
 }
