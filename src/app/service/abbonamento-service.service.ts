@@ -32,7 +32,7 @@ export class AbbonamentoServiceService {
   }
 
 
-  getAbbFromId(abbonamento: string): Observable<Abbonamento> {
-    return this.http.get<Abbonamento>(AppConstantsMicro.SUBSCRIPTION_SERVICE + "subscriptions/getnamefromid/"+ encodeURIComponent(abbonamento),httpOptions);
+  getAbbFromId(abbonamento: string): Observable<String> {
+    return this.http.get<String>(AppConstantsMicro.SUBSCRIPTION_SERVICE + "subscriptions/getnamefromid/"+ encodeURIComponent(abbonamento),httpOptions);
   }
 }
