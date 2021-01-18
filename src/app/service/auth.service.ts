@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppConstants } from '../common/app.constants';
+import {createAotCompiler} from "@angular/compiler";
+import {AppConstantsMicro} from "../common/app.constantsMicro";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,6 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(credentials): Observable<any> {
+
     return this.http.post(AppConstants.AUTH_API + 'signin', {
       email: credentials.username,
       password: credentials.password
@@ -34,7 +37,7 @@ export class AuthService {
   }
 
   modify(user,enabled): Observable<any> {
-    return this.http.post(AppConstants.AUTH_API + 'modify', {
+    return this.http.post(AppConstants.ADMIN_URL + 'modify', {
       displayName: user.displayName,
       email: user.email,
       password: user.password,

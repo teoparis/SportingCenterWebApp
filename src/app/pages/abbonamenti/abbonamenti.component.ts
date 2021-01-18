@@ -4,6 +4,7 @@ import { AttivitaServiceService } from '../../service/attivita-service.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Abbonamento} from "../../entities/abbonamento";
 import {AbbonamentoServiceService} from "../../service/abbonamento-service.service";
+import {UserService} from "../../service/user-service.service";
 
 @Component({
   selector: 'app-abbonamenti',
@@ -19,7 +20,7 @@ export class AbbonamentiComponent implements OnInit {
   deleteId: any;
   constructor(
     private modalService: NgbModal,
-    private abbonamentoService: AbbonamentoServiceService,) {
+    private abbonamentoService: AbbonamentoServiceService) {
     this.abbonamento = new Abbonamento();
   }
 

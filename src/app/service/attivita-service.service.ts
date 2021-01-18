@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Attivita } from '../entities/attivita';
 import { Observable } from 'rxjs';
 import {AppConstants} from "../common/app.constants";
+import {AppConstantsMicro} from "../common/app.constantsMicro";
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,14 @@ export class AttivitaServiceService {
   }
 
   public findAll(): Observable<Attivita[]> {
-    return this.http.get<Attivita[]>(AppConstants.ADMIN_URL+'activities');
+    return this.http.get<Attivita[]>(AppConstantsMicro.ACTIVITY_SERVICE+'activities');
   }
 
   public save(attivita: Attivita) {
-    return this.http.post<Attivita>(AppConstants.ADMIN_URL+'activities', attivita);
+    return this.http.post<Attivita>(AppConstantsMicro.ACTIVITY_SERVICE+'activities', attivita);
   }
 
   public delete(attivita: Attivita) {
-    return this.http.post<Attivita>(AppConstants.ADMIN_URL+'activities/delete', attivita);
+    return this.http.post<Attivita>(AppConstantsMicro.ACTIVITY_SERVICE+'activities/delete', attivita);
   }
 }

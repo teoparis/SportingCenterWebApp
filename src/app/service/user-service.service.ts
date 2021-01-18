@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../entities/user';
 import { Observable } from 'rxjs';
 import {AppConstants} from "../common/app.constants";
+import {AppConstantsMicro} from "../common/app.constantsMicro";
+import {Abbonamento} from "../entities/abbonamento";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -31,12 +33,16 @@ export class UserService {
    * Specificando il tipo User possiamo sfruttare la risposta
    * del backend in un modo più efficiente e effettivo.
    */
+  /*public findAll(): Observable<User[]> {
+    return this.http.get<User[]>(AppConstantsMicro.USER_SERVICE + "users");
+  }*/
+
   public findAll(): Observable<User[]> {
-    return this.http.get<User[]>(AppConstants.ADMIN_URL + "users");
+    return this.http.get<User[]>(AppConstants.ADMIN_URL+'users');
   }
 
   public findUsers(): Observable<User[]> {
-    return this.http.get<User[]>(AppConstants.ADMIN_URL + "usersbyrole/"+ encodeURIComponent("1"));
+    return this.http.get<User[]>(AppConstants.ADMIN_URL + "usersbyrole/"+ encodeURIComponent("1"),httpOptions);
   }
 
   public save(user: User) {
@@ -47,23 +53,9 @@ export class UserService {
     return this.http.post<User>(AppConstants.ADMIN_URL +"users/deleteUser", user);
   }
 
-  getPublicContent(): Observable<any> {
-    return this.http.get(AppConstants.ADMIN_URL + 'all', { responseType: 'text' });
-  }
-
-  getUserBoard(): Observable<any> {
-    return this.http.get(AppConstants.ADMIN_URL + 'user', { responseType: 'text' });
-  }
-
-  getModeratorBoard(): Observable<any> {
-    return this.http.get(AppConstants.ADMIN_URL + 'mod', { responseType: 'text' });
-  }
-
-  getAdminBoard(): Observable<any> {
-    return this.http.get(AppConstants.ADMIN_URL + 'admin', { responseType: 'text' });
-  }
-
   getCurrentUser(): Observable<any> {
-    return this.http.get(AppConstants.API_URL + 'user/me', httpOptions);
+    return this.http.get(AppConstants.ADMIN_URL + 'user/me', httpOptions);
   }
+
+
 }

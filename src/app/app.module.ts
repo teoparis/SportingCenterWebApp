@@ -15,8 +15,10 @@ import { ComponentsModule } from './components/components.module';
 
 import { UserService } from './service/user-service.service';
 import {AuthGuardService} from "./service/auth-guard.service";
-import {authInterceptorProviders} from "./_helpers/auth.interceptor";
+import {AuthInterceptor, authInterceptorProviders} from "./_helpers/auth.interceptor";
 import {UserLayoutComponent} from "./layouts/user-layout/user-layout.component";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {AbbonamentoServiceService} from "./service/abbonamento-service.service";
 
 @NgModule({
   imports: [
@@ -36,7 +38,11 @@ import {UserLayoutComponent} from "./layouts/user-layout/user-layout.component";
     AuthLayoutComponent,
     UserLayoutComponent
   ],
-  providers: [authInterceptorProviders,UserService,AuthGuardService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  },UserService,AuthGuardService,AbbonamentoServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

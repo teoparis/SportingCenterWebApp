@@ -3,25 +3,28 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {AppConstants} from "../common/app.constants";
 import {Abbonamento} from "../entities/abbonamento";
+import {AppConstantsMicro} from "../common/app.constantsMicro";
+import {TokenStorageService} from "./token-storage.service";
 
-@Injectable({
-  providedIn: 'root'
-})
+
+
+@Injectable()
 export class AbbonamentoServiceService {
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private token: TokenStorageService) {
   }
 
+
   public findAll(): Observable<Abbonamento[]> {
-    return this.http.get<Abbonamento[]>(AppConstants.ADMIN_URL+'abbonamento');
+    return this.http.get<Abbonamento[]>(AppConstantsMicro.SUBSCRIPTION_SERVICE+'subscriptions');
   }
 
   public save(abbonamento: Abbonamento) {
-    return this.http.post<Abbonamento>(AppConstants.ADMIN_URL+'abbonamento', abbonamento);
+    return this.http.post<Abbonamento>(AppConstantsMicro.SUBSCRIPTION_SERVICE+'subscription', abbonamento);
   }
 
   public delete(abbonamento: Abbonamento) {
-    return this.http.post<Abbonamento>(AppConstants.ADMIN_URL+'abbonamento/delete', abbonamento);
+    return this.http.post<Abbonamento>(AppConstantsMicro.SUBSCRIPTION_SERVICE+'subscription/delete', abbonamento);
   }
 }
