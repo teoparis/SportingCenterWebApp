@@ -57,7 +57,7 @@
               <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
               <td> {{ this.user.dataNascita}}</td>
               <td>{{ user.number }}</td>
-              <td>{{this.user.abbonamento}}</td>
+              <td>{{ this.abbonamService.getAbbFromId(this.user.abbonamento).name }}</td>
               <td>{{this.user.dataScadenza}}</td>
               <td>
                 <div *ngIf="!this.user.enabled" class="col-lg-5 col-md-6">
@@ -72,7 +72,7 @@
                 </div>
                 <div *ngIf="this.user.enabled && this.user.abbonamento!=null && this.user.expired " class="col-lg-5 col-md-6">
                   <span class="badge badge-dot">
-                    <i class="bg-warning"></i>  scaduto
+                    <i class="bg-warning"></i>  Abbonamentto scaduto
                   </span>
                 </div>
                 <div *ngIf="this.user.enabled&&this.user.abbonamento===null" class="col-lg-5 col-md-6">

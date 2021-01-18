@@ -5,8 +5,11 @@ import {AppConstants} from "../common/app.constants";
 import {Abbonamento} from "../entities/abbonamento";
 import {AppConstantsMicro} from "../common/app.constantsMicro";
 import {TokenStorageService} from "./token-storage.service";
+import {User} from "../entities/user";
 
-
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class AbbonamentoServiceService {
@@ -26,5 +29,10 @@ export class AbbonamentoServiceService {
 
   public delete(abbonamento: Abbonamento) {
     return this.http.post<Abbonamento>(AppConstantsMicro.SUBSCRIPTION_SERVICE+'subscription/delete', abbonamento);
+  }
+
+
+  getAbbFromId(abbonamento: string): Observable<Abbonamento> {
+    return this.http.get<Abbonamento>(AppConstantsMicro.SUBSCRIPTION_SERVICE + "subscriptions/getnamefromid/"+ encodeURIComponent(abbonamento),httpOptions);
   }
 }
