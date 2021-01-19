@@ -92,7 +92,7 @@
                     <a *ngIf="this.user.enabled===false" class="dropdown-item" (click)="accetta(user)">Accetta</a>
                     <a *ngIf="this.user.enabled===true" class="dropdown-item" (click)="blocca(user)">Blocca</a>
                     <a *ngIf="this.user.enabled &&this.user.abbonamento===null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Assegna Abbonamento</a>
-                    <a *ngIf="this.user.enabled &&this.user.abbonamento!=null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Cambia Abbonamento</a>
+                    <a *ngIf="this.user.enabled &&this.user.abbonamento!=null&& !this.user.expired" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Cambia Abbonamento</a>
                     <a *ngIf="this.user.enabled &&this.user.abbonamento!=null&& this.user.expired" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Aggiorna Abbonamento</a>
                     <a class="dropdown-item" (click)="openDetails(contentDetails, user)">Dettagli</a>
                     <a class="dropdown-item" (click)="openModify(contentModify, user)">Modifica</a>
@@ -107,7 +107,7 @@
                     <a *ngIf="this.user.enabled===false" class="dropdown-item" (click)="accetta(user)">Accetta</a>
                     <a *ngIf="this.user.enabled===true" class="dropdown-item" (click)="blocca(user)">Blocca</a>
                     <a *ngIf="this.user.enabled &&this.user.abbonamento===null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Assegna Abbonamento</a>
-                    <a *ngIf="this.user.enabled &&this.user.abbonamento!=null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Cambia Abbonamento</a>
+                    <a *ngIf="this.user.enabled &&this.user.abbonamento!=null&& !this.user.expired" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Cambia Abbonamento</a>
                     <a *ngIf="this.user.enabled &&this.user.abbonamento!=null&& this.user.expired" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Aggiorna Abbonamento</a>
                     <a class="dropdown-item" (click)="openDetails(contentDetails, user)">Dettagli</a>
                     <a class="dropdown-item" (click)="openModify(contentModify, user)">Modifica</a>
