@@ -38,16 +38,28 @@ export class TablesComponent implements OnInit {
   ngOnInit() {
     this.userService.findUsers().subscribe(data => {
       this.users = data;
-      for(let i=0; i<data.length; i++){
+     /* for(let i=0; i<data.length; i++){
         console.log(data[i].abbonamento);
         //this.nameAbbonam.push(this.abbonamService.getAbbFromId(data[i].abbonamento)) ;
         //console.log(this.nameAbbonam[i]);
       }
+
+      */
+    });
+    this.abbonamService.findAll().subscribe(data => {
+      this.abbonamenti = data;
     });
 
   }
 
-
+  private getNameAbbFromId(id: string){
+    for(let i=0; i<this.abbonamenti.length; i++){
+      if(this.abbonamenti[i].id==id){
+        return this.abbonamenti[i].name;
+      }
+    }
+    return ""
+  }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -133,9 +145,6 @@ export class TablesComponent implements OnInit {
 
   openAbbonam(targetModal, user: User) {
     this.user = user;
-    this.abbonamService.findAll().subscribe(data => {
-      this.abbonamenti = data;
-    });
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
