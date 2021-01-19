@@ -91,8 +91,9 @@
                   <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                     <a *ngIf="this.user.enabled===false" class="dropdown-item" (click)="accetta(user)">Accetta</a>
                     <a *ngIf="this.user.enabled===true" class="dropdown-item" (click)="blocca(user)">Blocca</a>
-                    <a *ngIf="this.user.abbonamento===null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Assegna Abbonamento</a>
-                    <a *ngIf="this.user.abbonamento!=null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Cambia Abbonamento</a>
+                    <a *ngIf="this.user.enabled &&this.user.abbonamento===null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Assegna Abbonamento</a>
+                    <a *ngIf="this.user.enabled &&this.user.abbonamento!=null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Cambia Abbonamento</a>
+                    <a *ngIf="this.user.enabled &&this.user.abbonamento!=null&& this.user.expired" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Aggiorna Abbonamento</a>
                     <a class="dropdown-item" (click)="openDetails(contentDetails, user)">Dettagli</a>
                     <a class="dropdown-item" (click)="openModify(contentModify, user)">Modifica</a>
                     <a class="dropdown-item" (click)="openDelete(contentDelete,user)">Elimina</a>
@@ -105,8 +106,9 @@
                   <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                     <a *ngIf="this.user.enabled===false" class="dropdown-item" (click)="accetta(user)">Accetta</a>
                     <a *ngIf="this.user.enabled===true" class="dropdown-item" (click)="blocca(user)">Blocca</a>
-                    <a *ngIf="this.user.abbonamento===null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Assegna Abbonamento</a>
-                    <a *ngIf="!this.user.abbonamento===null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Cambia Abbonamento</a>
+                    <a *ngIf="this.user.enabled &&this.user.abbonamento===null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Assegna Abbonamento</a>
+                    <a *ngIf="this.user.enabled &&this.user.abbonamento!=null" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Cambia Abbonamento</a>
+                    <a *ngIf="this.user.enabled &&this.user.abbonamento!=null&& this.user.expired" class="dropdown-item" (click)="openAbbonam(contentAbb, user)">Aggiorna Abbonamento</a>
                     <a class="dropdown-item" (click)="openDetails(contentDetails, user)">Dettagli</a>
                     <a class="dropdown-item" (click)="openModify(contentModify, user)">Modifica</a>
                     <a class="dropdown-item" (click)="openDelete(contentDelete,user)">Elimina</a>
@@ -159,7 +161,7 @@
           class="form-control"
           type="date" #myDate [value]="this.user.dataNascita | date:'dd-MM-yyyy'" (input)="this.user.dataNascita=$event.target.value"
           mwlFlatpickr
-          placeholder="Data Nascita"
+          placeholder="Seleziona una data di nascita"
         />
       </div>
       <div class="form-group">
@@ -251,6 +253,16 @@
       </div>
       <div [hidden]="!email.pristine" class="alert alert-danger">L'Email è obbligatoria</div>
       <div class="form-group">
+        <label> Data di Nascita</label>
+        <input
+          class="form-control"
+          type="date" #myDate [value]="this.user.dataNascita | date:'dd-MM-yyyy'" (input)="this.user.dataNascita=parseDate($event.target.value)"
+          mwlFlatpickr
+          placeholder="Seleziona una data di nascita"
+        />
+      </div>
+
+      <div class="form-group">
         <label for="numero">Numero di telefono</label>
         <input type="text" [(ngModel)]="user.number"
                class="form-control"
@@ -258,19 +270,7 @@
                name="numero"
                placeholder="Inserisci il numero di cellulare">
       </div>
-      <div class="form-group">
-        <div class="input-group input-group-alternative">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-          </div>
-          <input
-            class="form-control"
-            type="date" #myDate [value]="this.user.dataNascita | date:'dd-MM-yyyy'" (input)="this.user.dataNascita=parseDate($event.target.value)"
-            mwlFlatpickr
-            placeholder="Data Inizio"
-          />
-        </div>
-      </div>
+
       <button type="submit" [disabled]="!userForm.form.valid"
               class="btn btn-info">Modifica</button>
     </form>
