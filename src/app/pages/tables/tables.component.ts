@@ -39,9 +39,9 @@ export class TablesComponent implements OnInit {
     this.userService.findUsers().subscribe(data => {
       this.users = data;
       for(let i=0; i<data.length; i++){
-        console.log(data[i].abbonamento); //use i instead of 0
-        this.nameAbbonam[i] = this.abbonamService.getAbbFromId(data[i].abbonamento)
-        console.log(this.nameAbbonam[i]);
+        console.log(data[i].abbonamento);
+        //this.nameAbbonam.push(this.abbonamService.getAbbFromId(data[i].abbonamento)) ;
+        //console.log(this.nameAbbonam[i]);
       }
     });
 
