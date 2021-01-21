@@ -123,7 +123,7 @@ export class MapsComponent implements OnInit{
   activeDayIsOpen: boolean = true;
   activities: any;
   numPrenot: any;
-  private evento: any;
+  private evento: Evento;
 
   constructor(private modal: NgbModal,
               private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService) {
@@ -285,10 +285,10 @@ export class MapsComponent implements OnInit{
   addEventPar(id: any,start: Date,end: Date): void {
     //console.log(start.getHours());
 
-    this.evento.name = this.getNameActFromId(id);
-    this.evento.dataFine = end;
-    this.evento.dataInizio = start;
-    this.evento.colore = colors.nuoto;
+    this.evento.title = this.getNameActFromId(id);
+    this.evento.dataFine = end.toString();
+    this.evento.dataInizio = start.toString();
+    this.evento.color = colors.nuoto;
     this.evento.activity_id = id;
     console.log("Questo è l'evento: "+ this.evento);
     this.eventService.save(this.evento).subscribe((result) => {
