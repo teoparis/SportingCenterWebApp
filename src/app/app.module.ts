@@ -19,7 +19,7 @@ import {AuthInterceptor, authInterceptorProviders} from "./_helpers/auth.interce
 import {UserLayoutComponent} from "./layouts/user-layout/user-layout.component";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {AbbonamentoServiceService} from "./service/abbonamento-service.service";
-import { EntitiesComponent } from './entities/entities/entities.component';
+
 
 @NgModule({
   imports: [
@@ -38,7 +38,6 @@ import { EntitiesComponent } from './entities/entities/entities.component';
     AdminLayoutComponent,
     AuthLayoutComponent,
     UserLayoutComponent,
-    EntitiesComponent
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
