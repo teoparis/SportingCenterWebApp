@@ -284,9 +284,7 @@ export class MapsComponent implements OnInit{
 
   addEventPar(id: any,start: Date,end: Date): void {
     //console.log(start.getHours());
-    console.log(end.getHours());
 
-    this.evento = null;
     this.evento.name = this.getNameActFromId(id);
     this.evento.dataFine = end;
     this.evento.dataInizio = start;
