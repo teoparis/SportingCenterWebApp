@@ -293,7 +293,9 @@ export class MapsComponent implements OnInit{
     this.evento.colore = colors.nuoto;
     this.evento.activity_id = id;
     console.log("Questo è l'evento: "+ this.evento);
-
+    this.eventService.save(this.evento).subscribe((result) => {
+      this.ngOnInit(); //reload the table
+    });
     this.eventsForCalendar = [
       ...this.eventsForCalendar,
       {
