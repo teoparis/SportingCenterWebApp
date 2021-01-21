@@ -3,6 +3,4 @@ export class Attivita {
   name: string;
   descr: string;
 
-  constructor() {
-  }
 }

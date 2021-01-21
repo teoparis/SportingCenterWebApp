@@ -7,6 +7,7 @@ export class AppConstantsMicro {
   //Microservices Constants
   public static SUBSCRIPTION_SERVICE= AppConstantsMicro.API_GATEWAY_URL + "subscription-service/admin/";
   public static ACTIVITY_SERVICE = AppConstantsMicro.API_GATEWAY_URL + "activity-service/admin/";
+  public static CALENDAR_SERVICE = AppConstantsMicro.API_GATEWAY_URL + "calendar-service/admin/";
 
   private static OAUTH2_URL = AppConstantsMicro.API_GATEWAY_URL + "authentication-service/oauth2/authorization/";
 }
