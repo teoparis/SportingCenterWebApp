@@ -32,6 +32,7 @@ import {AttivitaServiceService} from "../../service/attivita-service.service";
 import {FormGroup} from "@angular/forms";
 import {EventService} from "../../service/event.service";
 import {Evento} from "../../entities/evento"
+import {ActivityProgrammed} from "../../entities/activity-programmed";
 const colors: any = {
   fitnees: {
     primary: '#ad2121',
@@ -118,12 +119,12 @@ export class MapsComponent implements OnInit{
   refresh: Subject<any> = new Subject();
 
   eventsForCalendar: MyEvent[] = [];
-  events: Evento[];
+  events: ActivityProgrammed[];
 
   activeDayIsOpen: boolean = true;
   activities: any;
   numPrenot: any;
-  private evento: Evento;
+  private evento: ActivityProgrammed;
 
   constructor(private modal: NgbModal,
               private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService) {
