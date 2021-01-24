@@ -338,7 +338,7 @@ private titleDay: string;
   }
 
   public toStringDate(date: Date){
-    return date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()+"T"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+    return date.getFullYear()+"-"+date.getUTCMonth()+"-"+date.getUTCDay()+"T"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
   }
 
   addEventPar(id: any,start: Date,end: Date): void {
