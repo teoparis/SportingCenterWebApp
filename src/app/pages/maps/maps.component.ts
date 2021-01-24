@@ -247,6 +247,8 @@ export class MapsComponent implements OnInit{
 
   parseEvent()
   {
+
+    console.log(this.eventi[0].inizio as unknown as Date)
     for(let i=0; i<this.events.length; i++){
       this.events = [
         ...this.events,
