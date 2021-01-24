@@ -167,6 +167,8 @@ export class MapsComponent implements OnInit{
               private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService
   ) {
     this.evento = new Evento();
+    console.log("QUESTI SONO GLI EVENTI: "+this.eventi)
+    this.parseEvent();
   }
 
   ngOnInit() {
@@ -175,8 +177,7 @@ export class MapsComponent implements OnInit{
       this.eventi = data;
 
     });
-    console.log("QUESTI SONO GLI EVENTI: "+this.eventi)
-    this.parseEvent();
+
   }
 
   private getNameActFromId(id: string){
