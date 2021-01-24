@@ -255,6 +255,7 @@ export class MapsComponent implements OnInit{
   {
     console.log("speriamo che vada tutto bene ")
     console.log(this.eventi[0].inizio as unknown as Date)
+    console.log(this.getNameActFromId(this.eventi[0].activity_id))
     for(let i=0; i<this.events.length; i++){
       this.events = [
         ...this.events,
