@@ -176,6 +176,10 @@ export class MapsComponent implements OnInit{
       this.eventi = data;
 
     });
+    this.attivitaService.findAll().subscribe(data => {
+      this.activities = data;
+
+    });
     console.log("QUESTI SONO GLI EVENTI: "+this.eventi)
 
 
@@ -188,10 +192,6 @@ export class MapsComponent implements OnInit{
       }
     }
     return ""
-  }
-
-  private delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
 
