@@ -1,6 +1,6 @@
 export class Evento {
   id: string;
-  dataInizio: string;
+  inizio: string;
   dataFine: string;
   //color: string;
   title: string;

@@ -173,6 +173,7 @@ export class MapsComponent implements OnInit{
     this.eventService.findAll().subscribe(data => {
       console.log(data);
       this.eventi = data;
+      console.log(this.eventi)
     });
     this.parseEvent();
   }
@@ -251,9 +252,9 @@ export class MapsComponent implements OnInit{
         ...this.events,
         {
           title: this.getNameActFromId(this.eventi[i].activity_id),
-          start: this.eventi[i].dataInizio as unknown as Date,
+          start: this.eventi[i].inizio as unknown as Date,
           end: this.eventi[i].dataFine  as unknown as Date,
-          //color: colors.red,
+          color: colors.red,
           activity: this.eventi[i].activity_id,
           actions: this.actions,
           draggable: false,
@@ -322,7 +323,7 @@ export class MapsComponent implements OnInit{
 
     this.evento.title = this.getNameActFromId(id);
     this.evento.dataFine = end.toString();
-    this.evento.dataInizio = start.toString();
+    this.evento.inizio = start.toString();
     //this.evento.color = colors.red;
     this.evento.activity_id = id;
     console.log("Questo è l'evento: "+ this.evento);
