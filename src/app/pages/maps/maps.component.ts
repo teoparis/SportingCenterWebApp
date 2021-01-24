@@ -266,6 +266,7 @@ export class MapsComponent implements OnInit{
       console.log(this.eventi[i].title)
       console.log(this.titleDay)
       this.startDay = this.eventi[i].inizio as unknown as Date
+      console.log(this.startDay)
       var start = new Date(this.startDay.getFullYear(), this.startDay.getMonth(), this.startDay.getDate(), this.startDay.getHours(), this.startDay.getMinutes(), 0);
       this.endDay = this.eventi[i].dataFine as unknown as Date
       var end = new Date(this.endDay.getFullYear(), this.endDay.getMonth(), this.endDay.getDate(), this.endDay.getHours(), this.endDay.getMinutes(), 0);
@@ -275,7 +276,7 @@ export class MapsComponent implements OnInit{
         {
           title: this.titleDay,
           start: start,
-          end: this.endDay,
+          end: end,
           color: colors.red,
           activity: this.activityDay,
           actions: this.actions,
