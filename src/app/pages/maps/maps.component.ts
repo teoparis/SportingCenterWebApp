@@ -163,6 +163,7 @@ export class MapsComponent implements OnInit{
   activities: any;
   numPrenot: any;
 
+
   constructor(private modal: NgbModal,
               private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService
   ) {
@@ -250,21 +251,27 @@ export class MapsComponent implements OnInit{
       },
     ];
   }
-
+  private titleDay: string;
+  private startDay: Date;
+  private endDay: Date;
+  private activityDay: string;
   parseEvent()
   {
     console.log("speriamo che vada tutto bene ")
     console.log(this.eventi[0].inizio as unknown as Date)
     console.log(this.eventi[0].title)
     for(let i=0; i<this.events.length; i++){
+
+      this.startDay = this.eventi[i].inizio as unknown as Date
+      this.endDay = this.eventi[i].dataFine as unknown as Date
       this.events = [
         ...this.events,
         {
-          title: this.eventi[i].title,
-          start: this.eventi[i].inizio as unknown as Date,
-          end: this.eventi[i].dataFine  as unknown as Date,
+          title: this.titleDay,
+          start: this.startDay,
+          end: this.endDay,
           color: colors.red,
-          activity: this.eventi[i].activity_id,
+          activity: this.activityDay,
           actions: this.actions,
           draggable: false,
           resizable: {
