@@ -262,8 +262,12 @@ export class MapsComponent implements OnInit{
     console.log(this.eventi[0].title)
     for(let i=0; i<this.events.length; i++){
 
+      this.titleDay = this.eventi[i].title
+      console.log(this.eventi[0].title)
+      console.log(this.titleDay)
       this.startDay = this.eventi[i].inizio as unknown as Date
       this.endDay = this.eventi[i].dataFine as unknown as Date
+      this.activityDay = this.eventi[i].activity_id
       this.events = [
         ...this.events,
         {
