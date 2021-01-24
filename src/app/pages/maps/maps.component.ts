@@ -173,7 +173,7 @@ export class MapsComponent implements OnInit{
     this.eventService.findAll().subscribe(data => {
       console.log(data);
       this.eventi = data;
-      console.log(this.eventi)
+      console.log("QUESTI SONO GLI EVENTI: "+this.eventi)
     });
     this.parseEvent();
   }
