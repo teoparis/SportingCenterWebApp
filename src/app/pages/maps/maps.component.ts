@@ -30,19 +30,19 @@ import {newArray} from "@angular/compiler/src/util";
 import {ActivitiesComponent} from "../activities/activities.component";
 import {AttivitaServiceService} from "../../service/attivita-service.service";
 import {FormGroup} from "@angular/forms";
+import {Evento} from "../../entities/evento";
 import {EventService} from "../../service/event.service";
-import {Evento} from "../../entities/evento"
-import {ActivityProgrammed} from "../../entities/activity-programmed";
+
 const colors: any = {
-  fitnees: {
+  red: {
     primary: '#ad2121',
     secondary: '#FAE3E3',
   },
-  nuoto: {
+  blue: {
     primary: '#1e90ff',
     secondary: '#D1E8FF',
   },
-  nuotoAndFitness: {
+  yellow: {
     primary: '#e3bc08',
     secondary: '#FDF1BA',
   },
@@ -50,8 +50,7 @@ const colors: any = {
 
 
 export interface MyEvent extends CalendarEvent {
-
-  activity?: any;
+  activity?: string;
 }
 
 @Component({
@@ -70,10 +69,6 @@ export interface MyEvent extends CalendarEvent {
 
 
 export class MapsComponent implements OnInit{
-
-
-
-
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
@@ -94,7 +89,10 @@ export class MapsComponent implements OnInit{
   giorniSettimanali = [];
   attivitaAssociata: string;
   descr: any;
-  title: any;
+
+  eventi: Evento[];
+  evento: Evento;
+
 
 
 
@@ -110,7 +108,7 @@ export class MapsComponent implements OnInit{
       label: '<i class="fas fa-fw fa-trash-alt"></i>',
       a11yLabel: 'Delete',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.eventsForCalendar = this.eventsForCalendar.filter((iEvent) => iEvent !== event);
+        this.events = this.events.filter((iEvent) => iEvent !== event);
         this.handleEvent('Deleted', event);
       },
     },
@@ -118,25 +116,65 @@ export class MapsComponent implements OnInit{
 
   refresh: Subject<any> = new Subject();
 
-  eventsForCalendar: MyEvent[] = [];
-  events: ActivityProgrammed[];
+  events: MyEvent[] = [
+    {
+      start: subDays(startOfDay(new Date()), 1),
+      end: addDays(new Date(), 1),
+      title: 'A 3 day event',
+      color: colors.red,
+      activity: "",
+      actions: this.actions,
+      allDay: true,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      draggable: true,
+    },
+    {
+      start: startOfDay(new Date()),
+      title: 'An event with no end date',
+      color: colors.yellow,
+      actions: this.actions,
+    },
+    {
+      start: subDays(endOfMonth(new Date()), 3),
+      end: addDays(endOfMonth(new Date()), 3),
+      title: 'A long event that spans 2 months',
+      color: colors.blue,
+      allDay: true,
+    },
+    {
+      start: addHours(startOfDay(new Date()), 2),
+      end: addHours(new Date(), 2),
+      title: 'A draggable and resizable event',
+      color: colors.yellow,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true,
+      },
+      draggable: true,
+    },
+  ];
+
 
   activeDayIsOpen: boolean = true;
   activities: any;
   numPrenot: any;
-  private evento: ActivityProgrammed;
 
   constructor(private modal: NgbModal,
-              private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService) {
-
-  }
-
-  ngOnInit() {
+              private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService
+  ) {
     this.attivitaService.findAll().subscribe(data => {
       this.activities = data;
     });
+    this.evento = new Evento();
+  }
+
+  ngOnInit() {
     this.eventService.findAll().subscribe(data => {
-      this.events = data;
+      this.eventi = data;
     });
     this.parseEvent();
   }
@@ -151,28 +189,6 @@ export class MapsComponent implements OnInit{
   }
 
 
-  parseEvent()
-  {
-    for(let i=0; i<this.events.length; i++){
-      this.eventsForCalendar = [
-        ...this.eventsForCalendar,
-        {
-          title: this.getNameActFromId(this.events[i].activity_id),
-          start: this.events[i].dataInizio as unknown as Date,
-          end: this.events[i].dataFine  as unknown as Date,
-          color: colors.nuoto,
-          activity: this.events[i].activity_id,
-          actions: this.actions,
-          draggable: false,
-          resizable: {
-            beforeStart: false,
-            afterEnd: false,
-          },
-        },
-      ];
-    }
-
-  }
 
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -194,7 +210,7 @@ export class MapsComponent implements OnInit{
                       newStart,
                       newEnd,
                     }: CalendarEventTimesChangedEvent): void {
-    this.eventsForCalendar = this.eventsForCalendar.map((iEvent) => {
+    this.events = this.events.map((iEvent) => {
       if (iEvent === event) {
         return {
           ...event,
@@ -208,23 +224,19 @@ export class MapsComponent implements OnInit{
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    this.oraInizioP=event.start.getHours()+":"+event.start.getMinutes()
-    this.oraFineP=event.end.getHours()+":"+event.end.getMinutes()
-    this.dataInizioP=event.start
-    this.title=event.title;
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
   addEvent(): void {
-    this.eventsForCalendar = [
-      ...this.eventsForCalendar,
+    this.events = [
+      ...this.events,
       {
         title: 'New event',
         start: startOfDay(new Date()),
         end: endOfDay(new Date()),
-        color: colors.red,
-        activity: new Attivita(),
+        //color: colors.red,
+        activity: "fitness",
         draggable: true,
         resizable: {
           beforeStart: true,
@@ -232,6 +244,29 @@ export class MapsComponent implements OnInit{
         },
       },
     ];
+  }
+
+  parseEvent()
+  {
+    for(let i=0; i<this.events.length; i++){
+      this.events = [
+        ...this.events,
+        {
+          title: this.getNameActFromId(this.eventi[i].activity_id),
+          start: this.eventi[i].dataInizio as unknown as Date,
+          end: this.eventi[i].dataFine  as unknown as Date,
+          //color: colors.red,
+          activity: this.eventi[i].activity_id,
+          actions: this.actions,
+          draggable: false,
+          resizable: {
+            beforeStart: false,
+            afterEnd: false,
+          },
+        },
+      ];
+    }
+
   }
 
   extractDays(): void{
@@ -269,8 +304,8 @@ export class MapsComponent implements OnInit{
     while(currentDate <= this.dataFineP) {
       currentDate = new Date(currentDate.setDate(currentDate.getDate()+1));
 
-     // this.oraInizioP = (<HTMLInputElement> document.getElementById("oraInizio")).value;
-     // this.oraFineP = (<HTMLInputElement> document.getElementById("oraFine")).value;
+      // this.oraInizioP = (<HTMLInputElement> document.getElementById("oraInizio")).value;
+      // this.oraFineP = (<HTMLInputElement> document.getElementById("oraFine")).value;
       if(this.giorniSettimanali.includes(currentDate.getDay()))
       {
         console.log(this.oraInizioP);
@@ -281,6 +316,7 @@ export class MapsComponent implements OnInit{
       }
     }
     this.modalService.dismissAll();
+
   }
 
   addEventPar(id: any,start: Date,end: Date): void {
@@ -289,19 +325,19 @@ export class MapsComponent implements OnInit{
     this.evento.title = this.getNameActFromId(id);
     this.evento.dataFine = end.toString();
     this.evento.dataInizio = start.toString();
-    this.evento.color = colors.nuoto;
+    //this.evento.color = colors.red;
     this.evento.activity_id = id;
     console.log("Questo è l'evento: "+ this.evento);
-    this.eventService.save(this.evento).subscribe((result) => {
-      this.ngOnInit(); //reload the table
-    });
-    this.eventsForCalendar = [
-      ...this.eventsForCalendar,
+
+
+
+    this.events = [
+      ...this.events,
       {
         title: this.getNameActFromId(id),
         start: start,
         end: end,
-        color: colors.nuoto,
+        color: colors.red,
         activity: id,
         actions: this.actions,
         draggable: false,
@@ -311,26 +347,14 @@ export class MapsComponent implements OnInit{
         },
       },
     ];
-  }
+    this.eventService.save(this.evento).subscribe((result) => {
+    this.ngOnInit();
+  });
+
+}
 
   deleteEvent(eventToDelete: CalendarEvent) {
-    this.eventsForCalendar = this.eventsForCalendar.filter((event) => event !== eventToDelete);
-  }
-
-  modifyEvent(event: CalendarEvent)
-  {
-    event.start.setHours(this.parseTime(this.oraInizioP)[0],this.parseTime(this.oraInizioP)[1])
-    console.log(event.start);
-    console.log(event.end);
-    console.log(event.start);
-   /* this.authService.modify(this.user,true).subscribe(
-      data => {
-        console.log(data);
-        this.ngOnInit(); //reload the table
-      });
-
-    */
-    this.modalService.dismissAll();
+    this.events = this.events.filter((event) => event !== eventToDelete);
   }
 
   setView(view: CalendarView) {
@@ -373,7 +397,8 @@ export class MapsComponent implements OnInit{
   mygetMinute(time: string[]): any{
     return <Number><unknown>time[1];
   }
-  selectOption(id: string): void{
-     this.attivitaAssociata = id;
+  selectOption(name: string): void{
+    //console.log("THIS IS THE: "+name);
+    this.attivitaAssociata = name;
   }
 }

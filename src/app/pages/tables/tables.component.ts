@@ -6,7 +6,6 @@ import {AuthService} from "../../service/auth.service";
 import {AbbonamentoServiceService} from "../../service/abbonamento-service.service";
 import {Abbonamento} from "../../entities/abbonamento";
 import {Observable} from "rxjs";
-import {ActivityProgrammed} from "../../entities/activity-programmed";
 
 
 @Component({
@@ -22,7 +21,6 @@ export class TablesComponent implements OnInit {
   users: User[];
   closeResult: string;
   abbonamenti: Abbonamento[];
-  evento: ActivityProgrammed;
   deleteId: any;
   searchValue: string;
   constructor(
@@ -44,7 +42,6 @@ export class TablesComponent implements OnInit {
     this.abbonamService.findAll().subscribe(data => {
       this.abbonamenti = data;
     });
-  this.evento.activity_id = "3";
   }
 
   private getNameAbbFromId(id: string){
