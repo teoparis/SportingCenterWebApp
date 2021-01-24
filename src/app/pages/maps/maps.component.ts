@@ -251,8 +251,7 @@ export class MapsComponent implements OnInit{
       },
     ];
   }
-  private titleDay: string;
-  private startDay: Date;
+private titleDay: string;
   private endDay: Date;
   private activityDay: string;
   parseEvent()
@@ -262,14 +261,11 @@ export class MapsComponent implements OnInit{
     console.log(this.eventi[0].title)
     for(let i=0; i<this.events.length; i++){
 
-      this.titleDay = this.eventi[i].title
+
       console.log(this.eventi[i].title)
-      console.log(this.titleDay)
-      this.startDay = this.eventi[i].inizio as unknown as Date
-      console.log(this.startDay)
-      var start = new Date(this.startDay.getFullYear(), this.startDay.getMonth(), this.startDay.getDate(), this.startDay.getHours(), this.startDay.getMinutes(), 0);
-      this.endDay = this.eventi[i].dataFine as unknown as Date
-      var end = new Date(this.endDay.getFullYear(), this.endDay.getMonth(), this.endDay.getDate(), this.endDay.getHours(), this.endDay.getMinutes(), 0);
+    this.titleDay=this.eventi[i].title;
+      var start = new Date(this.eventi[i].inizio)
+      var end = new Date(this.eventi[i].dataFine)
       this.activityDay = this.eventi[i].activity_id
       this.events = [
         ...this.events,
@@ -342,12 +338,16 @@ export class MapsComponent implements OnInit{
 
   }
 
+  public toStringDate(date: Date){
+    return date.toString();
+  }
+
   addEventPar(id: any,start: Date,end: Date): void {
     //console.log(start.getHours());
 
     this.evento.title = this.getNameActFromId(id);
-    this.evento.dataFine = end.toString();
-    this.evento.inizio = start.toString();
+    this.evento.dataFine = this.toStringDate(end);
+    this.evento.inizio = this.toStringDate(start);
     //this.evento.color = colors.red;
     this.evento.activity_id = id;
     console.log("Questo è l'evento: "+ this.evento);
