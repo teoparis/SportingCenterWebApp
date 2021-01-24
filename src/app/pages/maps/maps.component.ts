@@ -166,14 +166,12 @@ export class MapsComponent implements OnInit{
   constructor(private modal: NgbModal,
               private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService
   ) {
-    this.attivitaService.findAll().subscribe(data => {
-      this.activities = data;
-    });
     this.evento = new Evento();
   }
 
   ngOnInit() {
     this.eventService.findAll().subscribe(data => {
+      console.log(data);
       this.eventi = data;
     });
     this.parseEvent();
