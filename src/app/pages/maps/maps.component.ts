@@ -263,7 +263,7 @@ private titleDay: string;
 
 
       console.log(this.eventi[i].title)
-    this.titleDay=this.eventi[i].title;
+      this.titleDay=this.eventi[i].title;
       var start = new Date(this.eventi[i].inizio)
       var end = new Date(this.eventi[i].dataFine)
       this.activityDay = this.eventi[i].activity_id
@@ -339,7 +339,7 @@ private titleDay: string;
   }
 
   public toStringDate(date: Date){
-    return date.toString();
+    return date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay()+"T"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
   }
 
   addEventPar(id: any,start: Date,end: Date): void {
@@ -352,24 +352,6 @@ private titleDay: string;
     this.evento.activity_id = id;
     console.log("Questo è l'evento: "+ this.evento);
 
-
-
-    this.events = [
-      ...this.events,
-      {
-        title: this.getNameActFromId(id),
-        start: start,
-        end: end,
-        color: colors.red,
-        activity: id,
-        actions: this.actions,
-        draggable: false,
-        resizable: {
-          beforeStart: false,
-          afterEnd: false,
-        },
-      },
-    ];
     this.eventService.save(this.evento).subscribe((result) => {
     this.ngOnInit();
   });
