@@ -284,6 +284,7 @@ export class MapsComponent implements OnInit{
           },
         },
       ];
+      console.log(this.events)
     }
 
   }
