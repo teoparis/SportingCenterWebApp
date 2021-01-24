@@ -255,12 +255,12 @@ export class MapsComponent implements OnInit{
   {
     console.log("speriamo che vada tutto bene ")
     console.log(this.eventi[0].inizio as unknown as Date)
-    console.log(this.getNameActFromId(this.eventi[0].activity_id))
+    console.log(this.eventi[0].title)
     for(let i=0; i<this.events.length; i++){
       this.events = [
         ...this.events,
         {
-          title: this.getNameActFromId(this.eventi[i].activity_id),
+          title: this.eventi[i].title,
           start: this.eventi[i].inizio as unknown as Date,
           end: this.eventi[i].dataFine  as unknown as Date,
           color: colors.red,
