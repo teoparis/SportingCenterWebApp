@@ -176,8 +176,6 @@ export class MapsComponent implements OnInit{
       this.eventi = data;
 
     });
-
-    await this.delay(3000);
     console.log("QUESTI SONO GLI EVENTI: "+this.eventi)
 
 
