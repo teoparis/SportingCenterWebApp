@@ -4,5 +4,5 @@ export class Evento {
   dataFine: string;
   //color: string;
   title: string;
-  activity_id: string;
+  activityId: string;
 }

@@ -252,7 +252,6 @@ export class MapsComponent implements OnInit{
     ];
   }
 private titleDay: string;
-  private endDay: Date;
   private activityDay: string;
   parseEvent()
   {
@@ -266,7 +265,7 @@ private titleDay: string;
       this.titleDay=this.eventi[i].title;
       var start = new Date(this.eventi[i].inizio)
       var end = new Date(this.eventi[i].dataFine)
-      this.activityDay = this.eventi[i].activity_id
+      this.activityDay = this.eventi[i].activityId
       this.events = [
         ...this.events,
         {
@@ -349,7 +348,7 @@ private titleDay: string;
     this.evento.dataFine = this.toStringDate(end);
     this.evento.inizio = this.toStringDate(start);
     //this.evento.color = colors.red;
-    this.evento.activity_id = id;
+    this.evento.activityId = id;
     console.log("Questo è l'evento: "+ this.evento);
 
     this.eventService.save(this.evento).subscribe((result) => {
