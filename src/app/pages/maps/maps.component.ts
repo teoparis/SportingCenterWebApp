@@ -341,6 +341,7 @@ private titleDay: string;
     var str = ""
     var mes = ""
     str = str + date.getFullYear() + "-"
+    console.log("Mese: "+ date.getMonth());
     mes = "" + date.getMonth();
     if(mes.length==1)
       str = str + "0"
@@ -369,6 +370,8 @@ private titleDay: string;
     //console.log(start.getHours());
 
     this.evento.title = this.getNameActFromId(id);
+    console.log("Data inizio: "+ start);
+    console.log("Data fine: "+ end);
     this.evento.dataFine = this.toStringDate(end);
     this.evento.inizio = this.toStringDate(start);
     console.log("ORA INIZIO" + this.evento.inizio)
