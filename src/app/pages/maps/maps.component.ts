@@ -338,7 +338,31 @@ private titleDay: string;
   }
 
   public toStringDate(date: Date){
-    return date.getFullYear()+"-"+date.getUTCMonth()+"-"+date.getUTCDay()+"T"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+    var str = ""
+    var mes = ""
+    str = str + date.getFullYear() + "-"
+    mes = date.getMonth() as unknown as string;
+    if(mes.length==1)
+      str = str + "0"
+    str = str + mes + "-"
+    mes = date.getDay() as unknown as string;
+    if(mes.length==1)
+      str = str + "0"
+    str = str + mes + "T"
+    mes = date.getHours() as unknown as string;
+    if(mes.length==1)
+      str = str + "0"
+    str = str + mes + ":"
+    mes = date.getMinutes() as unknown as string;
+    if(mes.length==1)
+      str = str + "0"
+    str = str + mes + ":"
+    mes = date.getSeconds() as unknown as string;
+    if(mes.length==1)
+      str = str + "0"
+    str = str + mes
+
+    return str
   }
 
   addEventPar(id: any,start: Date,end: Date): void {
