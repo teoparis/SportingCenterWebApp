@@ -167,8 +167,7 @@ export class MapsComponent implements OnInit{
               private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService
   ) {
     this.evento = new Evento();
-    console.log("QUESTI SONO GLI EVENTI: "+this.eventi)
-    this.parseEvent();
+
   }
 
   ngOnInit() {
@@ -177,6 +176,10 @@ export class MapsComponent implements OnInit{
       this.eventi = data;
 
     });
+
+    await this.delay(3000);
+    console.log("QUESTI SONO GLI EVENTI: "+this.eventi)
+
 
   }
 
@@ -189,6 +192,9 @@ export class MapsComponent implements OnInit{
     return ""
   }
 
+  private delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 
 
 
