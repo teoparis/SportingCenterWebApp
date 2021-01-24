@@ -341,23 +341,23 @@ private titleDay: string;
     var str = ""
     var mes = ""
     str = str + date.getFullYear() + "-"
-    mes = date.getMonth() as unknown as string;
+    mes = "" + date.getMonth();
     if(mes.length==1)
       str = str + "0"
     str = str + mes + "-"
-    mes = date.getDay() as unknown as string;
+    mes = "" + date.getDay();
     if(mes.length==1)
       str = str + "0"
     str = str + mes + "T"
-    mes = date.getHours() as unknown as string;
+    mes = "" + date.getHours();
     if(mes.length==1)
       str = str + "0"
     str = str + mes + ":"
-    mes = date.getMinutes() as unknown as string;
+    mes = "" + date.getMinutes();
     if(mes.length==1)
       str = str + "0"
     str = str + mes + ":"
-    mes = date.getSeconds() as unknown as string;
+    mes = "" +date.getSeconds();
     if(mes.length==1)
       str = str + "0"
     str = str + mes
@@ -371,6 +371,7 @@ private titleDay: string;
     this.evento.title = this.getNameActFromId(id);
     this.evento.dataFine = this.toStringDate(end);
     this.evento.inizio = this.toStringDate(start);
+    console.log("ORA INIZIO" + this.evento.inizio)
     //this.evento.color = colors.red;
     this.evento.activityId = id;
     console.log("Questo è l'evento: "+ this.evento);
