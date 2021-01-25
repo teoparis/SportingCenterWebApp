@@ -142,7 +142,6 @@ export class MapsComponent implements OnInit{
     this.eventService.findAll().subscribe(data => {
       console.log(data);
       this.eventi = data;
-      this.events=[];
       this.parseEvent();
     });
     this.attivitaService.findAll().subscribe(data => {
@@ -250,6 +249,7 @@ private titleDay: string;
           },
         },
       ];
+      console.log("l'elenco degli eventi STA QUAAAAAAAAA!!!")
       console.log(this.events)
     }
 
