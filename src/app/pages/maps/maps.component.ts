@@ -223,12 +223,12 @@ private titleDay: string;
   parseEvent()
   {
     console.log("speriamo che vada tutto bene ")
-    console.log(this.eventi[0].inizio as unknown as Date)
-    console.log(this.eventi[0].title)
+
     for(let i=0; i<this.events.length; i++){
 
 
-      console.log(this.eventi[i].title)
+      console.log(this.eventi[i].inizio)
+      console.log(this.eventi[i].dataFine)
       this.titleDay=this.eventi[i].title;
       var start = new Date(this.eventi[i].inizio)
       var end = new Date(this.eventi[i].dataFine)
@@ -249,8 +249,6 @@ private titleDay: string;
           },
         },
       ];
-      console.log("l'elenco degli eventi STA QUAAAAAAAAA!!!")
-      console.log(this.events)
     }
 
   }
