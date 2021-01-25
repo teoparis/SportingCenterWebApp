@@ -308,6 +308,7 @@ private titleDay: string;
     var str = ""
     var mes = ""
     str = str + date.getFullYear() + "-"
+    console.log("data: "+ date);
     console.log("Mese: "+ date.getMonth());
     mes = "" + date.getMonth();
     if(mes.length==1)
