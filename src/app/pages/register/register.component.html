@@ -48,17 +48,13 @@
               <label for="number">Numero di telefono</label> <input type="text" class="form-control" name="number" [(ngModel)]="form.number" />
             </div>
             <div class="form-group">
-              <label for="dp">Data di Nascita*</label>
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                </div>
-                <input
-                  class="form-control"
-                  type="date" #myDate [value]="this.data | date:'dd-MM-yyyy'" (input)="this.form.dataNascita=this.stampDate($event.target.value)"
-                  mwlFlatpickr
-                  placeholder="Seleziona una data di nascita"
-                />              </div>
+              <label> Data di Nascita</label>
+              <input
+                class="form-control"
+                type="date" #myDate [value]="this.data | date:'dd-MM-yyyy'" (input)="this.form.dataNascita=$event.target.value"
+                mwlFlatpickr
+                placeholder="Seleziona una data di nascita"
+              />
             </div>
             <div [hidden]="!dp.pristine" class="alert alert-danger">La data di nascita è obbligatoria</div>
             <div class="form-group">
