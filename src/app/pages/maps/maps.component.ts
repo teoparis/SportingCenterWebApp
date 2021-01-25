@@ -302,6 +302,7 @@ private titleDay: string;
       }
     }
     this.modalService.dismissAll();
+    this.ngOnInit();
 
   }
 
