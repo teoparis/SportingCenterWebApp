@@ -344,9 +344,13 @@ private titleDay: string;
     //console.log(start.getHours());
 
     this.evento.title = this.getNameActFromId(id);
+    console.log("VEDIAMO ADESSO COSA STAMPA:")
+    console.log(start)
+    console.log(end)
     this.evento.dataFine = this.toStringDate(end);
     this.evento.inizio = this.toStringDate(start);
-
+    console.log(this.evento.inizio)
+    console.log(this.evento.dataFine)
     //this.evento.color = colors.red;
     this.evento.activityId = id;
     console.log("Questo è l'evento: "+ this.evento);
