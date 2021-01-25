@@ -353,19 +353,7 @@ private titleDay: string;
     this.evento.activityId = id;
     console.log("Questo è l'evento: "+ this.evento);
 
-    this.eventService.save(this.evento).subscribe(
-      data => {
-        console.log(data);
-        this.events = [
-          {
-            start: startOfDay(new Date()),
-            title: 'An event with no end date',
-            color: colors.yellow,
-            actions: this.actions,
-          }
-        ];
-        this.parseEvent() //reload the table
-      });
+    this.eventService.save(this.evento).subscribe();
 
 }
 
