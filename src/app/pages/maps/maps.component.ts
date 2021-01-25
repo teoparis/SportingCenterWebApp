@@ -338,11 +338,9 @@ private titleDay: string;
     //console.log(start.getHours());
 
     this.evento.title = this.getNameActFromId(id);
-    console.log("Data inizio: "+ start);
-    console.log("Data fine: "+ end);
     this.evento.dataFine = this.toStringDate(end);
     this.evento.inizio = this.toStringDate(start);
-    console.log("ORA INIZIO" + this.evento.inizio)
+
     //this.evento.color = colors.red;
     this.evento.activityId = id;
     console.log("Questo è l'evento: "+ this.evento);
@@ -350,6 +348,14 @@ private titleDay: string;
     this.eventService.save(this.evento).subscribe(
       data => {
         console.log(data);
+        this.events = [
+          {
+            start: startOfDay(new Date()),
+            title: 'An event with no end date',
+            color: colors.yellow,
+            actions: this.actions,
+          }
+        ];
         this.ngOnInit(); //reload the table
       });
 
