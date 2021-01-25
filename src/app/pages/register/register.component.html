@@ -55,7 +55,7 @@
                 </div>
                 <input
                   class="form-control"
-                  type="date" #myDate [value]="this.data | date:'dd-MM-yyyy'" (input)="this.form.dataNascita=$event.target.value"
+                  type="date" #myDate [value]="this.data | date:'dd-MM-yyyy'" (input)="this.form.dataNascita=this.stampDate($event.target.value)"
                   mwlFlatpickr
                   placeholder="Seleziona una data di nascita"
                 />              </div>
