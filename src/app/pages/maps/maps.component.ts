@@ -116,7 +116,14 @@ export class MapsComponent implements OnInit{
 
   refresh: Subject<any> = new Subject();
 
-  events: MyEvent[] = [];
+  events: MyEvent[] = [
+    {
+      start: startOfDay(new Date()),
+      title: 'An event with no end date',
+      color: colors.yellow,
+      actions: this.actions,
+    }
+  ];
 
 
   activeDayIsOpen: boolean = true;
