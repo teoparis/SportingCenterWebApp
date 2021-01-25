@@ -356,7 +356,7 @@ private titleDay: string;
             actions: this.actions,
           }
         ];
-        this.ngOnInit(); //reload the table
+        this.parseEvent() //reload the table
       });
 
 }
