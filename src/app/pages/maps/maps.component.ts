@@ -302,6 +302,13 @@ private titleDay: string;
       }
     }
     this.modalService.dismissAll();
+    this.events = [
+      {
+        start: startOfDay(new Date()),
+        title: 'An event with no end date',
+        color: colors.yellow,
+        actions: this.actions,
+      }];
     this.ngOnInit();
 
   }
