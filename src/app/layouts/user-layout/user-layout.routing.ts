@@ -6,10 +6,12 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import {ActivitiesComponent} from "../../pages/activities/activities.component";
+import {UserCalendarComponent} from "../../pages/user-calendar/user-calendar.component";
 
 export const UserLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent }
+    { path: 'maps',           component: MapsComponent },
+  { path: 'user-calendar',           component: UserCalendarComponent }
 ];
