@@ -56,17 +56,15 @@
                 placeholder="Seleziona una data di nascita"
               />
             </div>
-            <div [hidden]="!dp.pristine" class="alert alert-danger">La data di nascita è obbligatoria</div>
             <div class="form-group">
-              <label for="password">Password*</label> <input type="text" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
-                                                            #password="ngModel" />
+              <label>Password*</label> <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"  #password="ngModel"/>
               <div class="alert-danger" *ngIf="f.submitted && password.invalid">
                 <div *ngIf="password.errors.required">La Password è obbligatoria</div>
                 <div *ngIf="password.errors.minlength">La Password deve essere di almeno 6 caratteri</div>
               </div>
             </div>
             <div class="form-group">
-              <label for="matchingPassword">Conferma Password*</label> <input type="text" class="form-control" name="matchingPassword" [(ngModel)]="form.matchingPassword"
+              <label for="matchingPassword">Conferma Password*</label> <input type="password" class="form-control" name="matchingPassword" [(ngModel)]="form.matchingPassword"
                                                                             required minlength="6" #matchingPassword="ngModel" />
               <div class="alert-danger" *ngIf="f.submitted && matchingPassword.invalid">
                 <div *ngIf="matchingPassword.errors.required">La Password è obbligatoria</div>
