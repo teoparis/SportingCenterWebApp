@@ -20,7 +20,7 @@ export const ROUTES: RouteInfo[] = [
 export const ROUTESUSER: RouteInfo[] = [
   { path: '/dashboard', title: 'Home',  icon: 'ni-tv-2 text-primary', class: '' },
   { path: '/prenotazioni', title: 'Prenotazioni',  icon:'ni-bullet-list-67 text-red', class: '' },
-  { path: '/calendario', title: 'Calendario',  icon:'ni-calendar-grid-58 text-orange', class: '' },
+  { path: '/user-calendar', title: 'Calendario',  icon:'ni-calendar-grid-58 text-orange', class: '' },
   { path: '/contatti', title: 'Contatti',  icon:'ni-chat-round text-red', class: '' }
 ];
 
