@@ -347,9 +347,11 @@ private titleDay: string;
     this.evento.activityId = id;
     console.log("Questo è l'evento: "+ this.evento);
 
-    this.eventService.save(this.evento).subscribe((result) => {
-    this.ngOnInit();
-  });
+    this.eventService.save(this.evento).subscribe(
+      data => {
+        console.log(data);
+        this.ngOnInit(); //reload the table
+      });
 
 }
 
