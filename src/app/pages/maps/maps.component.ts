@@ -301,6 +301,11 @@ private titleDay: string;
         this.addEventPar(this.attivitaAssociata,start,end)
       }
     }
+    this.eventService.findAll().subscribe(data => {
+      console.log(data);
+      this.eventi = data;
+      this.parseEvent();
+    });
     this.modalService.dismissAll();
 
   }
@@ -356,11 +361,6 @@ private titleDay: string;
             actions: this.actions,
           }
         ];
-        this.eventService.findAll().subscribe(data => {
-          console.log(data);
-          this.eventi = data;
-          this.parseEvent();
-        });
       });
 
 }
