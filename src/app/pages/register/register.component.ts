@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
+  data: any;
 
   constructor(private authService: AuthService) { }
 
@@ -30,6 +31,10 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     );
+  }
+  stampDate(date: Date)
+  {
+    return date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear()
   }
 
 }
