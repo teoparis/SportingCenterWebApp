@@ -309,12 +309,11 @@ private titleDay: string;
     var mes = ""
     str = str + date.getFullYear() + "-"
     console.log("data: "+ date);
-    console.log("Mese: "+ date.getMonth());
-    mes = "" + date.getMonth();
+    mes = "" + (date.getMonth()+1);
     if(mes.length==1)
       str = str + "0"
     str = str + mes + "-"
-    mes = "" + date.getDay();
+    mes = "" + date.getDate();
     if(mes.length==1)
       str = str + "0"
     str = str + mes + "T"
