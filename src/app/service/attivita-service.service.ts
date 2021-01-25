@@ -19,7 +19,7 @@ export class AttivitaServiceService {
   }
 
   public save(attivita: Attivita) {
-    return this.http.post<Attivita>(AppConstantsMicro.ACTIVITY_SERVICE+'activities', attivita);
+    return this.http.post<Attivita>(AppConstantsMicro.ACTIVITY_SERVICE+'activity', attivita);
   }
 
   public delete(attivita: Attivita) {
