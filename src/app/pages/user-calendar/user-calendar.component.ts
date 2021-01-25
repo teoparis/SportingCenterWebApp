@@ -54,9 +54,9 @@ export interface MyEvent extends CalendarEvent {
 }
 
 @Component({
-  selector: 'app-maps',
-  templateUrl: './maps.component.html',
-  styleUrls: ['./maps.component.scss'],
+  selector: 'app-user-calendar',
+  templateUrl: './user-calendar.component.html',
+  styleUrls: ['./user-calendar.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
@@ -66,9 +66,7 @@ export interface MyEvent extends CalendarEvent {
   ],
 })
 
-
-
-export class MapsComponent implements OnInit{
+export class UserCalendarComponent implements OnInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
@@ -208,7 +206,7 @@ export class MapsComponent implements OnInit{
       },
     ];
   }
-private titleDay: string;
+  private titleDay: string;
   private activityDay: string;
   parseEvent()
   {
@@ -337,10 +335,10 @@ private titleDay: string;
     console.log("Questo è l'evento: "+ this.evento);
 
     this.eventService.save(this.evento).subscribe((result) => {
-    this.ngOnInit();
-  });
+      this.ngOnInit();
+    });
 
-}
+  }
 
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter((event) => event !== eventToDelete);

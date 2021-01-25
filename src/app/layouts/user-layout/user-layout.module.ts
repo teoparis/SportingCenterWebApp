@@ -12,23 +12,28 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {SearchfilterPipe} from "../../searchfilter.pipe";
+import {UserCalendarComponent} from "../../pages/user-calendar/user-calendar.component";
+import {CalendarModule, CalendarMonthModule} from "angular-calendar";
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(UserLayoutRoutes),
-        FormsModule,
-        HttpClientModule,
-        NgbModule,
-        ClipboardModule,
-    ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(UserLayoutRoutes),
+    FormsModule,
+    HttpClientModule,
+    NgbModule,
+    ClipboardModule,
+    CalendarMonthModule,
+    CalendarModule,
+  ],
   declarations: [
     DashboardComponent,
     UserProfileComponent,
     IconsComponent,
     //MapsComponent,
-    SearchfilterPipe
+    SearchfilterPipe,
+    UserCalendarComponent,
   ]
 })
 
