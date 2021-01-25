@@ -116,7 +116,7 @@ export class MapsComponent implements OnInit{
 
   refresh: Subject<any> = new Subject();
 
-  events: MyEvent[];
+  events: MyEvent[] = [];
 
 
   activeDayIsOpen: boolean = true;
