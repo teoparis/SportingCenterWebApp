@@ -356,7 +356,11 @@ private titleDay: string;
             actions: this.actions,
           }
         ];
-        this.parseEvent() //reload the table
+        this.eventService.findAll().subscribe(data => {
+          console.log(data);
+          this.eventi = data;
+          this.parseEvent();
+        });
       });
 
 }
