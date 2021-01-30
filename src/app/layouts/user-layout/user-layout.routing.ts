@@ -12,5 +12,5 @@ export const UserLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'icons',          component: IconsComponent },
-  { path: 'user-calendar',           component: UserCalendarComponent }
+  { path: 'calendar',           component: UserCalendarComponent }
 ];
