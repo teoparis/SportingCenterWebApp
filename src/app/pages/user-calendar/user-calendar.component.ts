@@ -91,9 +91,6 @@ export class UserCalendarComponent implements OnInit {
   eventi: Evento[];
   evento: Evento;
 
-
-
-
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
@@ -104,9 +101,18 @@ export class UserCalendarComponent implements OnInit {
     }
   ];
 
+  events: MyEvent[] = [
+    {
+      start: startOfDay(new Date()),
+      title: 'An event with no end date',
+      color: colors.yellow,
+      actions: this.actions,
+    }
+  ];
+
+
   refresh: Subject<any> = new Subject();
 
-  events: MyEvent[];
 
 
   activeDayIsOpen: boolean = true;
@@ -158,23 +164,6 @@ export class UserCalendarComponent implements OnInit {
     }
   }
 
-  eventTimesChanged({
-                      event,
-                      newStart,
-                      newEnd,
-                    }: CalendarEventTimesChangedEvent): void {
-    this.events = this.events.map((iEvent) => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd,
-        };
-      }
-      return iEvent;
-    });
-    this.handleEvent('Dropped or resized', event);
-  }
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
