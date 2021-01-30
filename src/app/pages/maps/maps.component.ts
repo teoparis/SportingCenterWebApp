@@ -139,15 +139,16 @@ export class MapsComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.attivitaService.findAll().subscribe(data => {
+      this.activities = data;
+
+    });
     this.eventService.findAll().subscribe(data => {
       console.log(data);
       this.eventi = data;
       this.parseEvent();
     });
-    this.attivitaService.findAll().subscribe(data => {
-      this.activities = data;
 
-    });
     console.log("QUESTI SONO GLI EVENTI: "+this.eventi)
 
 
