@@ -8,6 +8,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import {ActivitiesComponent} from "../../pages/activities/activities.component";
 import {AuthGuardService} from "../../service/auth-guard.service";
 import {AbbonamentiComponent} from "../../pages/abbonamenti/abbonamenti.component";
+import {UserCalendarComponent} from "../../pages/user-calendar/user-calendar.component";
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent  },
@@ -17,4 +18,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent, canActivate: [AuthGuardService] },
     { path: 'activities',       component: ActivitiesComponent ,canActivate: [AuthGuardService]},
+  { path: 'calendar',       component: UserCalendarComponent }
 ];

@@ -6,6 +6,5 @@ import {UserCalendarComponent} from "../../pages/user-calendar/user-calendar.com
 
 export const AuthLayoutRoutes: Routes = [
     { path: 'login',          component: LoginComponent },
-    { path: 'register',       component: RegisterComponent },
-  { path: 'calendario',       component: UserCalendarComponent }
+    { path: 'register',       component: RegisterComponent }
 ];

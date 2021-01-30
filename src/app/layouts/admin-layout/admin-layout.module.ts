@@ -17,6 +17,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import {AbbonamentiComponent} from "../../pages/abbonamenti/abbonamenti.component";
+import {UserCalendarComponent} from "../../pages/user-calendar/user-calendar.component";
 
 @NgModule({
     imports: [
@@ -41,7 +42,8 @@ import {AbbonamentiComponent} from "../../pages/abbonamenti/abbonamenti.componen
     MapsComponent,
     ActivitiesComponent,
     AbbonamentiComponent,
-    SearchfilterPipe
+    SearchfilterPipe,
+    UserCalendarComponent
   ]
 })
 
