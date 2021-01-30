@@ -7,6 +7,7 @@ import {NgbDatepickerModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
+import {UserCalendarComponent} from "../../pages/user-calendar/user-calendar.component";
 @NgModule({
     imports: [
         CommonModule,
@@ -17,7 +18,8 @@ import { RegisterComponent } from '../../pages/register/register.component';
     ],
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserCalendarComponent
   ]
 })
 export class AuthLayoutModule { }
