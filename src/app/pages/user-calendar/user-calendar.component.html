@@ -41,9 +41,9 @@
           Succ
         </div>
       </div>
-      <div *ngFor="let activity of activities" class="btn-group">
+      <div class="btn-group">
         <div
-          class="btn btn-outline-primary"
+          *ngFor="let activity of activities" class="btn btn-outline-primary"
         >
           {{activity.name}}
         </div>
