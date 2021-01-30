@@ -13,9 +13,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/tables', title: 'Clienti',  icon:'ni-single-02 text-blue', class: '' },
     { path: '/maps', title: 'Calendario',  icon:'ni-calendar-grid-58 text-orange', class: '' },
     { path: '/activities', title: 'Attività Sportive',  icon:'ni-user-run text-yellow', class: '' },
-    { path: '/icons', title: 'Istruttori',  icon:'ni-bullet-list-67 text-red', class: '' },
     { path: '/abbonamenti', title: 'Abbonamenti',  icon:'ni-ruler-pencil text-info', class: '' },
-    { path: '/register', title: 'Contatti',  icon:'ni-chat-round text-red', class: '' }
 ];
 export const ROUTESUSER: RouteInfo[] = [
   { path: '/dashboard', title: 'Home',  icon: 'ni-tv-2 text-primary', class: '' },
