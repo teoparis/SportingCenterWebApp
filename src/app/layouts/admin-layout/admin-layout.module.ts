@@ -42,7 +42,8 @@ import {UserCalendarComponent} from "../../pages/user-calendar/user-calendar.com
     MapsComponent,
     ActivitiesComponent,
     AbbonamentiComponent,
-    SearchfilterPipe
+    SearchfilterPipe,
+    UserCalendarComponent
   ]
 })
 
