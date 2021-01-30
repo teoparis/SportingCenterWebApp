@@ -13,14 +13,43 @@
 
   <br /><br /><br />
   <div class="row text-center">
+    <div class="btn-group">
+      <div
+        *ngFor="let activity of activities" class="btn btn-outline-primary"
+      >
+        {{activity.name}}
+      </div>
+
+    </div>
+  </div>
+  <div class="row text-center">
     <div class="col-md-4">
       <div class="btn-group">
         <div
-          *ngFor="let activity of activities" class="btn btn-outline-primary"
+          class="btn btn-outline-primary"
+          mwlCalendarPreviousView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="closeOpenMonthViewDay()"
         >
-          {{activity.name}}
+          Prec
         </div>
-
+        <div
+          class="btn btn-outline-primary"
+          mwlCalendarToday
+          [(viewDate)]="viewDate"
+        >
+          Oggi
+        </div>
+        <div
+          class="btn btn-outline-primary"
+          mwlCalendarNextView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="closeOpenMonthViewDay()"
+        >
+          Succ
+        </div>
       </div>
     </div>
     <div class="col-md-4">
