@@ -97,19 +97,11 @@ export class UserCalendarComponent implements OnInit {
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
-      a11yLabel: 'Edit',
+      a11yLabel: 'Prenotati',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.handleEvent('Edited', event);
       },
-    },
-    {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      },
-    },
+    }
   ];
 
   refresh: Subject<any> = new Subject();
@@ -189,27 +181,9 @@ export class UserCalendarComponent implements OnInit {
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        //color: colors.red,
-        activity: "fitness",
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
-      },
-    ];
-  }
   private titleDay: string;
   private activityDay: string;
-  parseEvent()
-  {
+  parseEvent() {
     console.log("speriamo che vada tutto bene ")
     console.log(this.eventi[0].inizio as unknown as Date)
     console.log(this.eventi[0].title)
@@ -242,55 +216,7 @@ export class UserCalendarComponent implements OnInit {
 
   }
 
-  extractDays(): void{
-    this.giorniSettimanali = [];
-    var element = <HTMLInputElement> document.getElementById("weekday-mon");
-    if(element.checked)
-      this.giorniSettimanali.push(1);
-    element = <HTMLInputElement> document.getElementById("weekday-tue");
-    if(element.checked)
-      this.giorniSettimanali.push(2);
-    element = <HTMLInputElement> document.getElementById("weekday-wed");
-    if(element.checked)
-      this.giorniSettimanali.push(3);
-    element = <HTMLInputElement> document.getElementById("weekday-thu");
-    if(element.checked)
-      this.giorniSettimanali.push(4);
-    element = <HTMLInputElement> document.getElementById("weekday-fri");
-    if(element.checked)
-      this.giorniSettimanali.push(5);
-    element = <HTMLInputElement> document.getElementById("weekday-sat");
-    if(element.checked)
-      this.giorniSettimanali.push(6);
-  }
 
-
-  addEventProgram(){
-    //console.log(endDate.getDay());
-    this.extractDays();
-    //console.log(this.giorniSettimanali);
-    var orastart = this.mygetHours(this.oraInizioP);
-    var minstart = this.mygetMinute(this.oraInizioP);
-    var oraend = this.mygetHours(this.oraFineP);
-    var minend = this.mygetMinute(this.oraFineP);
-    let currentDate = this.dataInizioP;
-    while(currentDate <= this.dataFineP) {
-      currentDate = new Date(currentDate.setDate(currentDate.getDate()+1));
-
-      // this.oraInizioP = (<HTMLInputElement> document.getElementById("oraInizio")).value;
-      // this.oraFineP = (<HTMLInputElement> document.getElementById("oraFine")).value;
-      if(this.giorniSettimanali.includes(currentDate.getDay()))
-      {
-        console.log(this.oraInizioP);
-        console.log(this.oraFineP);
-        var start = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), orastart, minstart, 0);
-        var end = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), oraend, minend, 0);
-        this.addEventPar(this.attivitaAssociata,start,end)
-      }
-    }
-    this.modalService.dismissAll();
-
-  }
 
   public toStringDate(date: Date){
     var str = ""
@@ -319,29 +245,6 @@ export class UserCalendarComponent implements OnInit {
     str = str + mes
 
     return str
-  }
-
-  addEventPar(id: any,start: Date,end: Date): void {
-    //console.log(start.getHours());
-
-    this.evento.title = this.getNameActFromId(id);
-    console.log("Data inizio: "+ start);
-    console.log("Data fine: "+ end);
-    this.evento.dataFine = this.toStringDate(end);
-    this.evento.inizio = this.toStringDate(start);
-    console.log("ORA INIZIO" + this.evento.inizio)
-    //this.evento.color = colors.red;
-    this.evento.activityId = id;
-    console.log("Questo è l'evento: "+ this.evento);
-
-    this.eventService.save(this.evento).subscribe((result) => {
-      this.ngOnInit();
-    });
-
-  }
-
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
   }
 
   setView(view: CalendarView) {
@@ -384,8 +287,5 @@ export class UserCalendarComponent implements OnInit {
   mygetMinute(time: string[]): any{
     return <Number><unknown>time[1];
   }
-  selectOption(name: string): void{
-    //console.log("THIS IS THE: "+name);
-    this.attivitaAssociata = name;
-  }
+
 }
