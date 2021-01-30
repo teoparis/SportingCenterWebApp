@@ -5,14 +5,17 @@
 
 <!-- Page content -->
 <div class="container-fluid mt--7">
-  <div class="col text-right" style="margin-bottom:15px">
-    <button type="button" class="btn btn-info" (click)="openNewProgramSpec(contentNewProgramSpec)">
-      Programma Attività Sportiva
-    </button>
-  </div>
+
 
   <br /><br /><br />
   <div class="row text-center">
+    <div *ngFor="let activity of activities" ass="btn-group">
+      <div
+        class="btn btn-outline-primary"
+      >
+        {{activity.name}}
+      </div>
+    </div>
     <div class="col-md-4">
       <div class="btn-group">
         <div
