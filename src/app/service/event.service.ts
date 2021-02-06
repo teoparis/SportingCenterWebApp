@@ -4,14 +4,15 @@ import {Observable} from "rxjs";
 import {AppConstantsMicro} from "../common/app.constantsMicro";
 import {Evento} from "../entities/evento";
 
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-@Injectable()
-export class EventService {
 
+@Injectable({
+  providedIn: 'root'
+})
+export class EventService {
 
 
   constructor(private http: HttpClient) {
