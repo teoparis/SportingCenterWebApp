@@ -51,6 +51,7 @@ const colors: any = {
 
 export interface MyEvent extends CalendarEvent {
   activity?: string;
+  number: string;
 }
 
 @Component({
@@ -122,6 +123,7 @@ export class MapsComponent implements OnInit{
       title: 'An event with no end date',
       color: colors.yellow,
       actions: this.actions,
+      number: "0"
     }
   ];
 
@@ -190,6 +192,7 @@ export class MapsComponent implements OnInit{
           ...event,
           start: newStart,
           end: newEnd,
+          number: "0",
         };
       }
       return iEvent;
@@ -202,23 +205,6 @@ export class MapsComponent implements OnInit{
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        //color: colors.red,
-        activity: "fitness",
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
-      },
-    ];
-  }
 private titleDay: string;
   private activityDay: string;
   parseEvent()
@@ -234,6 +220,7 @@ private titleDay: string;
       var start = new Date(this.eventi[i].inizio)
       var end = new Date(this.eventi[i].dataFine)
       this.activityDay = this.eventi[i].activityId
+      this.numPrenot = this.eventi[i].number
       this.events = [
         ...this.events,
         {
@@ -243,6 +230,7 @@ private titleDay: string;
           color: colors.red,
           activity: this.activityDay,
           actions: this.actions,
+          number: this.numPrenot,
           draggable: false,
           resizable: {
             beforeStart: false,
@@ -297,17 +285,10 @@ private titleDay: string;
         console.log(this.oraFineP);
         var start = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), orastart, minstart, 0);
         var end = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), oraend, minend, 0);
-        this.addEventPar(this.attivitaAssociata,start,end)
+        this.addEventPar(this.attivitaAssociata,start,end, this.numPrenot)
       }
     }
     this.modalService.dismissAll();
-    this.events = [
-      {
-        start: startOfDay(new Date()),
-        title: 'An event with no end date',
-        color: colors.yellow,
-        actions: this.actions,
-      }];
     this.ngOnInit();
 
   }
@@ -341,18 +322,13 @@ private titleDay: string;
     return str
   }
 
-  addEventPar(id: any,start: Date,end: Date): void {
+  addEventPar(id: any,start: Date,end: Date, num: string): void {
     //console.log(start.getHours());
 
     this.evento.title = this.getNameActFromId(id);
-    console.log("VEDIAMO ADESSO COSA STAMPA:")
-    console.log(start)
-    console.log(end)
     this.evento.dataFine = this.toStringDate(end);
     this.evento.inizio = this.toStringDate(start);
-    console.log(this.evento.inizio)
-    console.log(this.evento.dataFine)
-    //this.evento.color = colors.red;
+    this.evento.number = num;
     this.evento.activityId = id;
     console.log("Questo è l'evento: "+ this.evento);
 

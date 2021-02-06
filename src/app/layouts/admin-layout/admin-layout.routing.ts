@@ -9,6 +9,8 @@ import {ActivitiesComponent} from "../../pages/activities/activities.component";
 import {AuthGuardService} from "../../service/auth-guard.service";
 import {AbbonamentiComponent} from "../../pages/abbonamenti/abbonamenti.component";
 import {UserCalendarComponent} from "../../pages/user-calendar/user-calendar.component";
+import {PrenotazioniComponent} from "../../pages/prenotazioni/prenotazioni.component";
+import {UserGuardService} from "../../service/user-guard.service";
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent  },
@@ -18,5 +20,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent, canActivate: [AuthGuardService] },
     { path: 'activities',       component: ActivitiesComponent ,canActivate: [AuthGuardService]},
-  { path: 'calendar',           component: UserCalendarComponent }
+  { path: 'calendar',           component: UserCalendarComponent, canActivate: [UserGuardService] },
+  { path: 'prenotazioni',    component: PrenotazioniComponent, canActivate: [UserGuardService]}
 ];

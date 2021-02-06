@@ -5,4 +5,5 @@ export class Evento {
   //color: string;
   title: string;
   activityId: string;
+  number: string;
 }

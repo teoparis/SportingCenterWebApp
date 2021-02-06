@@ -18,6 +18,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import {AbbonamentiComponent} from "../../pages/abbonamenti/abbonamenti.component";
 import {UserCalendarComponent} from "../../pages/user-calendar/user-calendar.component";
+import {PrenotazioniComponent} from "../../pages/prenotazioni/prenotazioni.component";
 
 @NgModule({
     imports: [
@@ -43,7 +44,8 @@ import {UserCalendarComponent} from "../../pages/user-calendar/user-calendar.com
     ActivitiesComponent,
     AbbonamentiComponent,
     SearchfilterPipe,
-    UserCalendarComponent
+    UserCalendarComponent,
+    PrenotazioniComponent,
   ]
 })
 

@@ -13,8 +13,11 @@ export class UserGuardService implements CanLoad {
   constructor(public tokenStorageService: TokenStorageService, private router: Router) {
   }
 
+
   canLoad(route: Route) {
     this.isok = !!this.tokenStorageService.getToken();
+    const user = this.tokenStorageService.getUser();
+
     if (!this.isok) {
       this.router.navigate(['/login']);
     }
@@ -22,11 +25,10 @@ export class UserGuardService implements CanLoad {
   }
 
   canActivate(): boolean {
-    this.isok = !!this.tokenStorageService.getToken();
-    if (!this.isok) {
-      this.router.navigate(['/login']);
+    const user = this.tokenStorageService.getUser();
+    if (!user.roles.includes("ROLE_USER")) {
+      return false
     }
-    return this.isok;
+    return true;
   }
-
 }

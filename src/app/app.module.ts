@@ -21,6 +21,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {AbbonamentoServiceService} from "./service/abbonamento-service.service";
 
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -37,7 +38,7 @@ import {AbbonamentoServiceService} from "./service/abbonamento-service.service";
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    UserLayoutComponent,
+    UserLayoutComponent
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

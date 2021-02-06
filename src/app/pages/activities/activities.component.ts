@@ -67,6 +67,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   openDetails(targetModal, act: Attivita) {
+    this.activity = act;
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
