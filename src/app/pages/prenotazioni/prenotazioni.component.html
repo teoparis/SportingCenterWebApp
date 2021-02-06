@@ -10,27 +10,17 @@
         <div class="card-body">
           <div class="row">
             <div class="col-sm">
-              <span class="h2 font-weight-bold mb-0">{{ prenot.name }}</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
-              <span *ngIf="activity.fitness && activity.nuoto" class="h2 font-weight-bold mb-0">Nuoto&Fitness</span>
-              <span *ngIf="activity.fitness && !activity.nuoto" class="h2 font-weight-bold mb-0">Fitness</span>
-              <span *ngIf="!activity.fitness && activity.nuoto" class="h2 font-weight-bold mb-0">Nuoto</span>
+              <span class="h2 font-weight-bold mb-0">{{ prenot.title }}</span>
             </div>
           </div>
           <p class="mt-3 mb-0 text-muted text-sm">
-            <span class="text-nowrap">{{ activity.descr }}</span></p>
+            <span class="text-nowrap">Data prenotazione: {{ this.extractDay(prenot.inizio) }}</span></p>
+          <p class="mt-3 mb-0 text-muted text-sm">
+            <span class="text-nowrap">Ora Inizio: {{ this.extractTime(prenot.inizio) }}</span></p>
+          <p class="mt-3 mb-0 text-muted text-sm">
+            <span class="text-nowrap">Ora Fine: {{ this.extractTime(prenot.dataFine) }}</span></p>
           <div class="pagination justify-content-end">
-
-            <button type="button" class="btn btn-outline-light" (click)="openDetails(contentDetails, activity)">
-              Dettagli
-            </button>
-            <button type="button" class="btn btn-outline-info" (click)="openModify(contentModify, activity)">
-              Modifica
-            </button>
-            <button type="button" class="btn btn-warning" (click)="openDelete(contentDelete,activity)">
+            <button type="button" class="btn btn-warning" (click)="openDelete(contentDelete,prenot)">
               Elimina
             </button>
           </div>
@@ -41,152 +31,7 @@
     <p></p>
   </div>
 </div>
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Aggiungi Attività</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-      <div class="form-group">
-        <label for="name">Nome</label>
-        <input type="text" [(ngModel)]
-          ="activity.name"
-               class="form-control"
-               id="name"
-               name="name"
-               placeholder="Inserisci il nome dell'attività"
-               required #name="ngModel">
-      </div>
-      <div [hidden]="!name.pristine" class="alert alert-danger">Il nome è richiesto obbligatoriamente</div>
-      <div class="form-group">
-        <label for="descr">Descrizione</label>
-        <input type="text" [(ngModel)]="activity.descr"
-               class="form-control"
-               id="descr"
-               name="descr"
-               placeholder="Inserisci la descrizione"
-               required #descr="ngModel">
-      </div>
-      <div [hidden]="!descr.pristine" class="alert alert-danger">La descrizione è richiesta obbligatoriamente</div>
-      <hr class="my-3">
 
-      <div class="row">
-        <div class="col-md-12">
-          <label>Seleziona la tipologia dell'attività:</label>
-          <center>
-            <div class="type-selector">
-              <input type="checkbox" id="fitness" class="type" [checked]="activity.fitness === true"/>
-              <label for="fitness">Fitness</label>
-              <input type="checkbox" id="nuoto" class="type" [checked]="activity.nuoto === true"/>
-              <label for="nuoto">Nuoto</label>
-            </div>
-          </center>
-        </div>
-      </div>
-
-
-
-      <button type="submit" [disabled]="!userForm.form.valid"
-              class="btn btn-info">Submit</button>
-    </form>
-  </div>
-</ng-template>
-
-<ng-template #contentDetails let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title2">Visualizza nel dettaglio</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <label>Nome</label>
-        <input class="form-control"
-               id="dname"
-               name="name">
-      </div>
-      <div class="form-group">
-        <label>Descrizione</label>
-        <input type="text"
-               class="form-control"
-               id="ddescr"
-               name="descr">
-      </div>
-      <hr class="my-3">
-
-      <div class="row">
-        <div class="col-md-12">
-          <label>Tipologia dell'attività:</label>
-          <center>
-            <div class="type-selector" readonly>
-              <input type="checkbox" id="fitness" class="type" [checked]="activity.fitness === true" disabled />
-              <label for="fitness">Fitness</label>
-              <input type="checkbox" id="nuoto" class="type" [checked]="activity.nuoto === true" disabled/>
-              <label for="nuoto">Nuoto</label>
-            </div>
-          </center>
-        </div>
-      </div>
-    </form>
-  </div>
-</ng-template>
-
-<ng-template #contentModify let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title4">Modifica Attività</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-      <div class="form-group">
-        <label for="mname">Nome</label>
-        <input type="text" [(ngModel)]
-          ="activity.name"
-               class="form-control"
-               id="mname"
-               name="mname"
-               required #name="ngModel">
-      </div>
-      <div [hidden]="!name.pristine" class="alert alert-danger">Il nome è richiesto obbligatoriamente</div>
-      <div class="form-group">
-        <label for="mdescr">Descrizione</label>
-        <input type="text" [(ngModel)]="activity.descr"
-               class="form-control"
-               id="mdescr"
-               name="descr"
-               required #descr="ngModel">
-      </div>
-      <div [hidden]="!descr.pristine" class="alert alert-danger"><text id="ttc">La descrizione è richiesta obbligatoriamente</text></div>
-
-      <hr class="my-3">
-
-      <div class="row">
-        <div class="col-md-12">
-          <label>Seleziona la tipologia dell'attività:</label>
-          <center>
-            <div class="type-selector">
-              <input type="checkbox" id="fitness" class="type" [checked]="activity.fitness === true"/>
-              <label for="fitness">Fitness</label>
-              <input type="checkbox" id="nuoto" class="type" [checked]="activity.nuoto === true"/>
-              <label for="nuoto">Nuoto</label>
-            </div>
-          </center>
-        </div>
-      </div>
-
-
-      <button type="submit" [disabled]="!userForm.form.valid"
-              class="btn btn-info">Submit</button>
-    </form>
-  </div>
-</ng-template>
 
 <ng-template #contentDelete let-modal>
   <div class="modal-header">

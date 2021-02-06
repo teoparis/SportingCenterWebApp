@@ -32,6 +32,7 @@ import {AttivitaServiceService} from "../../service/attivita-service.service";
 import {FormGroup} from "@angular/forms";
 import {Evento} from "../../entities/evento";
 import {EventService} from "../../service/event.service";
+import {MyEvent} from "../maps/maps.component";
 
 const colors: any = {
   red: {
@@ -48,10 +49,6 @@ const colors: any = {
   },
 };
 
-
-export interface MyEvent extends CalendarEvent {
-  activity?: string;
-}
 
 @Component({
   selector: 'app-user-calendar',
@@ -107,6 +104,7 @@ export class UserCalendarComponent implements OnInit {
       title: 'An event with no end date',
       color: colors.yellow,
       actions: this.actions,
+      number: "0",
     }
   ];
 
@@ -175,6 +173,7 @@ export class UserCalendarComponent implements OnInit {
           ...event,
           start: newStart,
           end: newEnd,
+          number: "",
         };
       }
       return iEvent;
@@ -201,6 +200,7 @@ export class UserCalendarComponent implements OnInit {
       var start = new Date(this.eventi[i].inizio)
       var end = new Date(this.eventi[i].dataFine)
       this.activityDay = this.eventi[i].activityId
+      this.numPrenot = this.eventi[i].number
       this.events = [
         ...this.events,
         {
@@ -210,6 +210,7 @@ export class UserCalendarComponent implements OnInit {
           color: colors.red,
           activity: this.activityDay,
           actions: this.actions,
+          number: this.numPrenot,
           draggable: false,
           resizable: {
             beforeStart: false,

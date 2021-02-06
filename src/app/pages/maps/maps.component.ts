@@ -151,8 +151,6 @@ export class MapsComponent implements OnInit{
       this.parseEvent();
     });
 
-    console.log("QUESTI SONO GLI EVENTI: "+this.eventi)
-
 
   }
 
@@ -209,8 +207,6 @@ private titleDay: string;
   private activityDay: string;
   parseEvent()
   {
-    console.log("speriamo che vada tutto bene ")
-
     for(let i=0; i<this.events.length; i++){
 
 

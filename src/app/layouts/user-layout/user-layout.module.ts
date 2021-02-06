@@ -31,8 +31,7 @@ import {CalendarModule, CalendarMonthModule} from "angular-calendar";
     DashboardComponent,
     UserProfileComponent,
     IconsComponent,
-    SearchfilterPipe,
-    UserCalendarComponent
+    SearchfilterPipe
   ]
 })
 
