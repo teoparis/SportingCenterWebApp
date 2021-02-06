@@ -33,6 +33,7 @@ import {FormGroup} from "@angular/forms";
 import {Evento} from "../../entities/evento";
 import {EventService} from "../../service/event.service";
 import {MyEvent} from "../maps/maps.component";
+import {TokenStorageService} from "../../service/token-storage.service";
 
 const colors: any = {
   red: {
@@ -118,15 +119,17 @@ export class UserCalendarComponent implements OnInit {
   numPrenot: any;
 
 
-  constructor(private modal: NgbModal,
+  constructor(private modal: NgbModal, private token: TokenStorageService,
               private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService
   ) {
     this.evento = new Evento();
 
   }
-
+currentUser: any;
   ngOnInit() {
-    this.eventService.findAll().subscribe(data => {
+    this.currentUser = this.token.getUser();
+
+    this.eventService.getEventsForUser(this.currentUser.abbonamento).subscribe(data => {
       console.log(data);
       this.eventi = data;
       this.parseEvent();
