@@ -57,5 +57,9 @@ export class UserService {
     return this.http.get(AppConstants.ADMIN_URL + 'user/me', httpOptions);
   }
 
+  subIdByUserId(id: any): Observable<any> {
+    return this.http.get(AppConstants.AUTH_API + 'SubIdByUserId/'+ encodeURIComponent(id), httpOptions);
+  }
+
 
 }

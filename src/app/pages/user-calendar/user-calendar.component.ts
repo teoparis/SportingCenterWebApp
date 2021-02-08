@@ -34,6 +34,7 @@ import {Evento} from "../../entities/evento";
 import {EventService} from "../../service/event.service";
 import {MyEvent} from "../maps/maps.component";
 import {TokenStorageService} from "../../service/token-storage.service";
+import {UserService} from "../../service/user-service.service";
 
 const colors: any = {
   red: {
@@ -85,7 +86,7 @@ export class UserCalendarComponent implements OnInit {
   giorniSettimanali = [];
   attivitaAssociata: string;
   descr: any;
-
+  abbonam: any;
   eventi: Evento[];
   evento: Evento;
 
@@ -119,7 +120,7 @@ export class UserCalendarComponent implements OnInit {
   numPrenot: any;
 
 
-  constructor(private modal: NgbModal, private token: TokenStorageService,
+  constructor(private modal: NgbModal, private token: TokenStorageService, private userService: UserService,
               private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService
   ) {
     this.evento = new Evento();
@@ -128,9 +129,11 @@ export class UserCalendarComponent implements OnInit {
 currentUser: any;
   ngOnInit() {
     this.currentUser = this.token.getUser();
-    console.log(this.currentUser);
-    console.log(this.currentUser.name);
-    this.eventService.getEventsForUser(this.currentUser.abbonamento).subscribe(data => {
+
+    this.userService.subIdByUserId(this.currentUser.id).subscribe(data => {
+      this.abbonam = data;
+    });
+    this.eventService.getEventsForUser(this.abbonam).subscribe(data => {
       console.log(data);
       this.eventi = data;
       this.parseEvent();
