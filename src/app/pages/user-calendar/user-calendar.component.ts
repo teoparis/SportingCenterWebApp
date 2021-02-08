@@ -196,7 +196,9 @@ currentUser: any;
   }
 
   prenota(): void {
+    console.log("SIAMO ARRIVATI ALLA PRENOTAZIONE")
     this.eventService.prenotaAttivita(this.currentUser.id,String(this.eventoPren.id)).subscribe((result) => {
+      console.log("SIAMO nella prenotazione")
       this.ngOnInit(); //reload the table
     });
     this.modalService.dismissAll(); //dismiss the modal
