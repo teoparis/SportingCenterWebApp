@@ -31,12 +31,17 @@ export class EventService {
     return this.http.get<Evento[]>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/'+ encodeURIComponent(id),httpOptions);
   }
 
+  public getBookingsForUser(id: string) {
+    console.log(id);
+    return this.http.get<Evento[]>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/bookings/'+ encodeURIComponent(id),httpOptions);
+  }
+
+
   public delete(event: Evento) {
     return this.http.post<Evento>(AppConstantsMicro.CALENDAR_SERVICE+'events/delete', event);
   }
 
   public prenotaAttivita(idUser: string,idEvent: string) {
-    console.log("La chiamata viene fatta quaaaa")
     return this.http.put<void>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/bookings/'+ encodeURIComponent(idUser)+"/"+encodeURIComponent(idEvent),httpOptions);
   }
 }
