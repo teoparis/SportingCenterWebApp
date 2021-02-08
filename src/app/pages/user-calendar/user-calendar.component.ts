@@ -196,7 +196,10 @@ currentUser: any;
   }
 
   prenota(): void {
-    this.eventService.prenotaAttivita(this.currentUser.id,String(this.eventoPren.id))
+    this.eventService.prenotaAttivita(this.currentUser.id,String(this.eventoPren.id)).subscribe((result) => {
+      this.ngOnInit(); //reload the table
+    });
+    this.modalService.dismissAll(); //dismiss the modal
   }
 
   private titleDay: string;
