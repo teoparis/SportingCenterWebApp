@@ -37,6 +37,6 @@ export class EventService {
 
   public prenotaAttivita(idUser: string,idEvent: string) {
     console.log("La chiamata viene fatta quaaaa")
-    return this.http.put<void>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/bookings/'+ encodeURIComponent(idUser)+encodeURIComponent(idEvent),httpOptions);
+    return this.http.put<void>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/bookings/'+ encodeURIComponent(idUser)+"/"+encodeURIComponent(idEvent),httpOptions);
   }
 }
