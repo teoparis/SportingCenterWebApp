@@ -58,7 +58,7 @@ export class UserService {
   }
 
   subIdByUserId(id: any): Observable<any> {
-    return this.http.get(AppConstants.AUTH_API + 'SubIdByUserId/'+ encodeURIComponent(id), httpOptions);
+    return this.http.get(AppConstants.AUTH_API + 'subIdByUserId/'+ encodeURIComponent(id), httpOptions);
   }
 
 
