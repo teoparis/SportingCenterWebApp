@@ -191,6 +191,7 @@ export class MapsComponent implements OnInit{
           start: newStart,
           end: newEnd,
           number: "0",
+          id: "0"
         };
       }
       return iEvent;
@@ -223,6 +224,7 @@ private titleDay: string;
           title: this.titleDay,
           start: start,
           end: end,
+          id: this.eventi[i].id,
           color: colors.red,
           activity: this.activityDay,
           actions: this.actions,

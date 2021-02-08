@@ -89,6 +89,7 @@ export class UserCalendarComponent implements OnInit {
   abbonam: any;
   eventi: Evento[];
   evento: Evento;
+  eventoPren: CalendarEvent;
 
   actions: CalendarEventAction[] = [
     {
@@ -139,7 +140,6 @@ currentUser: any;
         this.parseEvent();
       });
     });
-    console.log("questo è il numero dell'abbonamento"+this.abbonam)
 
 
   }
@@ -181,6 +181,7 @@ currentUser: any;
           start: newStart,
           end: newEnd,
           number: "",
+          id: "0"
         };
       }
       return iEvent;
@@ -189,14 +190,18 @@ currentUser: any;
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
+    this.eventoPren = event
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
+  }
+
+  prenota(): void {
+    this.eventService.prenotaAttivita(this.currentUser.id,String(this.eventoPren.id))
   }
 
   private titleDay: string;
   private activityDay: string;
   parseEvent() {
-    console.log("speriamo che vada tutto bene ")
     console.log(this.eventi[0].inizio as unknown as Date)
     console.log(this.eventi[0].title)
     for(let i=0; i<this.events.length; i++){
@@ -215,6 +220,7 @@ currentUser: any;
           start: start,
           end: end,
           color: colors.red,
+          id: this.eventi[i].id,
           activity: this.activityDay,
           actions: this.actions,
           number: this.numPrenot,

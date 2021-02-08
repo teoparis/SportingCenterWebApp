@@ -34,4 +34,9 @@ export class EventService {
   public delete(event: Evento) {
     return this.http.post<Evento>(AppConstantsMicro.CALENDAR_SERVICE+'events/delete', event);
   }
+
+  public prenotaAttivita(idUser: string,idEvent: string) {
+
+    return this.http.put<void>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/bookings/'+ encodeURIComponent(idUser)+encodeURIComponent(idEvent),httpOptions);
+  }
 }
