@@ -131,6 +131,7 @@ currentUser: any;
     this.currentUser = this.token.getUser();
 
     this.userService.subIdByUserId(this.currentUser.id).subscribe(data => {
+      console.log(data)
       this.abbonam = data;
     });
     this.eventService.getEventsForUser(this.abbonam).subscribe(data => {
@@ -138,10 +139,7 @@ currentUser: any;
       this.eventi = data;
       this.parseEvent();
     });
-    this.attivitaService.findAll().subscribe(data => {
-      this.activities = data;
 
-    });
   }
 
   private getNameActFromId(id: string){
