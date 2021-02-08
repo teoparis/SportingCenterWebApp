@@ -30,11 +30,11 @@ export class PrenotazioniComponent implements OnInit {
 
   extractDay(date: string){
     var dt = new Date(date)
-    return dt.getDate().toString()
+    return dt.getDay() + "-" + dt.getMonth() + "-" + dt.getFullYear()
   }
   extractTime(date: string){
     var dt = new Date(date)
-    return dt.getTime().toString()
+    return dt.getHours() + ":" + dt.getMinutes()
   }
 
   openDelete(targetModal, prn: Evento) {
