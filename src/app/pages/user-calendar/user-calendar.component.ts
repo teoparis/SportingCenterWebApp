@@ -133,13 +133,14 @@ currentUser: any;
     this.userService.subIdByUserId(this.currentUser.id).subscribe(data => {
       console.log(data)
       this.abbonam = data;
+      this.eventService.getEventsForUser(this.abbonam).subscribe(data => {
+        console.log(data);
+        this.eventi = data;
+        this.parseEvent();
+      });
     });
     console.log("questo è il numero dell'abbonamento"+this.abbonam)
-    this.eventService.getEventsForUser(this.abbonam).subscribe(data => {
-      console.log(data);
-      this.eventi = data;
-      this.parseEvent();
-    });
+
 
   }
 
