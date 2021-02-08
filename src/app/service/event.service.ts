@@ -27,7 +27,7 @@ export class EventService {
   }
 
   public getEventsForUser(id: string) {
-    console.log(id)
+    console.log(id);
     return this.http.get<Evento[]>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/'+ encodeURIComponent(id),httpOptions);
   }
 

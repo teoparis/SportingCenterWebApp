@@ -128,7 +128,8 @@ export class UserCalendarComponent implements OnInit {
 currentUser: any;
   ngOnInit() {
     this.currentUser = this.token.getUser();
-
+    console.log(this.currentUser);
+    console.log(this.currentUser.name);
     this.eventService.getEventsForUser(this.currentUser.abbonamento).subscribe(data => {
       console.log(data);
       this.eventi = data;
