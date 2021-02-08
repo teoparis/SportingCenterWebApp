@@ -27,7 +27,7 @@ export class EventService {
   }
 
   public getEventsForUser(id: string) {
-    return this.http.post<Evento[]>(AppConstantsMicro.CALENDAR_SERVICE_USER+'event'+ encodeURIComponent(id),httpOptions);
+    return this.http.post<Evento[]>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/'+ encodeURIComponent(id),httpOptions);
   }
 
   public delete(event: Evento) {
