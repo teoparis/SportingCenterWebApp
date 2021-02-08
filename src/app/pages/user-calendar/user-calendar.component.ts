@@ -134,6 +134,7 @@ currentUser: any;
       console.log(data)
       this.abbonam = data;
     });
+    console.log("questo è il numero dell'abbonamento"+this.abbonam)
     this.eventService.getEventsForUser(this.abbonam).subscribe(data => {
       console.log(data);
       this.eventi = data;
