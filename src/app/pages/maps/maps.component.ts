@@ -113,6 +113,14 @@ export class MapsComponent implements OnInit{
         this.handleEvent('Deleted', event);
       },
     },
+    {
+      label: '<i class="fas fa-fw fa fa-user-circle-o"></i>',
+      a11yLabel: 'Partecipanti',
+      onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.events = this.events.filter((iEvent) => iEvent !== event);
+        this.open("contentDelete", event);
+      },
+    }
   ];
 
   refresh: Subject<any> = new Subject();
@@ -152,6 +160,15 @@ export class MapsComponent implements OnInit{
     });
 
 
+  }
+
+  open(targetModal, ev: CalendarEvent) {
+    this.evento.id = String(ev.id);
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
   }
 
   private getNameActFromId(id: string){
@@ -240,6 +257,17 @@ private titleDay: string;
 
   }
 
+  public onDelete(): void{
+    for (var eve of this.eventi) {
+      if(eve.id==this.evento.id) {
+        this.evento = eve;
+      }
+    }
+    this.eventService.delete(this.evento).subscribe((result) => {
+      this.ngOnInit(); //reload the table
+    });
+    this.modalService.dismissAll(); //dismiss the modal
+  }
   extractDays(): void{
     this.giorniSettimanali = [];
     var element = <HTMLInputElement> document.getElementById("weekday-mon");
