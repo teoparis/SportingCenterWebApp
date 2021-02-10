@@ -11,4 +11,7 @@ export class User {
   abbonamento: string;
   dataScadenza: string;
   expired: boolean;
+  User(): void{
+    this.displayName = "prova"
+  }
 }
