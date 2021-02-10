@@ -169,8 +169,6 @@ export class MapsComponent implements OnInit{
   open(targetModal, ev: CalendarEvent) {
     this.evento.id = String(ev.id);
     this.prenotati();
-    var user = new User();
-    this.booked.push(user);
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
