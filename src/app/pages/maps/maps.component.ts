@@ -110,7 +110,7 @@ export class MapsComponent implements OnInit{
       },
     },
     {
-      label: '<i class="fas fa-fw fa-user-circle-o"></i>',
+      label: '<i class="fas fa-fw fa-trash-alt"></i>',
       a11yLabel: 'Delete',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         /**this.handleEvent('Deleted', event);*/
@@ -118,7 +118,7 @@ export class MapsComponent implements OnInit{
       }
     },
     {
-      label: '<i class="fas fa-fw fa fa-user-circle-o"></i>',
+      label: '<i class="fas fa-fw fa-user-circle-o"></i>',
       a11yLabel: 'Partecipanti',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.open(this.conttentMod, event);
