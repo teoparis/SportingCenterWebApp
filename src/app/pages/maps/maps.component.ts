@@ -110,15 +110,16 @@ export class MapsComponent implements OnInit{
       a11yLabel: 'Delete',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      },
+        /**this.handleEvent('Deleted', event);*/
+        this.open("contentDelete", event);
+      }
     },
     {
       label: '<i class="fas fa-fw fa fa-user-circle-o"></i>',
       a11yLabel: 'Partecipanti',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.open("contentDelete", event);
+        this.open("contentMod", event);
       },
     }
   ];
