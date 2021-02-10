@@ -33,6 +33,8 @@ import {FormGroup} from "@angular/forms";
 import {Evento} from "../../entities/evento";
 import {EventService} from "../../service/event.service";
 
+
+
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -71,6 +73,8 @@ export interface MyEvent extends CalendarEvent {
 
 export class MapsComponent implements OnInit{
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
+  @ViewChild('contentDelete', { static: true }) contentDelete: TemplateRef<any>;
+  @ViewChild('contentMod', { static: true }) conttentMod: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
 
@@ -111,7 +115,7 @@ export class MapsComponent implements OnInit{
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter((iEvent) => iEvent !== event);
         /**this.handleEvent('Deleted', event);*/
-        this.open("contentDelete", event);
+        this.open(this.contentDelete, event);
       }
     },
     {
@@ -119,7 +123,7 @@ export class MapsComponent implements OnInit{
       a11yLabel: 'Partecipanti',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter((iEvent) => iEvent !== event);
-        this.open("contentMod", event);
+        this.open(this.conttentMod, event);
       },
     }
   ];
