@@ -52,6 +52,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   onSubmit() {
+    this.extractType();
     this.attivitaService.save(this.activity).subscribe((result) => {
       this.ngOnInit(); //reload the table
     });
@@ -101,5 +102,17 @@ export class ActivitiesComponent implements OnInit {
       this.ngOnInit(); //reload the table
     });
     this.modalService.dismissAll(); //dismiss the modal
+  }
+  extractType(): void{
+    var element = <HTMLInputElement> document.getElementById("nuotoM");
+    if(element.checked)
+      this.activity.nuoto = true;
+    else
+      this.activity.nuoto = false;
+    var element = <HTMLInputElement> document.getElementById("fitnessM");
+    if(element.checked)
+      this.activity.fitness = true;
+    else
+      this.activity.fitness = false;
   }
 }
