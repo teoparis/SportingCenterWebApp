@@ -32,6 +32,7 @@ import {AttivitaServiceService} from "../../service/attivita-service.service";
 import {FormGroup} from "@angular/forms";
 import {Evento} from "../../entities/evento";
 import {EventService} from "../../service/event.service";
+import {User} from "../../entities/user";
 
 
 
@@ -142,7 +143,7 @@ export class MapsComponent implements OnInit{
   activeDayIsOpen: boolean = true;
   activities: any;
   numPrenot: any;
-
+  booked: User[];
 
   constructor(private modal: NgbModal,
               private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService
@@ -167,6 +168,7 @@ export class MapsComponent implements OnInit{
 
   open(targetModal, ev: CalendarEvent) {
     this.evento.id = String(ev.id);
+    this.prenotati();
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
@@ -412,5 +414,10 @@ private titleDay: string;
   selectOption(name: string): void{
     //console.log("THIS IS THE: "+name);
     this.attivitaAssociata = name;
+  }
+  prenotati(): void{
+    this.eventService.findBookedFromEventId(this.evento.id).subscribe(data => {
+      this.booked = data;
+    });
   }
 }

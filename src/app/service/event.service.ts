@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AppConstantsMicro} from "../common/app.constantsMicro";
 import {Evento} from "../entities/evento";
+import {User} from "../entities/user";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -44,4 +45,8 @@ export class EventService {
   public prenotaAttivita(idUser: string,idEvent: string) {
     return this.http.put<void>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/bookings/'+ encodeURIComponent(idUser)+"/"+encodeURIComponent(idEvent),httpOptions);
   }
+  public findBookedFromEventId(id: string) {
+    return this.http.get<User[]>(AppConstantsMicro.CALENDAR_SERVICE+'trainer/getusers/'+ encodeURIComponent(id),httpOptions);
+  }
+
 }
