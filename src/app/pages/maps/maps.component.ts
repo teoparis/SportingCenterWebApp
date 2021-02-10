@@ -118,7 +118,7 @@ export class MapsComponent implements OnInit{
       }
     },
     {
-      label: '<i class="fas fa-fw fa-user-circle-o"></i>',
+      label: '<i class="fas fa-fw fa-user-circle"></i>',
       a11yLabel: 'Partecipanti',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.open(this.conttentMod, event);
