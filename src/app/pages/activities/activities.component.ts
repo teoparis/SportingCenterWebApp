@@ -60,7 +60,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   onSubmitMod() {
-    this.attivitaService.delete(this.oldActivity)
+    this.extractType();
     this.attivitaService.save(this.activity).subscribe((result) => {
       this.ngOnInit(); //reload the table
     });
