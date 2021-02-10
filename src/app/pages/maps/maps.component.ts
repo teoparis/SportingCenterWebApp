@@ -110,7 +110,7 @@ export class MapsComponent implements OnInit{
       },
     },
     {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
+      label: '<i class="fas fa-fw fa-user-circle-o"></i>',
       a11yLabel: 'Delete',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         /**this.handleEvent('Deleted', event);*/
