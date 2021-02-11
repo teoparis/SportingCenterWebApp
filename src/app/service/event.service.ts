@@ -50,7 +50,7 @@ export class EventService {
   }
 
   public deleteBooking(idUser: string, idEvent: string) {
-    return this.http.put<void>(AppConstantsMicro.CALENDAR_SERVICE+'delete_booking/'+ encodeURIComponent(idUser) +"/"+ encodeURIComponent(idEvent),httpOptions);
+    return this.http.put<void>(AppConstantsMicro.CALENDAR_SERVICE_USER+'delete_booking/'+ encodeURIComponent(idUser) +"/"+ encodeURIComponent(idEvent),httpOptions);
   }
 
 
