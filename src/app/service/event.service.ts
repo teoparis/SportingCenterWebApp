@@ -39,7 +39,7 @@ export class EventService {
 
 
   public delete(event: Evento) {
-    return this.http.post<Evento>(AppConstantsMicro.CALENDAR_SERVICE+'events/delete', event);
+    return this.http.post<void>(AppConstantsMicro.CALENDAR_SERVICE+'events/delete', event);
   }
 
   public prenotaAttivita(idUser: string,idEvent: string) {
@@ -48,5 +48,10 @@ export class EventService {
   public findBookedFromEventId(id: string) {
     return this.http.get<User[]>(AppConstantsMicro.CALENDAR_SERVICE+'getusers/'+ encodeURIComponent(id),httpOptions);
   }
+
+  public deleteBooking(idUser: string, idEvent: string) {
+    return this.http.put<void>(AppConstantsMicro.CALENDAR_SERVICE+'delete_booking/'+ encodeURIComponent(idUser) +"/"+ encodeURIComponent(idEvent),httpOptions);
+  }
+
 
 }

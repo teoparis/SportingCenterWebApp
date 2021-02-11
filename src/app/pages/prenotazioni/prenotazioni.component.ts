@@ -48,6 +48,14 @@ export class PrenotazioniComponent implements OnInit {
     });
   }
 
+  public onDelete(): void{
+
+    this.eventService.deleteBooking(this.currentUser.id,this.prenotazione.id).subscribe((result) => {
+      this.ngOnInit(); //reload the table
+    });
+    this.modalService.dismissAll(); //dismiss the modal
+  }
+
 
 
 }
