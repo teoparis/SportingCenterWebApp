@@ -32,7 +32,7 @@ export class PrenotazioniComponent implements OnInit {
     var dt = new Date(date)
     console.log("THIS IS THE: "+date);
     console.log("THIS IS THE date: "+dt);
-    return dt.getDate() + "-" + dt.getMonth() + "-" + dt.getFullYear()
+    return dt.getDate() + "-" + (dt.getMonth()+1) + "-" + dt.getFullYear()
   }
   extractTime(date: string){
     var dt = new Date(date)
