@@ -46,7 +46,7 @@ export class EventService {
     return this.http.put<void>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/bookings/'+ encodeURIComponent(idUser)+"/"+encodeURIComponent(idEvent),httpOptions);
   }
   public findBookedFromEventId(id: string) {
-    return this.http.get<User[]>(AppConstantsMicro.CALENDAR_SERVICE+'trainer/getusers/'+ encodeURIComponent(id),httpOptions);
+    return this.http.get<User[]>(AppConstantsMicro.CALENDAR_SERVICE+'getusers/'+ encodeURIComponent(id),httpOptions);
   }
 
 }
