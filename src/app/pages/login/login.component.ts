@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit {
   currentUser: any;
   googleURL = AppConstants.GOOGLE_AUTH_URL;
   facebookURL = AppConstants.FACEBOOK_AUTH_URL;
-  githubURL = AppConstants.GITHUB_AUTH_URL;
-  linkedinURL = AppConstants.LINKEDIN_AUTH_URL;
   private cont = true;
   private al: any;
 
