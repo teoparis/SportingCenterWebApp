@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     }
     else if(token){
       this.tokenStorage.saveToken(token);
-      this.userService.getCurrentUser().subscribe(
+      this.userService.getCurrentUser2().subscribe(
         data => {
           this.login(data);
         },

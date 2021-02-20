@@ -61,5 +61,9 @@ export class UserService {
     return this.http.get(AppConstants.AUTH_API + 'SubIdByUserId/'+ encodeURIComponent(id), httpOptions);
   }
 
+  getCurrentUser2(): Observable<any> {
+    return this.http.get(AppConstants.AUTH_API + 'authenticateToken', httpOptions);
+  }
+
 
 }
