@@ -72,8 +72,8 @@ export class TablesComponent implements OnInit {
   }
 
   onSubmit() {
-    this.user.password="SETYORPASSWORD"
-    this.user.matchingPassword="SETYORPASSWORD"
+    this.user.password="Password"
+    this.user.matchingPassword="Password"
     this.authService.register(this.user,true).subscribe(
       data => {
         console.log(data);
