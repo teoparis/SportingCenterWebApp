@@ -19,6 +19,16 @@
             <div class="col-sm">
               <span class="h2 font-weight-bold mb-0">{{ abbona.name }}</span>
             </div>
+            <div *ngIf="abbona.nuoto" class="col-auto">
+              <div  class="icon icon-shape bg-info text-white rounded-circle shadow">
+                <i class="fas fa-swimmer"></i>
+              </div>
+            </div>
+            <div *ngIf="abbona.fitness" class="col-auto">
+              <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                <i class="fas fa-dumbbell"></i>
+              </div>
+            </div>
           </div>
           <p class="mt-3 mb-0 text-muted text-sm">
             <span class="text-nowrap">{{ abbona.descr }}</span></p>
