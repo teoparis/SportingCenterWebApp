@@ -17,16 +17,27 @@
             <div class="col-sm">
               <span class="h2 font-weight-bold mb-0">{{ activity.name }}</span>
             </div>
+            <div *ngIf="activity.nuoto" class="col-auto">
+              <div  class="icon icon-shape bg-info text-white rounded-circle shadow">
+                <i class="fas fa-swimmer"></i>
+              </div>
+            </div>
+            <div *ngIf="activity.fitness" class="col-auto">
+              <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                <i class="fas fa-dumbbell"></i>
+              </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-sm">
-              <span *ngIf="activity.fitness && activity.nuoto" class="h2 font-weight-bold mb-0">Nuoto&Fitness</span>
-              <span *ngIf="activity.fitness && !activity.nuoto" class="h2 font-weight-bold mb-0">Fitness</span>
-              <span *ngIf="!activity.fitness && activity.nuoto" class="h2 font-weight-bold mb-0">Nuoto</span>
+                <span class="mt-3 mb-0 text-muted text-sm">{{ activity.descr }}</span>
+            </div>
+            <div class="col-auto">
+              <span *ngIf="activity.fitness && activity.nuoto" class="h5 mb-0">Nuoto&Fitness</span>
+              <span *ngIf="activity.fitness && !activity.nuoto" class="h5 mb-0">Fitness</span>
+              <span *ngIf="!activity.fitness && activity.nuoto" class="h5 mb-0">Nuoto</span>
             </div>
           </div>
-          <p class="mt-3 mb-0 text-muted text-sm">
-            <span class="text-nowrap">{{ activity.descr }}</span></p>
           <div class="pagination justify-content-end">
 
             <button type="button" class="btn btn-outline-light" (click)="openDetails(contentDetails, activity)">
@@ -46,6 +57,7 @@
     <p></p>
   </div>
 </div>
+<!-- Content New Activity -->
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Aggiungi Attività</h4>
@@ -99,7 +111,7 @@
     </form>
   </div>
 </ng-template>
-
+<!-- Content Details -->
 <ng-template #contentDetails let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title2">Visualizza nel dettaglio</h4>
@@ -113,14 +125,16 @@
         <label>Nome</label>
         <input class="form-control"
                id="dname"
-               name="name">
+               name="name"
+               readonly>
       </div>
       <div class="form-group">
         <label>Descrizione</label>
         <input type="text"
                class="form-control"
                id="ddescr"
-               name="descr">
+               name="descr"
+               readonly>
       </div>
       <hr class="my-3">
 
@@ -140,7 +154,7 @@
     </form>
   </div>
 </ng-template>
-
+<!-- Content Modify -->
 <ng-template #contentModify let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title4">Modifica Attività</h4>
@@ -178,13 +192,14 @@
           <center>
             <div class="type-selector">
               <input type="checkbox" id="fitnessM" class="type" [checked]="activity.fitness === true"/>
-              <label for="fitness">Fitness</label>
+              <label for="fitnessM">Fitness</label>
               <input type="checkbox" id="nuotoM" class="type" [checked]="activity.nuoto === true"/>
-              <label for="nuoto">Nuoto</label>
+              <label for="nuotoM">Nuoto</label>
             </div>
           </center>
         </div>
       </div>
+
 
 
       <button type="submit" [disabled]="!userForm.form.valid"
@@ -195,7 +210,7 @@
 
 <ng-template #contentDelete let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title3">Sei sicuro di voler eliminare questo cliente?</h4>
+    <h4 class="modal-title" id="modal-basic-title3">Sei sicuro di voler eliminare questa attività?</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
