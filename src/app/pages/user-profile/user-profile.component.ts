@@ -26,6 +26,8 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.abbonamService.findAllUser().subscribe(data => {
       this.abbonamenti = data;
+      console.log("DATA"+data);
+      console.log("abb"+this.abbonamento);
     });
     this.abbonamento = null;
     this.currentUser = this.token.getUser();
