@@ -5,6 +5,8 @@ import {AbbonamentoServiceService} from "../../service/abbonamento-service.servi
 import {Abbonamento} from "../../entities/abbonamento";
 import {User} from "../../entities/user";
 import {UserService} from "../../service/user-service.service";
+import {Evento} from "../../entities/evento";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-user-profile',
@@ -19,7 +21,7 @@ export class UserProfileComponent implements OnInit {
   abbonamento: any;
   user: User;
   scadenza: any;
-  constructor(private token: TokenStorageService, private authService: AuthService, private abbonamService: AbbonamentoServiceService, private userService: UserService) {
+  constructor(private token: TokenStorageService, private modalService: NgbModal,private authService: AuthService, private abbonamService: AbbonamentoServiceService, private userService: UserService) {
     this.user = new User();
     this.abbonamento = '';
   }
@@ -64,5 +66,12 @@ export class UserProfileComponent implements OnInit {
       }
     }
     return ""
+  }
+  openDelete(targetModal) {
+    this.modalService.open(targetModal, {
+      centered: true,
+      backdrop: 'static',
+      size: 'lg'
+    });
   }
 }
