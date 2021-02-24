@@ -106,15 +106,19 @@
                   <div class="form-group">
                     <label class="form-control-label" for="info-abbonam">Nome</label>
                     <input type="text" [(ngModel)]="this.abbonamento"
+                           class="form-control"
                            id="info-abbonam"
                            name="info-abbonam"
                            readonly>
                   </div>
                 </div>
                 <div class="col-lg-6">
+
                   <div class="form-group">
                     <label class="form-control-label" for="scadenza">Scadenza</label>
-                    <input type="text" [(ngModel)]="this.user.dataScadenza"
+                    <input type="text" [(ngModel)]
+                      ="this.user.dataScadenza"
+                           class="form-control"
                            id="scadenza"
                            name="scadenza"
                            readonly>
