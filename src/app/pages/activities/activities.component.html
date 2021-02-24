@@ -32,11 +32,6 @@
             <div class="col-sm">
                 <span class="mt-3 mb-0 text-muted text-sm">{{ activity.descr }}</span>
             </div>
-            <div class="col-auto">
-              <span *ngIf="activity.fitness && activity.nuoto" class="h5 mb-0">Nuoto&Fitness</span>
-              <span *ngIf="activity.fitness && !activity.nuoto" class="h5 mb-0">Fitness</span>
-              <span *ngIf="!activity.fitness && activity.nuoto" class="h5 mb-0">Nuoto</span>
-            </div>
           </div>
           <div class="pagination justify-content-end">
 
