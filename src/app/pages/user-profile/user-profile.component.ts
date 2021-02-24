@@ -17,6 +17,7 @@ export class UserProfileComponent implements OnInit {
 
   currentUser: any;
   matchinPassword: any;
+  pasword: any;
   abbonamenti: Abbonamento[];
   abbonamento: any;
   user: User;
@@ -69,10 +70,13 @@ export class UserProfileComponent implements OnInit {
     return ""
   }
   openDelete(targetModal) {
-    this.modalService.open(targetModal, {
-      centered: true,
-      backdrop: 'static',
-      size: 'lg'
-    });
+    if(this.pasword==this.matchinPassword)
+      this.modalService.open(targetModal, {
+          centered: true,
+        backdrop: 'static',
+        size: 'lg'
+      });
+    else
+      return
   }
 }
