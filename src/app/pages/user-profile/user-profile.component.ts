@@ -26,6 +26,7 @@ export class UserProfileComponent implements OnInit {
     this.user = new User();
     this.abbonamento = '';
     this.pasword = '';
+    this.matchinPassword = '';
   }
 
   ngOnInit(): void {
