@@ -37,12 +37,6 @@ export class UserProfileComponent implements OnInit {
       console.log(this.abbonamenti);
       this.abbonamento = this.getNameAbbFromId(this.user.abbonamento);
     });
-
-
-    console.log("THIS IS THE ABBONAMENMTO: "+ this.user.abbonamento);
-
-    console.log("THIS IS THE ABBONAMENMTO: "+ this.abbonamento);
-    console.log("THIS IS THE: "+ this.user.dataNascita);
   }
 
   onSubmitModify() {
