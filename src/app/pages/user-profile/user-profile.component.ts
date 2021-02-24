@@ -28,7 +28,7 @@ export class UserProfileComponent implements OnInit {
     this.abbonamService.findAllUser().subscribe(data => {
       this.abbonamenti = data;
       console.log("DATA"+data);
-      console.log("abb"+this.abbonamenti);
+      console.log(this.abbonamenti);
     });
     this.abbonamento = null;
     this.currentUser = this.token.getUser();
