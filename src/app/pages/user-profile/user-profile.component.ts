@@ -31,6 +31,7 @@ export class UserProfileComponent implements OnInit {
     this.currentUser = this.token.getUser();
     this.userService.getUserByUserId(this.currentUser.id).subscribe(data => {
       this.user = data;
+      console.log(this.user)
     });
     this.abbonamento = this.getNameAbbFromId(this.user.abbonamento);
 
