@@ -45,12 +45,11 @@ export class UserProfileComponent implements OnInit {
   onSubmitModify() {
     console.log(this.user);
     if(this.pasword == '')
-      this.user.password= ''
-    else
-    {
+      this.user.password= 'no'
+    else {
       this.user.password = this.pasword
-      this.user.matchingPassword=this.user.password;
     }
+    this.user.matchingPassword=this.user.password;
     console.log("THIS IS THE: "+ this.user.dataNascita);
     this.authService.userModify(this.user).subscribe(
       data => {
