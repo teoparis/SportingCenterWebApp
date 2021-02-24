@@ -25,6 +25,7 @@ export class UserProfileComponent implements OnInit {
   constructor(private token: TokenStorageService, private modalService: NgbModal,private authService: AuthService, private abbonamService: AbbonamentoServiceService, private userService: UserService) {
     this.user = new User();
     this.abbonamento = '';
+    this.pasword = '';
   }
 
   ngOnInit(): void {
@@ -42,7 +43,13 @@ export class UserProfileComponent implements OnInit {
 
   onSubmitModify() {
     console.log(this.user);
-    this.user.matchingPassword=this.user.password;
+    if(this.pasword == '')
+      this.user.password= ''
+    else
+    {
+      this.user.password = this.pasword
+      this.user.matchingPassword=this.user.password;
+    }
     console.log("THIS IS THE: "+ this.user.dataNascita);
     this.authService.userModify(this.user).subscribe(
       data => {
