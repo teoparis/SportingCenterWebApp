@@ -25,22 +25,24 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.abbonamService.findAllUser().subscribe(data => {
-      this.abbonamenti = data;
-      console.log("DATA"+data);
-      console.log(this.abbonamenti);
-    });
     this.abbonamento = null;
     this.currentUser = this.token.getUser();
     this.userService.getUserByUserId(this.currentUser.id).subscribe(data => {
       this.user = data;
       console.log(this.user)
     });
-    this.abbonamento = this.getNameAbbFromId(this.user.abbonamento);
+    this.abbonamService.findAllUser().subscribe(data => {
+      this.abbonamenti = data;
+      console.log("DATA"+data);
+      console.log(this.abbonamenti);
+      this.abbonamento = this.getNameAbbFromId(this.user.abbonamento);
+    });
+
+
     console.log("THIS IS THE ABBONAMENMTO: "+ this.user.abbonamento);
 
     console.log("THIS IS THE ABBONAMENMTO: "+ this.abbonamento);
-    console.log("THIS IS THE: "+ this.currentUser.dataNascita);
+    console.log("THIS IS THE: "+ this.user.dataNascita);
   }
 
   onSubmitModify() {
