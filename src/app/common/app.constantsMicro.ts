@@ -5,7 +5,8 @@ export class AppConstantsMicro {
   static API_GATEWAY_URL = "http://localhost:" + AppConstantsPORT.GATEWAY_PORT + "/";
 
   //Microservices Constants
-  public static SUBSCRIPTION_SERVICE= AppConstantsMicro.API_GATEWAY_URL + "subscription-service/admin/";
+  public static SUBSCRIPTION_SERVICE_ADMIN= AppConstantsMicro.API_GATEWAY_URL + "subscription-service/admin/";
+  public static SUBSCRIPTION_SERVICE_USER= AppConstantsMicro.API_GATEWAY_URL + "subscription-service/user/";
   public static ACTIVITY_SERVICE = AppConstantsMicro.API_GATEWAY_URL + "activity-service/admin/";
   public static CALENDAR_SERVICE = AppConstantsMicro.API_GATEWAY_URL + "calendar-service/admin/";
   public static CALENDAR_SERVICE_USER = AppConstantsMicro.API_GATEWAY_URL + "calendar-service/user/";

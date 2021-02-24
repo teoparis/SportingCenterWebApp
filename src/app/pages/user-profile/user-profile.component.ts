@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.abbonamService.findAll().subscribe(data => {
+    this.abbonamService.findAllUser().subscribe(data => {
       this.abbonamenti = data;
     });
     this.abbonamento = null;
@@ -34,7 +34,7 @@ export class UserProfileComponent implements OnInit {
       console.log(this.user)
     });
     this.abbonamento = this.getNameAbbFromId(this.user.abbonamento);
-
+    console.log("THIS IS THE ABBONAMENMTO: "+ this.user.abbonamento);
 
     console.log("THIS IS THE ABBONAMENMTO: "+ this.abbonamento);
     console.log("THIS IS THE: "+ this.currentUser.dataNascita);
