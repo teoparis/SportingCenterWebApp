@@ -76,7 +76,7 @@ export class MapsComponent implements OnInit{
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
   @ViewChild('contentDelete', { static: true }) contentDelete: TemplateRef<any>;
   @ViewChild('contentMod', { static: true }) contentMod: TemplateRef<any>;
-  @ViewChild('contentMod', { static: true }) contentModpres: TemplateRef<any>;
+  @ViewChild('contentModpres', { static: true }) contentModpres: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
 
