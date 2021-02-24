@@ -4,6 +4,7 @@ import {AuthService} from "../../service/auth.service";
 import {AbbonamentoServiceService} from "../../service/abbonamento-service.service";
 import {Abbonamento} from "../../entities/abbonamento";
 import {User} from "../../entities/user";
+import {UserService} from "../../service/user-service.service";
 
 @Component({
   selector: 'app-user-profile',
@@ -12,11 +13,12 @@ import {User} from "../../entities/user";
 })
 export class UserProfileComponent implements OnInit {
 
-  currentUser: User;
+  currentUser: any;
   matchinPassword: any;
   abbonamenti: Abbonamento[];
+  abbonamento: any;
 
-  constructor(private token: TokenStorageService, private authService: AuthService, private abbonamService: AbbonamentoServiceService) {
+  constructor(private token: TokenStorageService, private authService: AuthService, private abbonamService: AbbonamentoServiceService, private userService: UserService) {
 
   }
 
@@ -24,9 +26,10 @@ export class UserProfileComponent implements OnInit {
     this.abbonamService.findAll().subscribe(data => {
       this.abbonamenti = data;
     });
+    this.abbonamento = null;
     this.currentUser = this.token.getUser();
-    this.authService.getUser(this.currentUser.id).subscribe(data => {
-      this.currentUser = data;
+    this.userService.subIdByUserId(this.currentUser.id).subscribe(data => {
+      this.abbonamento = this.getNameAbbFromId(data);
     });
 
     console.log("THIS IS THE: "+ this.currentUser.dataNascita);

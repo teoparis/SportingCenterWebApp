@@ -15,10 +15,6 @@ const httpOptions = {
 export class AuthService {
   constructor(private http: HttpClient) { }
 
-  getUser(id: any): Observable<any> {
-    return this.http.get(AppConstants.AUTH_API + 'getuser/'+ encodeURIComponent(id), httpOptions);
-  }
-
 
   login(credentials): Observable<any> {
 
