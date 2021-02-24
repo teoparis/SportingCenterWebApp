@@ -48,6 +48,7 @@ export class UserProfileComponent implements OnInit {
         console.log(data);
         this.ngOnInit(); //reload the page
       });
+    this.modalService.dismissAll(); //dismiss the modal
   }
 
   parseDate(dateString: string): string {
