@@ -3,6 +3,7 @@ import {TokenStorageService} from "../../service/token-storage.service";
 import {AuthService} from "../../service/auth.service";
 import {AbbonamentoServiceService} from "../../service/abbonamento-service.service";
 import {Abbonamento} from "../../entities/abbonamento";
+import {User} from "../../entities/user";
 
 @Component({
   selector: 'app-user-profile',
@@ -11,7 +12,7 @@ import {Abbonamento} from "../../entities/abbonamento";
 })
 export class UserProfileComponent implements OnInit {
 
-  currentUser: any;
+  currentUser: User;
   matchinPassword: any;
   abbonamenti: Abbonamento[];
 
@@ -24,6 +25,10 @@ export class UserProfileComponent implements OnInit {
       this.abbonamenti = data;
     });
     this.currentUser = this.token.getUser();
+    this.authService.getUser(this.currentUser.id).subscribe(data => {
+      this.currentUser = data;
+    });
+
     console.log("THIS IS THE: "+ this.currentUser.dataNascita);
   }
 
