@@ -162,7 +162,10 @@ export class MapsComponent implements OnInit{
       console.log(data);
       this.eventi = data;
       this.parseEvent();
+      let element:HTMLElement = document.getElementById('oggibtn') as HTMLElement;
+      element.click();
     });
+
 
 
   }
