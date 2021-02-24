@@ -51,4 +51,17 @@ export class AuthService {
     }, httpOptions);
   }
 
+  userModify(user): Observable<any> {
+    return this.http.post(AppConstants.ADMIN_URL + 'modify', {
+      displayName: user.displayName,
+      email: user.email,
+      password: user.password,
+      enabled: true,
+      matchingPassword: user.matchingPassword,
+      socialProvider: 'LOCAL',
+      number: user.number,
+      dataNascita: user.dataNascita
+    }, httpOptions);
+  }
+
 }
