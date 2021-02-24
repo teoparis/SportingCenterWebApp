@@ -157,6 +157,7 @@ export class MapsComponent implements OnInit{
       this.activities = data;
 
     });
+    this.events=[];
     this.eventService.findAll().subscribe(data => {
       console.log(data);
       this.eventi = data;
@@ -230,7 +231,7 @@ private titleDay: string;
   private activityDay: string;
   parseEvent()
   {
-    for(let i=0; i<this.events.length; i++){
+    for(let i=0; i<this.eventi.length; i++){
 
 
       console.log(this.eventi[i].inizio)
@@ -240,8 +241,7 @@ private titleDay: string;
       var end = new Date(this.eventi[i].dataFine)
       this.activityDay = this.eventi[i].activityId
       this.numPrenot = this.eventi[i].number
-      this.events = [
-        ...this.events,
+      this.events.push(
         {
           title: this.titleDay,
           start: start,
@@ -256,8 +256,8 @@ private titleDay: string;
             beforeStart: false,
             afterEnd: false,
           },
-        },
-      ];
+        }
+      );
     }
 
   }
@@ -319,6 +319,7 @@ private titleDay: string;
         this.addEventPar(this.attivitaAssociata,start,end, this.numPrenot)
       }
     }
+    this.events = [];
     this.modalService.dismissAll();
     this.ngOnInit();
 
@@ -416,6 +417,7 @@ private titleDay: string;
     this.attivitaAssociata = name;
   }
   prenotati(): void{
+    this.booked = [];
     this.eventService.findBookedFromEventId(this.evento.id).subscribe(data => {
       this.booked = data;
     });
