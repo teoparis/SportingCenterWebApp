@@ -385,4 +385,28 @@
 
 </ng-template>
 
+<ng-template #contentModpres let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title7">Lista Presenti</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="row" *ngFor="let prenot of this.booked">
+    <div class="col" style='margin-bottom:15px' >
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm">
+              <span class="h2 font-weight-bold mb-0">{{ prenot.displayName }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p></p>
+  </div>
+
+</ng-template>
+
 

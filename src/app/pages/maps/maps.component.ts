@@ -75,7 +75,8 @@ export interface MyEvent extends CalendarEvent {
 export class MapsComponent implements OnInit{
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
   @ViewChild('contentDelete', { static: true }) contentDelete: TemplateRef<any>;
-  @ViewChild('contentMod', { static: true }) conttentMod: TemplateRef<any>;
+  @ViewChild('contentMod', { static: true }) contentMod: TemplateRef<any>;
+  @ViewChild('contentMod', { static: true }) contentModpres: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
 
@@ -122,22 +123,25 @@ export class MapsComponent implements OnInit{
       label: '<i class="fas fa-fw fa-user-circle"></i>',
       a11yLabel: 'Partecipanti',
       onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.open(this.conttentMod, event);
+        if(event.start>new Date())
+        {
+          console.log("prenotati")
+          this.prenotati();
+          this.open(this.contentMod, event);}
+        else
+        {
+          console.log("presenti")
+          this.presenti();
+
+          this.open(this.contentModpres, event);
+        }
       },
     },
   ];
 
   refresh: Subject<any> = new Subject();
 
-  events: MyEvent[] = [
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions,
-      number: "0"
-    }
-  ];
+  events: MyEvent[] ;
 
 
   activeDayIsOpen: boolean = true;
@@ -172,7 +176,6 @@ export class MapsComponent implements OnInit{
 
   open(targetModal, ev: CalendarEvent) {
     this.evento.id = String(ev.id);
-    this.prenotati();
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
@@ -422,6 +425,13 @@ private titleDay: string;
   prenotati(): void{
     this.booked = [];
     this.eventService.findBookedFromEventId(this.evento.id).subscribe(data => {
+      this.booked = data;
+    });
+  }
+
+  presenti(): void{
+    this.booked = [];
+    this.eventService.findPresenceFromEventId(this.evento.id).subscribe(data => {
       this.booked = data;
     });
   }

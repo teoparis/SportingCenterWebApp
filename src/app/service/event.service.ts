@@ -49,6 +49,10 @@ export class EventService {
     return this.http.get<User[]>(AppConstantsMicro.CALENDAR_SERVICE+'getusers/'+ encodeURIComponent(id),httpOptions);
   }
 
+  public findPresenceFromEventId(id: string) {
+    return this.http.get<User[]>(AppConstantsMicro.CALENDAR_SERVICE+'getpresences/'+ encodeURIComponent(id),httpOptions);
+  }
+
   public deleteBooking(idUser: string, idEvent: string) {
     return this.http.put<void>(AppConstantsMicro.CALENDAR_SERVICE_USER+'delete_booking/'+ encodeURIComponent(idUser) +"/"+ encodeURIComponent(idEvent),httpOptions);
   }
