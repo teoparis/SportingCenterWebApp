@@ -186,4 +186,6 @@ export class TablesComponent implements OnInit {
   {
     return date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear()
   }
+
+
 }

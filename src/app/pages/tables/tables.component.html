@@ -57,7 +57,7 @@
               <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
               <td> {{ this.user.dataNascita}}</td>
               <td>{{ user.number }}</td>
-              <td>{{ this.user.abbonamento }}</td>
+              <td>{{ this.getNameAbbFromId(this.user.abbonamento) }}</td>
               <td>{{this.user.dataScadenza}}</td>
               <td>
                 <div *ngIf="!this.user.enabled" class="col-lg-5 col-md-6">
@@ -233,7 +233,7 @@
   <div class="modal-body">
     <form (ngSubmit)="onSubmitModify()" #userForm="ngForm">
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">Nome</label>
         <input type="text" [(ngModel)]
           ="user.displayName"
                class="form-control"
