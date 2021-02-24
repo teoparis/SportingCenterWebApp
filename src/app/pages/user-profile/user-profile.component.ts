@@ -31,7 +31,7 @@ export class UserProfileComponent implements OnInit {
     this.userService.subIdByUserId(this.currentUser.id).subscribe(data => {
       this.abbonamento = this.getNameAbbFromId(data);
     });
-
+    console.log("THIS IS THE ABBONAMENMTO: "+ this.abbonamento);
     console.log("THIS IS THE: "+ this.currentUser.dataNascita);
   }
 
