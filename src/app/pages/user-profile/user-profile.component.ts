@@ -21,13 +21,14 @@ export class UserProfileComponent implements OnInit {
   scadenza: any;
   constructor(private token: TokenStorageService, private authService: AuthService, private abbonamService: AbbonamentoServiceService, private userService: UserService) {
     this.user = new User();
+    this.abbonamento = new String();
   }
 
   ngOnInit(): void {
     this.abbonamService.findAllUser().subscribe(data => {
       this.abbonamenti = data;
       console.log("DATA"+data);
-      console.log("abb"+this.abbonamento);
+      console.log("abb"+this.abbonamenti);
     });
     this.abbonamento = null;
     this.currentUser = this.token.getUser();
