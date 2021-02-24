@@ -31,7 +31,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">Nome Completo</label>
                     <input type="text" [(ngModel)]
-                      ="currentUser.displayName"
+                      ="this.user.displayName"
                            class="form-control"
                            id="input-username"
                            name="input-username"
@@ -42,7 +42,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Email</label>
-                    <input type="text" [(ngModel)]="currentUser.email"
+                    <input type="text" [(ngModel)]="this.user.email"
                            class="form-control"
                            id="input-email"
                            name="input-email"
@@ -54,7 +54,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="password">Password</label>
-                    <input type="password" id="password" class="form-control" name="password" [(ngModel)]="this.currentUser.password" required minlength="6"  #password="ngModel"/>
+                    <input type="password" id="password" class="form-control" name="password" [(ngModel)]="this.user.password" required minlength="6"  #password="ngModel"/>
                   </div>
                   <div class="alert-danger" *ngIf="password.invalid">
                     <div *ngIf="password.errors.minlength">La Password deve essere di almeno 6 caratteri</div>
@@ -63,20 +63,20 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="mpassword">Matching Password</label>
-                    <input type="password" id="mpassword" class="form-control" name="mpassword" [(ngModel)]="this.matchinPassword" required minlength="6"  #mpassword="ngModel"/>
+                    <input type="password" id="mpassword" class="form-control" name="mpassword" [(ngModel)]="this.user.matchingPassword" required minlength="6"  #mpassword="ngModel"/>
                   </div>
-                  <div class="alert-danger" *ngIf="!this.matchinPassword==this.currentUser.password">
+                  <div class="alert-danger" *ngIf="!this.user.matchingPassword==this.user.password">
                     <div *ngIf="password.errors.minlength">Le password inserite non corrispondono!</div>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div *ngIf="!this.currentUser.dataNascita==null"class="col-lg-6">
+                <div *ngIf="!this.user.dataNascita==null"class="col-lg-6">
                   <div class="form-group">
                     <label> Data di Nascita</label>
                     <input
                       class="form-control"
-                      type="date" #myDate [value]="this.currentUser.dataNascita | date:'dd-MM-yyyy'" (input)="this.currentUser.dataNascita=parseDate($event.target.value)"
+                      type="date" #myDate [value]="this.user.dataNascita | date:'dd-MM-yyyy'" (input)="this.user.dataNascita=parseDate($event.target.value)"
                       mwlFlatpickr
                       placeholder="Seleziona una data di nascita"
                     />
@@ -86,7 +86,7 @@
                   <div class="form-group">
                     <div class="row">
                       <label class="form-control-label">Ruolo</label></div>
-                    <div class="row"><span *ngFor="let role of currentUser.roles" class="badge badge-success">{{ role }}</span></div>
+                    <div class="row"><span *ngFor="let role of this.user.roles" class="badge badge-success">{{ role }}</span></div>
                   </div>
                 </div>
               </div>
@@ -98,9 +98,9 @@
             </div>
 
 
-            <hr *ngIf="!this.abbonamento==null"  class="my-4" />
-            <h6  *ngIf="!this.abbonamento==null" class="heading-small text-muted mb-4">Abbonamento Associato</h6>
-            <div *ngIf="!this.abbonamento==null" class="pl-lg-4">
+            <hr *ngIf="!this.user.abbonamento==null"  class="my-4" />
+            <h6  *ngIf="!this.user.abbonamento==null" class="heading-small text-muted mb-4">Abbonamento Associato</h6>
+            <div *ngIf="!this.user.abbonamento==null" class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
@@ -115,7 +115,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="scadenza">Scadenza</label>
-                    <input type="text" [(ngModel)]="this.scadenza"
+                    <input type="text" [(ngModel)]="this.user.dataScadenza"
                            id="scadenza"
                            name="scadenza"
                            readonly>

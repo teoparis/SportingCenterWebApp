@@ -17,6 +17,7 @@ export class UserProfileComponent implements OnInit {
   matchinPassword: any;
   abbonamenti: Abbonamento[];
   abbonamento: any;
+  user: User;
   scadenza: any;
   constructor(private token: TokenStorageService, private authService: AuthService, private abbonamService: AbbonamentoServiceService, private userService: UserService) {
 
@@ -28,12 +29,12 @@ export class UserProfileComponent implements OnInit {
     });
     this.abbonamento = null;
     this.currentUser = this.token.getUser();
-    this.userService.subIdByUserId(this.currentUser.id).subscribe(data => {
-      this.abbonamento = this.getNameAbbFromId(data);
+    this.userService.getUserByUserId(this.currentUser.id).subscribe(data => {
+      this.user = data;
     });
-    this.userService.subScadByUserId(this.currentUser.id).subscribe(data => {
-      this.scadenza = data;
-    });
+    this.abbonamento = this.getNameAbbFromId(this.user.abbonamento);
+
+
     console.log("THIS IS THE ABBONAMENMTO: "+ this.abbonamento);
     console.log("THIS IS THE: "+ this.currentUser.dataNascita);
   }
