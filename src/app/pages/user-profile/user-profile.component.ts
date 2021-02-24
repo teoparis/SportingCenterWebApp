@@ -45,7 +45,7 @@ export class UserProfileComponent implements OnInit {
   onSubmitModify() {
     console.log(this.user);
     if(this.pasword == '')
-      this.user.password= 'no'
+      this.user.password= 'nochange'
     else {
       this.user.password = this.pasword
     }
