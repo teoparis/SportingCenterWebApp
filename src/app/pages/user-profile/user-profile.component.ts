@@ -40,13 +40,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   onSubmitModify() {
-    console.log(this.currentUser);
-    this.currentUser.matchingPassword=this.currentUser.password;
-    console.log("THIS IS THE: "+ this.currentUser.dataNascita);
-    this.authService.userModify(this.currentUser).subscribe(
+    console.log(this.user);
+    this.user.matchingPassword=this.user.password;
+    console.log("THIS IS THE: "+ this.user.dataNascita);
+    this.authService.userModify(this.user).subscribe(
       data => {
         console.log(data);
-        this.ngOnInit(); //reload the table
+        this.ngOnInit(); //reload the page
       });
   }
 
