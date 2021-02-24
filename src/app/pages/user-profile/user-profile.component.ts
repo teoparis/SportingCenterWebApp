@@ -54,8 +54,10 @@ export class UserProfileComponent implements OnInit {
     return null;
   }
   private getNameAbbFromId(id: string){
+    console.log("THIS IS THE NUMBER: "+ id);
     for(let i=0; i<this.abbonamenti.length; i++){
       if(this.abbonamenti[i].id==id){
+        console.log("abbsss: "+ this.abbonamenti[i].name);
         return this.abbonamenti[i].name;
       }
     }
