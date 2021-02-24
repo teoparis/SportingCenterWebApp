@@ -130,7 +130,7 @@ export class UserCalendarComponent implements OnInit {
 currentUser: any;
   ngOnInit() {
     this.currentUser = this.token.getUser();
-
+  this.events=[];
     this.userService.subIdByUserId(this.currentUser.id).subscribe(data => {
       console.log(data)
       this.abbonam = data;
@@ -138,6 +138,8 @@ currentUser: any;
         console.log(data);
         this.eventi = data;
         this.parseEvent();
+        let element:HTMLElement = document.getElementById('oggibtn') as HTMLElement;
+        element.click();
       });
     });
 
@@ -206,26 +208,25 @@ currentUser: any;
 
   private titleDay: string;
   private activityDay: string;
-  parseEvent() {
-    console.log(this.eventi[0].inizio as unknown as Date)
-    console.log(this.eventi[0].title)
-    for(let i=0; i<this.events.length; i++){
+  parseEvent()
+  {
+    for(let i=0; i<this.eventi.length; i++){
 
 
-      console.log(this.eventi[i].title)
+      console.log(this.eventi[i].inizio)
+      console.log(this.eventi[i].dataFine)
       this.titleDay=this.eventi[i].title;
       var start = new Date(this.eventi[i].inizio)
       var end = new Date(this.eventi[i].dataFine)
       this.activityDay = this.eventi[i].activityId
       this.numPrenot = this.eventi[i].number
-      this.events = [
-        ...this.events,
+      this.events.push(
         {
           title: this.titleDay,
           start: start,
           end: end,
-          color: colors.red,
           id: this.eventi[i].id,
+          color: colors.red,
           activity: this.activityDay,
           actions: this.actions,
           number: this.numPrenot,
@@ -234,13 +235,11 @@ currentUser: any;
             beforeStart: false,
             afterEnd: false,
           },
-        },
-      ];
-      console.log(this.events)
+        }
+      );
     }
 
   }
-
 
 
   public toStringDate(date: Date){
