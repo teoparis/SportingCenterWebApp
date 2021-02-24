@@ -51,7 +51,7 @@ export class UserProfileComponent implements OnInit {
 
   parseDate(dateString: string): string {
     if (dateString) {
-      console.log(",lsa data è : "+dateString);
+      console.log("La data è : "+dateString);
       return dateString;
     }
     return null;
