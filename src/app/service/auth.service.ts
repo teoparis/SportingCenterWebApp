@@ -42,7 +42,7 @@ export class AuthService {
       displayName: user.displayName,
       email: user.email,
       password: '',
-      matchingPassword: user.matchingPassword,
+      matchingPassword: '',
       socialProvider: 'LOCAL',
       enabled: enabled,
       number: user.number,
