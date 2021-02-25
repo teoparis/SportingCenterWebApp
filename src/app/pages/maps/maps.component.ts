@@ -123,6 +123,7 @@ export class MapsComponent implements OnInit{
       label: '<i class="fas fa-fw fa-user-circle"></i>',
       a11yLabel: 'Partecipanti',
       onClick: ({ event }: { event: CalendarEvent }): void => {
+        this.evento.id = String(event.id);
         if(event.start>new Date())
         {
           console.log("prenotati")
