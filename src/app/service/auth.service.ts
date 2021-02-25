@@ -41,7 +41,7 @@ export class AuthService {
     return this.http.post(AppConstants.ADMIN_URL + 'modify', {
       displayName: user.displayName,
       email: user.email,
-      password: user.password,
+      password: '',
       matchingPassword: user.matchingPassword,
       socialProvider: 'LOCAL',
       enabled: enabled,
