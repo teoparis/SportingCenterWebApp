@@ -1,8 +1,9 @@
 import {AppConstantsPORT} from "./app.constantsPORT";
+import {AppConstantsURL} from "./app.constantsURL";
 
 export class AppConstantsMicro {
   //GateWay Constant
-  static API_GATEWAY_URL = "http://localhost:" + AppConstantsPORT.GATEWAY_PORT + "/";
+  static API_GATEWAY_URL = AppConstantsURL.KUBERNATES + AppConstantsPORT.GATEWAY_PORT_KUB + "/";
 
   //Microservices Constants
   public static SUBSCRIPTION_SERVICE_ADMIN= AppConstantsMicro.API_GATEWAY_URL + "subscription-service/admin/";

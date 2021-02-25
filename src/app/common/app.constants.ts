@@ -1,7 +1,8 @@
 import {AppConstantsPORT} from "./app.constantsPORT";
+import {AppConstantsURL} from "./app.constantsURL";
 
 export class AppConstants {
-    static API_AUTH_USER_URL = "http://localhost:" + AppConstantsPORT.AUTH_USER_PORT + "/";
+    static API_AUTH_USER_URL = AppConstantsURL.KUBERNATES + AppConstantsPORT.AUTH_USER_PORT_KUB + "/";
     private static OAUTH2_URL = AppConstants.API_AUTH_USER_URL + "oauth2/authorization/";
     private static REDIRECT_URL = "?redirect_uri=http://localhost:4200/login";
     public static API_URL = AppConstants.API_AUTH_USER_URL + "api/";
