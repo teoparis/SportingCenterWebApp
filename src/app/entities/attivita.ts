@@ -5,7 +5,7 @@ export class Attivita {
   nuoto: boolean;
   fitness: boolean;
   constructor (){
-    this.id = "new"
+    //this.id = "new"
     this.name = "Nome Attività"
     this.descr = "Descrizione dell'attività"
     this.fitness = true
