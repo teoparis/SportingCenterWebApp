@@ -124,6 +124,7 @@ export class TablesComponent implements OnInit {
       backdrop: 'static',
       size: 'lg'
     });
+    document.getElementById('dnascita').setAttribute('value', user1.dataNascita);
   }
 
   openDelete(targetModal, user: User) {
