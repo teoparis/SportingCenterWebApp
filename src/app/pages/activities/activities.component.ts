@@ -18,7 +18,6 @@ export class ActivitiesComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private attivitaService: AttivitaServiceService,) {
-    this.activity = new Attivita();
   }
 
   /**
@@ -89,8 +88,8 @@ export class ActivitiesComponent implements OnInit {
   }
 
   openDelete(targetModal, act: Attivita) {
-    this.oldActivity = act;
     this.activity = act;
+    console.log(this.activity)
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
