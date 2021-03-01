@@ -258,9 +258,9 @@
             <div class="form-group">
               <input
                 class="form-control"
-                type="date" #myDate [value]="this.dataInizioP | date:'yyyy-MM-dd'" (input)="this.dataInizioP=parseDate($event.target.value)"
+                id="dnascita"
+                type="text" (input)="this.dataInizioP=parseDate($event.target.value)"
                 mwlFlatpickr
-                placeholder="Data Inizio"
               />
             </div>
           </div>

@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         setTimeout(() => {this.router.navigate(['/dashboard']);}, 2000);
       }
       else{
-        setTimeout(() => {this.router.navigate(['/user-profile']);}, 2000);
+        setTimeout(() => {this.router.navigate(['/dashboard']);}, 2000);
       }
     }
   }

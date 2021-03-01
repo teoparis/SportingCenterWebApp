@@ -70,7 +70,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <div *ngIf="!this.user.roles.includes('ROLE_ADMIN')" class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label> Data di Nascita</label>
@@ -83,6 +83,20 @@
                   </div>
                 </div>
                 <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-number">Numero di cellulare</label>
+                    <input type="text" [(ngModel)]
+                      ="this.user.number"
+                           class="form-control"
+                           id="input-number"
+                           name="input-number"
+                           placeholder="Inserisci numero di cellulare"
+                           required #name="ngModel">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
                   <div class="form-group">
                     <div class="row">
                       <label class="form-control-label">Ruolo</label></div>
