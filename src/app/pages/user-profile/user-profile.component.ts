@@ -21,6 +21,7 @@ export class UserProfileComponent implements OnInit {
   abbonamenti: Abbonamento[];
   abbonamento: any;
   user: User;
+  dat: Date;
   scadenza: any;
   constructor(private token: TokenStorageService, private modalService: NgbModal,private authService: AuthService, private abbonamService: AbbonamentoServiceService, private userService: UserService) {
     this.user = new User();

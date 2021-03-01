@@ -119,6 +119,7 @@ export class TablesComponent implements OnInit {
 
   openModify(targetModal, user1: User) {
     this.user = user1;
+    console.log(this.user)
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
@@ -177,7 +178,7 @@ export class TablesComponent implements OnInit {
   }
   parseDate(dateString: string): string {
     if (dateString) {
-      console.log(",lsa data è : "+dateString);
+      console.log(" data è : "+dateString);
       return dateString;
     }
     return null;
