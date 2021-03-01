@@ -41,6 +41,8 @@ export class UserProfileComponent implements OnInit {
       this.abbonamenti = data;
       this.abbonamento = this.getNameAbbFromId(this.user.abbonamento);
     });
+    document.getElementById('dnascita').setAttribute('value', this.user.dataNascita);
+
   }
 
   onSubmitModify() {
