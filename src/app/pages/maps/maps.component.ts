@@ -243,7 +243,7 @@ private titleDay: string;
 
       console.log(this.eventi[i].inizio)
       console.log(this.eventi[i].dataFine)
-      this.titleDay=this.eventi[i].title;
+      this.titleDay=this.getNameActFromId(this.eventi[i].activityId);
       var start = new Date(this.eventi[i].inizio)
       var end = new Date(this.eventi[i].dataFine)
       this.activityDay = this.eventi[i].activityId
