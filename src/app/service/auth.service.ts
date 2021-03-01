@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   userModify(user): Observable<any> {
-    return this.http.post(AppConstants.ADMIN_URL + 'modify', {
+    return this.http.post(AppConstants.AUTH_API + 'modify', {
       displayName: user.displayName,
       email: user.email,
       password: user.password,
