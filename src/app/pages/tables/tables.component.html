@@ -57,7 +57,7 @@
               <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
               <td> {{ this.user.dataNascita}}</td>
               <td>{{ user.number }}</td>
-              <td>{{ this.getNameAbbFromId(this.user.abbonamento) }}</td>
+              <td></td>
               <td>{{this.user.dataScadenza}}</td>
               <td>
                 <div *ngIf="!this.user.enabled" class="col-lg-5 col-md-6">
@@ -256,11 +256,10 @@
       <div class="form-group">
         <label> Data di Nascita</label>
         <input
-          id="dnascita"
           class="form-control"
-          type="date" #myDate [value]="this.user.dataNascita | date:'dd-MM-yyyy'" (input)="this.user.dataNascita=parseDate($event.target.value)"
+          id="dnascita"
+          type="text" (input)="this.user.dataNascita=parseDate($event.target.value)"
           mwlFlatpickr
-          placeholder="Seleziona una data di nascita"
         />
       </div>
 

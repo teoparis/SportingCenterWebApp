@@ -178,8 +178,11 @@ export class TablesComponent implements OnInit {
   }
   parseDate(dateString: string): string {
     if (dateString) {
-      console.log(",lsa data è : "+dateString);
-      return dateString;
+      var date;
+      date = dateString.split('-');
+      console.log(date);
+      console.log(date[2]+"-"+date[1]+"-"+date[0]);
+      return date[2]+"-"+date[1]+"-"+date[0];
     }
     return null;
   }

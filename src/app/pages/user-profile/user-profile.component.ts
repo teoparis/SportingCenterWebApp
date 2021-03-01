@@ -36,12 +36,14 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserByUserId(this.currentUser.id).subscribe(data => {
       this.user = data;
       console.log(this.user)
+      console.log(this.user.dataNascita)
+      document.getElementById('dnascita').setAttribute('value', this.user.dataNascita);
     });
     this.abbonamService.findAllUser().subscribe(data => {
       this.abbonamenti = data;
       this.abbonamento = this.getNameAbbFromId(this.user.abbonamento);
     });
-    document.getElementById('dnascita').setAttribute('value', this.user.dataNascita);
+
 
   }
 
@@ -64,8 +66,11 @@ export class UserProfileComponent implements OnInit {
 
   parseDate(dateString: string): string {
     if (dateString) {
-      console.log("La data è : "+dateString);
-      return dateString;
+      var date;
+      date = dateString.split('-');
+      console.log(date);
+      console.log(date[2]+"-"+date[1]+"-"+date[0]);
+      return date[2]+"-"+date[1]+"-"+date[0];
     }
     return null;
   }
