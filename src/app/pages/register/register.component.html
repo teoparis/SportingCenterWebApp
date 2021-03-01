@@ -27,7 +27,7 @@
           </div>
           <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
             <div class="form-group">
-              <label for="displayName">Nome*</label> <input type="text" class="form-control" name="displayName" [(ngModel)]="form.displayName" required minlength="3"
+              <label for="displayName">Nome Completo*</label> <input type="text" class="form-control" name="displayName" [(ngModel)]="form.displayName" required minlength="3"
                                                                    maxlength="20" #displayName="ngModel" />
               <div class="alert-danger" *ngIf="f.submitted && displayName.invalid">
                 <div *ngIf="displayName.errors.required">Il Nome è obbligatorio</div>
