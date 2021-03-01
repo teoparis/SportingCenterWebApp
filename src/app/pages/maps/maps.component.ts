@@ -104,13 +104,13 @@ export class MapsComponent implements OnInit{
 
 
   actions: CalendarEventAction[] = [
-    {
+    /**{
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
       a11yLabel: 'Edit',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.handleEvent('Edited', event);
       },
-    },
+    },**/
     {
       label: '<i class="fas fa-fw fa-trash-alt"></i>',
       a11yLabel: 'Delete',
