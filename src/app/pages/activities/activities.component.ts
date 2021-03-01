@@ -52,6 +52,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   onSubmit() {
+    this.activity.id=null;
     this.extractType();
     this.attivitaService.save(this.activity).subscribe((result) => {
       this.ngOnInit(); //reload the table
