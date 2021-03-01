@@ -44,6 +44,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   open(content) {
+    this.activity = new Attivita();
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -52,7 +53,6 @@ export class ActivitiesComponent implements OnInit {
   }
 
   onSubmit() {
-    this.activity.id=null;
     this.extractType();
     this.attivitaService.save(this.activity).subscribe((result) => {
       this.ngOnInit(); //reload the table
