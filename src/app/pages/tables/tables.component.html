@@ -257,10 +257,9 @@
         <label> Data di Nascita</label>
         <input
           class="form-control"
-          value="{{this.user.dataNascita}}"
-          type="date" #myDate [value]="this.user.dataNascita" (input)="this.user.dataNascita=parseDate($event.target.value)"
+          type="date" #myDate [value]="this.parseDate2(this.user.dataNascita) | date:'dd-MM-yyyy'" (input)="this.user.dataNascita=parseDate($event.target.value)"
           mwlFlatpickr
-
+          placeholder="Seleziona una data di nascita"
         />
       </div>
 

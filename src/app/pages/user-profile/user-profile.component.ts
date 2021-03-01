@@ -67,6 +67,9 @@ export class UserProfileComponent implements OnInit {
     }
     return null;
   }
+
+
+
   private getNameAbbFromId(id: string){
     console.log("THIS IS THE NUMBER: "+ id);
     for(let i=0; i<this.abbonamenti.length; i++){

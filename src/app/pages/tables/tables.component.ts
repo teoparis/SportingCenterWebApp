@@ -183,6 +183,14 @@ export class TablesComponent implements OnInit {
     }
     return null;
   }
+  parseDate2(dateString: string): Date {
+    if (dateString) {
+      //console.log("THIS IS THE: "+dateString);
+      return new Date(dateString);
+    }
+    return null;
+  }
+
   stampDate(date: Date)
   {
     return date.getDay()+"/"+date.getMonth()+"/"+date.getFullYear()
