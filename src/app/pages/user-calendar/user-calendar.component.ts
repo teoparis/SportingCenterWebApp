@@ -35,6 +35,7 @@ import {EventService} from "../../service/event.service";
 import {MyEvent} from "../maps/maps.component";
 import {TokenStorageService} from "../../service/token-storage.service";
 import {UserService} from "../../service/user-service.service";
+import {User} from "../../entities/user";
 
 const colors: any = {
   red: {
@@ -119,7 +120,7 @@ export class UserCalendarComponent implements OnInit {
   activeDayIsOpen: boolean = true;
   activities: any;
   numPrenot: any;
-
+  user: User;
 
   constructor(private modal: NgbModal, private token: TokenStorageService, private userService: UserService,
               private modalService: NgbModal, private attivitaService: AttivitaServiceService, private eventService: EventService
@@ -131,17 +132,23 @@ currentUser: any;
   ngOnInit() {
     this.currentUser = this.token.getUser();
   this.events=[];
-    this.userService.subIdByUserId(this.currentUser.id).subscribe(data => {
-      console.log(data)
-      this.abbonam = data;
-      this.eventService.getEventsForUser(this.abbonam).subscribe(data => {
-        console.log(data);
-        this.eventi = data;
-        this.parseEvent();
-        let element:HTMLElement = document.getElementById('oggibtn') as HTMLElement;
-        element.click();
-      });
+    this.userService.getUserByUserId(this.currentUser.id).subscribe(data => {
+      this.user = data;
+      if(!this.user.expired)
+      {
+        this.userService.subIdByUserId(this.currentUser.id).subscribe(data => {
+          this.abbonam = data;
+          this.eventService.getEventsForUser(this.abbonam).subscribe(data => {
+            console.log(data);
+            this.eventi = data;
+            this.parseEvent();
+            let element:HTMLElement = document.getElementById('oggibtn') as HTMLElement;
+            element.click();
+          });
+        });
+      }
     });
+
 
 
   }
