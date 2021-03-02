@@ -27,9 +27,9 @@ export class EventService {
     return this.http.post<Evento>(AppConstantsMicro.CALENDAR_SERVICE+'event', event);
   }
 
-  public getEventsForUser(id: string) {
-    console.log(id);
-    return this.http.get<Evento[]>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/'+ encodeURIComponent(id),httpOptions);
+  public getEventsForUser(subid: string, id: string) {
+    console.log(subid);
+    return this.http.get<Evento[]>(AppConstantsMicro.CALENDAR_SERVICE_USER+'events/'+ encodeURIComponent(subid)+"/"+encodeURIComponent(id),httpOptions);
   }
 
   public getBookingsForUser(id: string) {

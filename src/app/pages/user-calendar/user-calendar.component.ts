@@ -138,7 +138,7 @@ currentUser: any;
       {
         this.userService.subIdByUserId(this.currentUser.id).subscribe(data => {
           this.abbonam = data;
-          this.eventService.getEventsForUser(this.abbonam).subscribe(data => {
+          this.eventService.getEventsForUser(this.abbonam,this.currentUser.id).subscribe(data => {
             console.log(data);
             this.eventi = data;
             this.parseEvent();
