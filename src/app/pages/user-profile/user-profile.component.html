@@ -53,26 +53,6 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="password">Password</label>
-                    <input type="password" id="password" class="form-control" name="password" [(ngModel)]="this.pasword" required minlength="6"  #password="ngModel"/>
-                  </div>
-                  <div class="alert-danger" *ngIf="password.invalid">
-                    <div *ngIf="password.errors.minlength">La Password deve essere di almeno 6 caratteri</div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="mpassword">Matching Password</label>
-                    <input type="password" id="mpassword" class="form-control" name="mpassword" [(ngModel)]="this.matchinPassword" required minlength="6"  #mpassword="ngModel"/>
-                  </div>
-                  <div class="alert-danger" *ngIf="!this.matchinPassword==this.pasword">
-                    <div *ngIf="password.errors.minlength">Le password inserite non corrispondono!</div>
-                  </div>
-                </div>
-              </div>
-              <div  class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
                     <label> Data di Nascita</label>
                     <input
                       class="form-control"
@@ -95,6 +75,27 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-control" name="password" [(ngModel)]="this.pasword" required minlength="6"  #password="ngModel"/>
+                  </div>
+                  <div class="alert-danger" *ngIf="password.invalid">
+                    <div *ngIf="password.errors.minlength">La Password deve essere di almeno 6 caratteri</div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="mpassword">Matching Password</label>
+                    <input type="password" id="mpassword" class="form-control" name="mpassword" [(ngModel)]="this.matchinPassword" required minlength="6"  #mpassword="ngModel"/>
+                  </div>
+                  <div class="alert-danger" *ngIf="!this.matchinPassword==this.pasword">
+                    <div *ngIf="password.errors.minlength">Le password inserite non corrispondono!</div>
+                  </div>
+                </div>
+              </div>
+
               <div class="row">
                 <div class="col">
                   <div class="form-group">
